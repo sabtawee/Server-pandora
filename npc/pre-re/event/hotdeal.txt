@@ -1,0 +1,43 @@
+////////////////////////////////////////////////////////////////////////////////////////
+////-- Whispering Rain
+
+izlude,145,198,5	script	ลดแรงแซงโค้ง	554,{
+
+	callshop "Hotdeal_1",1;
+	end;
+
+OnInit:
+	waitingroom "ลดกระหน่ำ มาช้าอด!!",0;
+	end;
+
+}
+
+-	script	Whispering Rain#hdc	-1,{
+
+OnRestock:
+	npcshopdelitem "Hotdeal_1",909;
+	announce "ร้านค้า hotdeal ได้ทำการรีสต๊อกสินค้าแล้ว สามารถไปหาจับจ่ายซื้อขายกันได้แล้ว",bc_all|bc_blue;
+	query_sql "SELECT `item_id`,`price`,`stock`,`maxbuy` FROM `hotdeal`",.@item_id,.@item_price,.@item_stock,.@item_maxbuy;
+	for(.@i=0;.@i<getarraysize(.@item_id);.@i++){
+		npcshopadditem "Hotdeal_1",.@item_id[.@i],.@item_price[.@i],.@item_stock[.@i],.@item_maxbuy[.@i];
+	}
+	end;
+
+OnSQLINIT:
+	query_sql "DROP TABLE IF EXISTS `hotdeal`;";
+	query_sql "CREATE TABLE IF NOT EXISTS `hotdeal`(`id` INT(10) NOT NULL AUTO_INCREMENT,`item_id` INT(10) NOT NULL,`price` INT(20) NOT NULL,`stock` INT(20) NOT NULL,`maxbuy` INT(20) NOT NULL,PRIMARY KEY (`id`))";
+	dispbottom "ทำการสร้าง DB table สำหรับ NPC Hotdeal",0xff0808;
+
+OnInit:
+	bindatcmd "@hd_sql",strnpcinfo(0)+"::OnSQLINIT",99;
+	bindatcmd "@hd_re",strnpcinfo(0)+"::OnRestock",99;
+	end;
+
+OnInterIfInit:
+	debugmes ">> Whispering Rain : Hotdeal";
+	end;
+
+}
+
+//-------------------------------------------
+-	marketshop	Hotdeal_1	FAKE_NPC,909:1:1

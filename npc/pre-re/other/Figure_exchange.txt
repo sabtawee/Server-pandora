@@ -1,0 +1,93 @@
+
+izlude,121,79,6	script	Figure exchange	114,{	
+	if (checkweight(1201,1) == 0) {
+		mes "คุณมีรายการมากเกินไปโปรดลดและกลับมาในภายหลัง!";
+		close;
+	}
+	if (MaxWeight - Weight < 1000) {
+		mes "ตอนนี้คุณมีน้ำหนักเกินโปรดลดและกลับมาในภายหลัง!";
+		close;
+	}
+	mes "[Figure exchange]";
+	mes "คำอธิบายข้อความเริ่มต้นขึ้น:";
+	mes "Press 1 for Cancel";
+	mes "Press 2 แลก Figure เป็น Figure Coin";
+	mes "Press 3 Exchange Figure Box";
+	next;
+	switch(select("1.Cancel:2.แลก Figure เป็น Figure Coin:3.Exchange Figure Box")) {
+	case 1:
+		mes "[Figure exchange]";
+		mes "ยินดี!";
+		close;
+	case 2:
+		specialeffect2 EF_COIN;
+		specialeffect2 EF_LOUD;
+		progressbar "0xffff00",1;
+		callsub L_Exchange,	// yes, this list is hardcoded in the official script...
+			2771,2770,2769,2768,2767,2766,2765;
+		mes "[Figure exchange]";
+		mes "การค้นหา Figure เสร็จสิ้นแล้ว!";
+		next;
+		mes "[Figure exchange]";
+		mes "ขอบคุณที่มา!";
+		close;
+	case 3:
+		specialeffect2 EF_COIN;
+		specialeffect2 EF_LOUD;
+		progressbar "0xffff00",1;
+		if (countitem(37016) < 2) {
+			mes "[Figure exchange]";
+			mes "คุณมีเหรียญไม่เพียงพอ";
+			close;
+		}
+		delitem 37016,2; //Figure_Coin
+		getitem 35067,1; //Figure_Box
+
+		mes "[Figure exchange]";
+		mes "Figure Coin แลก Figure Box เสร็จสิ้น";
+		next;
+		mes "[Figure exchange]";
+		mes "ขอบคุณที่มา!";
+		close;
+	}
+	close;
+
+L_Exchange:
+	freeloop(1);
+	.@args = getargcount();
+	for (.@i = 0; .@i < .@args; .@i++) {
+		if (countitem(getarg(.@i))) {
+			mes "พบ ^980078" + getitemname(getarg(.@i)) + "^000000,";
+			mes "คุณต้องการแลกเปลี่ยน Figure เป็น 1 Figure Coin หรือไม่?";
+			next;
+			switch(select("No:Yes")) {
+			case 1:
+				mes "^980078คุณต้องการค้นหา Figure อื่น ๆ หรือไม่?^000000";
+				next;
+				if(select("No:Yes") == 1) {
+					mes "^980078การค้นหา Figure ถูกขัดจังหวะ^000000";
+					close;
+				}
+				break;
+			case 2:
+				if (countitem(getarg(.@i))) {
+					delitem getarg(.@i),1;
+					getitem 37016,1; //Card_Coin
+					mes "^980078" + getitemname(getarg(.@i)) + " ได้แลกเปลี่ยนเป็น Figure Coin.^000000";
+					next;
+				} else {
+					mes "^980078สินค้าคงคลังของคุณไม่มี Figure สำหรับการแลกเปลี่ยน^000000";
+					next;
+				}
+				break;
+			}
+		}
+	}
+	freeloop(0);
+	return;
+
+OnInit:
+	setunitdata getnpcid(0),UNPC_GROUP_ID,2;
+	waitingroom " Figure exchange",0;
+	end;
+}

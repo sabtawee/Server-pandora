@@ -1,0 +1,30 @@
+//===== eAthena Script =======================================
+//= Payon Fields Monster Spawn Script
+
+//==================================================
+// pay_fild09 - Payon Forest
+//==================================================
+pay_fild09,0,0,0,0	monster	Poporing	1031,10,0,0,0
+pay_fild09,0,0,0,0	monster	Poison Spore	1077,40,0,0,0
+pay_fild09,0,0,0,0	monster	Bigfoot	1060,65,0,0,0
+pay_fild09,0,0,0,0	monster	Eggyra	1116,20,0,0,0
+pay_fild09,0,0,0,0	monster	Sohee	1170,8,0,0,0
+pay_fild09,0,0,0,0	monster	Wander Man	1208,1,0,0,0
+pay_fild09,0,0,0,0	monster	Elder Willow	1033,40,0,0,0
+pay_fild09,0,0,0,0	monster	Greatest General	1277,6,0,0,0
+pay_fild09,0,0,0,0	monster	Green Plant	1080,10,360000,180000,0
+pay_fild09,198,217,30,30	monster	Shining Plant	1083,1,1800000,900000,1
+
+//==================================================
+// pay_fild10 - Payon Forest
+//==================================================
+pay_fild10,0,0,0,0	monster	Poison Spore	1077,22,0,0,0
+pay_fild10,0,0,0,0	monster	Eggyra	1116,22,0,0,0
+pay_fild10,0,0,0,0	monster	Horong	1129,33,0,0,0
+pay_fild10,0,0,0,0	monster	Bigfoot	1060,12,0,0,0
+pay_fild10,0,0,0,0	monster	Greatest General	1277,50,0,0,0
+pay_fild10,0,0,0,0	monster	Green Plant	1080,15,360000,180000,1
+pay_fild10,213,157,10,10	monster	Blue Plant	1079,3,360000,180000,1
+
+pay_fild10,0,0,0,0	boss_monster	Eddga	1115,1,3600000,0,1
+

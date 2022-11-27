@@ -1,0 +1,1 @@
+moc_fild06,0,0,0,0	monster	Dragon Fly	1091,1,1800000,180000,1

@@ -1,0 +1,99 @@
+
+izlude,135,168,4	script	DonateTicket	861,{
+
+	set .@accid, getcharid(3);
+	cleararray .@point[0] , 0, getarraysize(.@point);
+	cleararray .@bln[0] , 0, getarraysize(.@bln);
+	
+	query_sql "SELECT count(2) FROM `buy_m` WHERE `account_id` = '"+getcharid(3)+"' ", .@point;
+	cleararray .@buycount[0] , 0, getarraysize(.@buycount);
+	query_sql "SELECT count(2) FROM `buy_m` ", .@buycount;
+	mes "[ DonateTicket ]";
+	mes "สวัสดีคุณ "+strcharinfo(0)+"";
+	mes "DonateTicket Event";
+	
+	switch(select("~แลกรับหมวก Baseball Cap:~ออก")) {
+		case 1:
+			if( .@point[0] > 0 ){
+			mes "^FF0000คุณได้รับ  Baseball Cap แล้วขออนุญาติให้ท่านอื่นนะครับ^000000";
+			close;
+			}
+			
+			if( .@buycount[0] >10 ){
+				mes "^006600 ตอนนี้มีผู้เล่นมารับแล้ล "+.@buycount[0]+" คน^FF0000";
+				mes "ครบตามที่กำหนดแล้วครับ";
+				close;
+			}	
+			if ( countitem(35024)< 20 ) {
+				mes "^FF0000เอ้า...ยังไง^000000";
+				mes "^FF0000ตัวละครของคุณยังไม่มี  Donate Ticket^000000";
+				mes "^FF0000ไม่สามารถรับของรางวัลได้^000000";
+				close;
+			}				
+	
+			next;
+			
+			if (countitem(35024)>=20 ) {
+
+			mes "[ DonateTicket ]";
+			mes "ยินดีด้วย ";
+			next;
+			
+			
+			
+			switch(select("~ยืนยัน:~ออก")) {
+				
+				case 1:
+				query_sql "SELECT count(2)+1 FROM `buy_m` ", .@buycount;
+				query_sql "SELECT 9-count(2) FROM `buy_m` ", .@bln;
+				
+				if( .@buycount[0] >50 ){
+				mes "^006600 ตอนนี้มีผู้เล่นส่งมาแล้ว "+.@buycount[0]+" คน^FF0000";
+				mes "ครบตามยอดที่ครบตามยอดที่กำหนดแล้ว";
+				close;
+				}
+				
+				if( .@buycount[0] < 6 ){
+				delitem 35024, 20;
+				getitem 27031, 1;				
+				query_sql "INSERT INTO `buy_m` (`user` , `account_id` , `bankname`, `bankno`, `bankuser`, `remark`) VALUES ('"+strcharinfo(0)+"' , '"+getcharid(3)+"' , '0', '0', '0','1888')";			
+				mes "ขอบคุณที่ร่วมกิจกรรมนะครับ";
+				announce "คุณ " + strcharinfo(0) +" เป็นคนที่ "+.@buycount[0]+" ได้รับ  Golden Baseball Cap ยอดคงเหลือปัจจุบัน  "+.@bln[0]+" ใบ ",bc_all,0x00FFFF;	
+				}
+				if( .@buycount[0] > 5){
+				delitem 35024, 20;
+				getitem 19834, 1;
+				query_sql "INSERT INTO `buy_m` (`user` , `account_id` , `bankname`, `bankno`, `bankuser`, `remark`) VALUES ('"+strcharinfo(0)+"' , '"+getcharid(3)+"' , '"+.@bank_name$+"', '"+.@bank_no$+"', '"+.@bank_user$+"','888')";
+				mes "ขอบคุณที่ร่วมกิจกรรมนะครับ";
+				announce "คุณ " + strcharinfo(0) +" เป็นคนที่ "+.@buycount[0]+" ได้รับ  Baseball Cap  ยอดคงเหลือปัจจุบัน  "+.@bln[0]+" ใบ",bc_all,0x00FFFF;
+				}				
+				
+
+				
+				close;
+				next;
+				
+				close;
+				case 2:
+				close;
+			close;
+			}
+			
+			
+			
+			}
+			
+
+			
+			close;
+		case 3:
+			next;
+			close;
+		close;
+	}
+
+OnInit:
+	waitingroom " DonateTicket ",0;
+	end;
+	
+}

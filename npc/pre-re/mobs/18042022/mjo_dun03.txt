@@ -1,0 +1,8 @@
+//==================================================
+// mjo_dun03 - Mjolnir Dead Pit F3
+//==================================================
+mjo_dun03,0,0	monster	Martin	1145,20
+mjo_dun03,0,0	monster	Skeleton Worker	1169,105
+mjo_dun03,0,0	monster	Giearth	1121,20,300000,180000
+mjo_dun03,0,0	monster	Myst	1151,35
+mjo_dun03,0,0	monster	Evil Druid	1117,5,300000,150000

@@ -1,0 +1,42 @@
+//==================================================
+// gef_fild10 - Orc Village
+//==================================================
+
+gef_fild10,0,0	monster	Orc Warrior	1023,120
+gef_fild10,0,0	monster	Poporing	1031,10
+gef_fild10,0,0	monster	Orc Lady	1273,45
+gef_fild10,0,0	monster	Yoyo	1057,5
+gef_fild10,0,0	monster	Horn	1128,5
+gef_fild10,46,350,5,5	monster	Blue Plant	1079,3,900000,450000
+gef_fild10,287,61,5,5	monster	Blue Plant	1079,3,900000,450000
+gef_fild10,300,253,5,5	monster	Green Plant	1080,3,360000,180000
+
+
+//==================================================
+// orcsdun01 - Orc Dungeon F1
+//==================================================
+
+
+orcsdun01,0,0	monster	Familiar	1005,15
+orcsdun01,0,0	monster	Steel Chonchon	1042,10
+orcsdun01,0,0	monster	Drainliar	1111,5
+orcsdun01,0,0	monster	Orc Skeleton	1152,50,60000,60000
+orcsdun01,0,0	monster	Orc Zombie	1153,100
+orcsdun01,167,133,5,5	monster	Black Mushroom	1084,5,900000,480000
+orcsdun01,67,34,5,5	monster	Black Mushroom	1084,5,900000,480000
+
+
+//==================================================
+// orcsdun02 - Orc Dungeon F2
+//==================================================
+
+orcsdun01,0,0	monster	Familiar	1005,15
+orcsdun02,0,0	monster	Drainliar	1111,20
+orcsdun02,0,0	monster	Chonchon	1011,10
+orcsdun02,0,0	monster	Steel Chonchon	1042,20
+orcsdun02,0,0	monster	Orc Skeleton	1152,70
+orcsdun02,0,0	monster	Zenorc	1177,50
+orcsdun02,0,0	monster	Orc Archer	1189,5,1800000,900000
+orcsdun02,105,37,10,10	monster	White Plant	1082,2,180000,300000
+orcsdun02,37,44,10,10	monster	White Plant	1082,3,180000,300000
+orcsdun02,0,0,0,0	boss_monster	Orc Lord	1190,1,7200000,600000,1

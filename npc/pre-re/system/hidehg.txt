@@ -1,0 +1,26 @@
+-	script	Invisible	-1,{
+OnAtCommand:
+	.@npc$ = "["+ strnpcinfo(1) +"]";
+	mes .@npc$;
+	mes "หวัดดีลูกพี่, "+strcharinfo(0);
+	mes "ว่าไงวัยรุ่น Pandora เจ้ามีคอสตูมส่วนไหนที่อยากให้ข้าซ่อน";	
+	next;
+	setarray .@hgmenu$, "ส่วนหัว", "ส่วนหู", "ส่วนปาก";
+	.@menu$ = implode(.@hgmenu$, ":");
+		.@i = select( .@menu$ ) - 1;
+				.@equip = getequipid(.location$[.@i]);
+				if( .@equip != getequipid(.location$[.@i])) {
+				mes .@npc$;
+				mes "เจ้าไม่มีของใส่หรอ มารับพรได้ที่แอดมินได้ที่เพจ";
+				close;
+		} else {
+				atcommand "@"+ .looks$[.@i];
+				dispbottom .@hgmenu$[.@i] +" ของเจ้าได้ถูกซ่อนแล้ว";
+				end;
+				}
+OnInit:
+	setarray .location$, "EQI_COSTUME_HEAD_TOP", "EQI_COSTUME_HEAD_MID", "EQI_COSTUME_HEAD_LOW";
+	setarray .looks$, "changelook 1024 0", "changelook 2048 0", "changelook 4096 0";
+	bindatcmd "hidehg",strnpcinfo(0)+"::OnAtCommand";
+
+}

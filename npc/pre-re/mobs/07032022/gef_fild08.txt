@@ -1,0 +1,11 @@
+///====================================================///
+/// 		Geffen Field	-	geffen field08  	   ///
+///====================================================///
+
+gef_fild08,0,0	monster	Golem	1040,30
+gef_fild08,0,0	monster	Steel Chonchon	1042,30
+gef_fild08,0,0	monster	Poison Spore	1077,30
+gef_fild08,0,0	monster	Kobold	1133,40
+gef_fild08,0,0	monster	Kobold	1134,40
+gef_fild08,0,0	monster	Kobold	1135,40
+gef_fild08,0,0	monster	Blue Plant	1079,8,900000,480000

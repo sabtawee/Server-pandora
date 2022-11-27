@@ -1,0 +1,51 @@
+
+/////Deploy Create 26-09-2021
+
+
+function	script	F_Weapon	{
+	mes "[ ^FF0000คำเตือน^000000]";
+	mes "^FF0000หากเปิดแล้วท่านไม่สามารถยกเลิกได้";
+	mes "หากยกเลิก Item ท่านจะหายไป";
+	mes "เลือก ^CC99FFCostume อาวุธประจำอาชีพของท่าน";
+	next;
+	switch(getarg(0)) {
+	case 1:
+		switch(select("Knight:KnightSpear:Blacksmith:Wizard:Priest:Hunter:Assassin:Rougue1:Monk:Rougue2:Rougue3:Dancer:Alchemist:Bard:Sage:AssassinKater"))
+		{
+		case 1: getitem 35040,1; end;	
+		case 2: getitem 35045,1; end;
+		case 3: getitem 35043,1; end;	
+		case 4: getitem 35042,1; end;	
+		case 5: getitem 35044,1; end;	
+		case 6: getitem 35039,1; end;	
+		case 7: getitem 35041,1; end;	
+		case 8: getitem 1220031,1; end;	
+		case 9: getitem 1220032,1; end;	
+		case 10: getitem 1220033,1; end;	
+		case 11: getitem 1220034,1; end;	
+		case 12: getitem 1220035,1; end;	
+		case 13: getitem 1220037,1; end;	
+		case 14: getitem 1220038,1; end;	
+		case 15: getitem 1220039,1; end;	
+		case 16: getitem 1220040,1; end;	
+		}
+	}
+	return;
+	
+}
+
+
+//getitem 1108,1;
+//knight
+//priest
+//wizard
+//blacksmith
+//hunter
+//assassin
+//crusader
+//monk
+//sage
+//rogue
+//alchemist
+//bard
+//dancer

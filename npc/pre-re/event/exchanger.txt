@@ -1,0 +1,225 @@
+////////////////////////////////////////////////////////////////////////////////////////
+////-- Whipsering Rain
+
+// NPC ไว้เรียก เมนูคราฟท์
+izlude,69,104,6	script	Exchanger	112,{
+	
+	callfunc "F_Exchanger";
+	end;
+	
+OnInit:
+	.npcname$ = " ^0004ff•:[ Exchanger ]:• ^000000";
+	waitingroom " วิจัย Item",0;
+	end;	
+	
+	
+}
+
+-	script	EXCHANGE_CONTROL	-1,{
+
+	function Add_Item;
+	function Chk_Req;
+	function Get_Itemname;
+
+OnInit:
+	set .npc_name$," ^0004ff•:[ Exchanger ]:• ^000000";
+	freeloop(1);
+
+	setarray .Shops$[1],
+	" • Craft Item";
+
+// -----------------------------------------------------------
+//	อธิบาย
+//  Add_Item(<item ID ที่จะคราฟท์>,<พ้อยท์ ที่ใช้แลก>,<zeny>,< % ติด 1000 = 100%>,<ID วัตถุดิบ 1>,<จำนวนของ วัตถุดิบ 1>{,<ID วัตถุดิบ 2>,<จำนวนของ วัตถุดิบ 2>});
+// -----------------------------------------------------------
+
+	Add_Item(37010,10,2000000,1000,5389,2,985,10,984,10);
+	Add_Item(37011,10,2000000,1000,5286,2,985,10,984,10);
+	Add_Item(37012,10,2000000,1000,18642,2,985,10,984,10);
+	Add_Item(37013,10,2000000,1000,18643,2,985,10,984,10);
+	Add_Item(37014,10,2000000,1000,18644,2,985,10,984,10);
+	Add_Item(35030,6,20000,300,984,1);
+	Add_Item(5031,10,100000,300,985,1);
+	Add_Item(35032,10,100000,300,985,1);
+	Add_Item(35033,10,100000,300,985,1);
+	Add_Item(35034,10,100000,300,985,1);
+	Add_Item(35035,10,100000,300,985,1);
+	Add_Item(35036,10,100000,300,985,1);
+	Add_Item(35037,10,100000,300,985,1);
+	Add_Item(35038,10,100000,300,985,1);
+	Add_Item(29075,20,1000000,1000,29074,1,7053,150,912,150,7003,50,984,5,985,5,35029,2);
+	Add_Item(29065,20,1000000,1000,29064,1,7054,150,1099,100,999,50,985,5,984,5,35029,2);
+	Add_Item(36020,10,300000,200,985,5,984,5);
+	Add_Item(36021,10,300000,200,985,5,984,5);
+	Add_Item(36022,10,300000,200,985,5,984,5);
+	Add_Item(36023,10,300000,200,985,5,984,5);
+	Add_Item(36024,10,300000,200,985,5,984,5);
+	Add_Item(36025,10,300000,200,985,5,984,5);
+	Add_Item(36026,10,300000,200,985,5,984,5);
+	Add_Item(36027,10,300000,200,985,5,984,5);
+	Add_Item(29076,20,3000000,1000,29075,1,985,20,984,20,35029,2);
+	Add_Item(29066,20,3000000,1000,29065,1,985,20,984,20,35029,2);
+	Add_Item(100001,0,3000000,1000,985,5,984,5);
+	Add_Item(1220013,10,300000,200,985,5,984,5);
+	
+// -----------------------------------------------------------
+
+	freeloop(0);
+	set .menu$,"";
+	for(set .@i,1; .@i<=getarraysize(.Shops$); set .@i,.@i+1) {
+		set .menu$, .menu$+.Shops$[.@i]+":";
+	}
+	npcshopdelitem "S_EXCHANGER",909;
+	end;
+
+OnMenu:
+	set .@size, getarraysize(@i);
+	if (!.@size) set @shop_index, select(.menu$);
+	else if (.@size == 1) set @shop_index, @i[0];
+	else {
+		for(set .@j,0; .@j<.@size; set .@j,.@j+1)
+			set .@menu$, .@menu$+.Shops$[@i[.@j]]+":";
+		set @shop_index, @i[select(.@menu$)-1];
+	}
+	deletearray @i[0],getarraysize(@i);
+	if (.Shops$[@shop_index] == "") {
+		message strcharinfo(0),"เกิดข้อผิดพลาดบางอย่าง.";
+		end;
+	}
+	message strcharinfo(0), "เลือกทำได้เพียง 1 ชิ้น.";
+	callshop "S_EXCHANGER",1;
+	npcshopattach "S_EXCHANGER";
+	announce "Point Shop List: '#EXCHANGEPOINTS', พ้อยท์ปัจจุบัน " + #EXCHANGEPOINTS + " พ้อยท์",bc_self|bc_blue;
+	end;
+
+OnBuyItem:
+	if(@bought_quantity[1]){
+		mes .npc_name$;
+		mes "เลือกทำได้เพียง 1 ชิ้น.";
+		end;
+	}
+	
+	setarray .@q[0],@bought_nameid[0];
+	copyarray .@q[1],getd(".sEXG_"+.@q[0]+"[0]"),getarraysize(getd(".sEXG_"+.@q[0]));
+	mes .npc_name$;
+	mes "Charm : ^0320fc" + getitemname(.@q[0]) + "^000000";
+	mes "ต้องใช้ :";
+	mes "พ้อยท์ : ^ff0000" + .@q[1] + "^000000 พ้อยท์";
+	mes "Zeny : ^ff0000" + .@q[2] + "^000000 Zeny";
+
+	if(#EXCHANGEPOINTS < .@q[1]){
+		mes "พ้อยท์ไม่ครบ";
+		end;
+	}
+	
+	disable_items;
+	if (.@q[4]){
+		for(set .@i,4; .@i<getarraysize(.@q); set .@i,.@i+2){
+			mes "> " + Chk_Req(countitem(.@q[.@i]),.@q[.@i+1]) + Get_Itemname(.@q[.@i]) + " [" + countitem(.@q[.@i]) + "/" + (.@q[.@i+1]) + "] ea.^000000";
+		}
+	}
+	next;
+	switch(select(" • คราฟท์ ^0055FF" + getitemname(.@q[0]) + "^000000: • ยกเลิก")) {
+		case 1:
+			addtimer 10, strnpcinfo(0)+"::OnEnd";
+			if(Zeny < .@q[2]){
+				mes .npc_name$;
+				mes "มี Zeny ไม่พอในการคราฟท์";
+				end;
+			}
+			
+			if (@chk_amt[0]) {
+				mes .npc_name$;
+				mes "มีครบที่ต้องการไม่ครบ";
+				mes "ไม่สามารถคราฟท์ได้";
+				end;
+			}
+			
+			if (.@q[4]){
+				for(set .@i,4; .@i<getarraysize(.@q); set .@i,.@i+2){
+					delitem .@q[.@i],.@q[.@i+1];
+				}
+			}			
+			
+			#EXCHANGEPOINTS -= .@q[1];
+			Zeny -= .@q[2];
+			progressbar "0xffffff",3;
+			
+			.@chance = rand(1000);
+			if(.@chance < .@q[3]){
+				specialeffect2 154;
+				mes .npc_name$;
+				mes "การคราฟท์เสร็จสิ้น";
+				close2;
+				getitem .@q[0],1;
+			}else{
+				specialeffect2 155;
+				mes .npc_name$;
+				mes "โทษที, มือพี่ลั่น";
+				mes "เสียใจด้วย คราฟท์ไม่ติด";
+				close2;
+			}
+			end;
+			break;
+			
+		case 2:
+			end;
+			break;
+	}
+	end;
+	
+OnEnd:
+	deletearray @chk_amt,getarraysize(@chk_amt);
+	end;	
+
+function Add_Item {
+	if (getitemname(getarg(0)) == "null" || getarg(0) < 0 || getarg(0) < 501) {
+		debugmes "Charm ID [" + getarg(0) + "] invaild (skipped).";
+		return;
+	}
+	setarray .@j[0],getarg(1),getarg(2),getarg(3),getarg(4);
+	for(set .@i,4; .@i<getargcount(); set .@i,.@i+2) {
+		if (getitemname(getarg(.@i)) == "null" || getarg(.@i) < 0) {
+			debugmes "Charm ID [" + getarg(0) + "] requirement ID [" + getarg(.@i) + "] invaild (skipped).";
+			return;
+		} else
+			setarray .@j[.@i-1],getarg(.@i),getarg(.@i+1);
+	}
+	copyarray getd(".sEXG_"+getarg(0)+"[0]"),.@j[0],getarraysize(.@j);
+	npcshopadditem "S_EXCHANGER",getarg(0),getarg(1);
+	return;
+}
+
+function Chk_Req {
+	if (getarg(0) < getarg(1)) {
+		set @chk_amt[0],1;
+		return "^FF0000";
+	} else {
+		return "^0320fc";
+	}
+
+}
+
+function Get_Itemname {
+	set .@itemname$,getitemname(getarg(0));
+	switch(.ShowSlot) {
+		case 1: if (!getitemslots(getarg(0))) return .@itemname$;
+		case 2: if (getiteminfo(getarg(0),2) == 4 || getiteminfo(getarg(0),2) == 5) return .@itemname$+" ["+getitemslots(getarg(0))+"]";
+		default: return .@itemname$;
+	}
+}
+
+}
+
+function	script	F_Exchanger	{
+	deletearray @i[0],getarraysize(@i);
+	for(set .@i,0; .@i<getargcount(); set .@i,.@i+1)
+		set @i[.@i],getarg(.@i);
+	doevent "EXCHANGE_CONTROL::OnMenu";
+	end;
+}
+
+// Dummy shop data -- copy as needed.
+//============================================================
+-	shop	S_EXCHANGER	-1,909:-1
+//============================================================

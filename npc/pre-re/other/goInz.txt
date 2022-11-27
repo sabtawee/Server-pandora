@@ -1,0 +1,27 @@
+izlude,134,75,4	script	เข้าดันใบโอ	455,{
+	mes "เจ้าต้องการเข้าดันไหม";
+	mes "เจ้าต้องการไป หรือไม่";
+	mes "มันโหดร้ายมากน่ะ !!!!";
+	next;
+	menu "เข้าดันบอส -> 100,000 Zeny.",M0,"ออก",M_End;
+	
+	M0:
+		if(Zeny < 100000) goto NoZenyM1;
+		set Zeny, Zeny - 100000;
+		warp "lhz_dun01",0,0;
+		close;
+
+		NoZenyM1:
+			mes "[Sailor Fisk]";
+			mes "เจ้าต้องมีเงินจำนวน 100,000 Zeny, ข้าถึงจะอนุญาตให้เจ้าไปได้.";
+			close;
+
+	M_End:
+		close;
+	//verus02
+	end;
+
+OnInit:
+	waitingroom " เข้าดันใบโอ",0;
+	end;
+}

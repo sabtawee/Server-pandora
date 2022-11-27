@@ -1,0 +1,49 @@
+izlude,121,105,6	script	KafraCarSupNo	112,{
+    if(BaseJob == Job_SuperNovice){
+        mes "[Kapra's receptionist]";
+        mes "เจ้าเป็น Super Novice สิน่ะ";
+        mes "ท่านกำลังรู้สึกไม่ดีสินะ ข้ารู้ดี";
+        mes "เพราะไม่มีพนักงานให้เจ้า !!";
+        mes "เช่ารถเช็นเลย";	
+        next;
+        mes "[Kapra's receptionist]";
+        mes "แต่ท่านต้องจ่ายเงิน";
+        mes "2900 Zeny";
+        next;
+        menu "เช่ารถเข็น",buy,"ออก",no_buy;
+		cutin "", 255;
+		close2;
+        end;
+	}
+	// Make sure the invoking character does not have a cart already
+	else if(checkcart() == 1){
+		mes "^0066FF[ Kafra Express ]^000000";
+		mes "ดิฉัน..ต้องขออภัยด้วยค่ะ";
+		mes "แต่ว่า ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+		mes "มีรถเข็นอยู่แล้วนะคะ !!";
+		mes "รถสองคันท่านจะลากยังไงคะ โธ่ !";
+		cutin "", 255;
+		close2;
+	}
+    mes "[Kapra's receptionist]";
+    mes "เจ้าไม่ไช่ Super Novice";
+    close;
+    end;
+
+buy:
+    if(Zeny < 2900) goto NoZenyM1;
+		set Zeny, Zeny - 2900;
+        setcart;
+		close;
+
+		NoZenyM1:
+			mes "[Kapra's receptionist]";
+			mes "เจ้าต้องมีเงินจำนวน 2,900 Zeny, ข้าถึงจะให้รถเข็นเจ้า";
+			close;
+    
+no_buy:
+    mes "[Kapra's receptionist]";
+    mes "โชคดี";
+    end;
+
+}

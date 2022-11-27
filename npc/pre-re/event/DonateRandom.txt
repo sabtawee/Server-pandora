@@ -1,0 +1,25 @@
+function	script	Donate_Random	{
+	
+	setarray @very_rare_itemlist[0],5967,13414;
+	setarray @rare_itemlist[0],35067,35029;
+	setarray @etc_itemlist[0],617,35067,35029;
+	
+	@random = rand(0,100);
+	if(@random < 20) {
+		set .RandomItem, rand( getarraysize( @very_rare_itemlist ) );
+		getitem @very_rare_itemlist[ .RandomItem ],1;
+		announce "คุณ "+strcharinfo(0)+" ได้รับ " + getitemname(@very_rare_itemlist[ .RandomItem ]) + " จาก Donate Limited Box จำนวน 1ea",bc_all,0xFF9633;
+		end;
+	}else if(@random < 70){
+		set .RandomItem, rand( getarraysize( @rare_itemlist ) );
+		getitem @rare_itemlist[ .RandomItem ],1;
+		announce "คุณ "+strcharinfo(0)+" ได้รับ " + getitemname(@rare_itemlist[ .RandomItem ]) + " จาก Donate Limited Box จำนวน 1ea",bc_all,0xFF9633;
+		end;
+	}else{
+		set .RandomItem, rand( getarraysize( @etc_itemlist ) );
+		getitem @etc_itemlist[ .RandomItem ],1;
+		announce "ผู้เล่น "+strcharinfo(0)+" ได้รับ " + getitemname(@etc_itemlist[ .RandomItem ]) + " จาก Donate Limited Box จำนวน 1ea ",bc_all,0xFF9633;
+		end;
+	}
+ 
+}

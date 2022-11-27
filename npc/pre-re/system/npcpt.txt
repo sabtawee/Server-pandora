@@ -1,0 +1,60 @@
+-	script	NPCPT_CONTROL	-1,{
+
+OnInit:
+	// ตัวเช็ค script หากปรับ 0 จะใช้คำสั่งไม่ได้
+	$enable_npcpt = 1;
+
+	// ค่าปักป้ายเชิญปาร์ตี้
+	$npcpt_zeny_cost = 10000;
+	end;
+	
+	// วิธีใช้คำสั่ง @npcpt
+	
+}
+
+-	script	og_board_party	-1,{
+	
+	npctalk ""+strnpcinfo(0);
+
+	explode(.@str_split$,strnpcinfo(0),"#");
+	.@party_id = atoi(.@str_split$[1]);
+	.@char_id = getcharid(0);
+
+	query_sql "SELECT `party_id` FROM `char` WHERE `party_id`='"+.@party_id+"'",.@count_member;
+
+	mes " ^0004ff•:[ ป้ายเชิญปาร์ตี้ ]:• ^000000";
+	mes "ชื่อปาร์ตี้ : ^3003fc" + getpartyname(.@party_id) + "^000000";
+	mes "จำนวนคน : ^3003fc" + getarraysize(.@count_member) + "^000000/12";
+
+	if(is_party_leader(.@party_id)){
+		menu " • ลบ npc ทิ้ง",-;
+		set .@l_sel,@menu;
+		if(.@l_sel == 1){
+			close2;
+			duplicateremove(strnpcinfo(0));
+			atcommand "@npcpt_reset";
+			message strcharinfo(0), "[ Board Party ] ทำการลบ NPC เสร็จสิ้น";
+			end;
+		}
+	}
+
+	if(getarraysize(.@count_member) < 12){
+		menu " • เข้าปาร์ตี้",-," • ไม่",-;
+		set .@menu_selected,@menu;
+		if(.@menu_selected == 1){
+			party_addmember(.@party_id,.@char_id);
+			end;
+		}
+	}else{
+		mes "ปาร์ตี้นี้เต็มแล้ว เสียใจด้วย";
+		end;
+	}
+	end;
+
+OnPCLogoutEvent:
+	.@get_pid = getcharid(1);
+	if(is_party_leader(.@get_pid)){
+		duplicateremove("Board Party#"+.@get_pid);
+	}
+	end;
+}

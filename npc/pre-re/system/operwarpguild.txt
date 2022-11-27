@@ -1,0 +1,28 @@
+-	script	war	-1,{
+OnInit:
+        bindatcmd "openwarp",strnpcinfo(3)+"::OnOpemWarp",99,99;
+end;
+    
+OnOpemWarp:
+if (getgmlevel()<10) {end;}
+mes	"^0000FF[à»Ô´ÇÒÃì»¡ÔÅÇÍÃì]^000000";
+mes "ÊÇÑÊ´Õ GM : ^0033FF"+strcharinfo(0)+"^000000 ";
+menu
+"^009933•^000000 ^00FF00à»Ô´ÇÒ»ËéÍ§ËÔ¹^000000",G1,
+"^FF0000•^000000 ^0000CC»Ô´ÇÒ»ËéÍ§ËÔ¹^000000",G2,
+"^FF0000•^000000 ÍÍ¡ ",G9;
+
+G1:
+enablenpc "payg203";
+announce "["+strcharinfo(0)+": à»Ô´ÇÒ»ËéÍ§ËÔ¹áÅéÇ]",0;
+close;
+end;
+G2:
+disablenpc "payg203";
+//announce "["+strcharinfo(0)+": »Ô´ÇÒ»]",0;
+close;
+end;
+
+G9:
+close;
+}

@@ -1,0 +1,25 @@
+function	script	Random_gifbox	{
+//ของแรร์
+	setarray .RARE_ITEMLIST[0],4005;
+//ของออกง่ายๆ
+	setarray .OTH_ITEMLIST[0],501,502,503,504,505,506,526,529,530,537,538,539,617,644,706,718,719,720,721,722,723,724,725,726,728,729,730,731,732,733,734,735,736,737,738,739,740,741,742,743,744,745,746,747,748,749,750,751,752,753,754,969,975,976,978,979,980,981,982,983,994,995,996,997,999,1000,7034;
+	
+	setarray .min_amount,1;
+	setarray .max_amount,1;
+    set .rand, rand(0,50);
+    switch(.rand){
+		case 50:
+            set .Random, rand( getarraysize( .RARE_ITEMLIST ) );
+            getitem .RARE_ITEMLIST[ .Random ], 1;
+			announce "[ Gif Box : คุณ“ "+strcharinfo(0)+" ได้รับไอเทม "+getitemname(.RARE_ITEMLIST[ .Random ])+" 1ea ]",bc_all,0xFF6633;
+        break;
+       
+        default:
+			set .@amount,rand( .min_amount[.@random],.max_amount[.@random] );
+            set .Random, rand( getarraysize( .OTH_ITEMLIST ) );
+			getitem .OTH_ITEMLIST[ .Random ], .@amount;
+
+        break;
+    }
+ 
+}

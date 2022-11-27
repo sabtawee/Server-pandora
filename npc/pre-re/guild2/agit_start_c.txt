@@ -1,0 +1,29 @@
+//------------------------------------------------------------
+// Whispering Rain
+
+-	script	Agit4_Event	-1,{
+	end;
+
+OnClock2200:	//เริ่มวอร์
+OnClock2215:	//จบวอร์
+
+OnAgitInit4:
+	// starting time checks
+	if( gettime(DT_HOUR)==22 && gettime(DT_MINUTE)==00 ) {
+		if (!agitcheck4()) {
+			SetCastleData "guild_vs3",CD_GUILD_ID, 0;
+			AgitStart4;
+		}
+		end;
+	}
+
+	// end time checks
+	if ( gettime(DT_HOUR)==22 && gettime(DT_MINUTE)==15 ) { 
+		if (agitcheck4()) {
+			AgitEnd4;
+		}
+		end;
+	}
+	end;
+	
+}

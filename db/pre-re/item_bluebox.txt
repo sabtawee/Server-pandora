@@ -1,0 +1,319 @@
+// Old Blue Box Obtainable Items Database
+//
+// Structure of Database:
+// GroupID,ItemID,Rate
+
+IG_BlueBox,501,12	// Red Potion
+IG_BlueBox,502,12	// Orange Potion
+IG_BlueBox,503,12	// Yellow Potion
+IG_BlueBox,504,12	// White Potion
+IG_BlueBox,505,12	// Blue Potion
+IG_BlueBox,506,12	// Green Potion
+IG_BlueBox,507,12	// Red Herb
+IG_BlueBox,508,12	// Yellow Herb
+IG_BlueBox,509,12	// White Herb
+IG_BlueBox,510,12	// Blue Herb
+IG_BlueBox,511,12	// Green Herb
+IG_BlueBox,512,12	// Apple
+IG_BlueBox,513,12	// Banana
+IG_BlueBox,514,12	// Grape
+IG_BlueBox,515,12	// Carrot
+IG_BlueBox,516,12	// Potato
+IG_BlueBox,517,12	// Meat
+IG_BlueBox,518,12	// Honey
+IG_BlueBox,519,12	// Milk
+IG_BlueBox,520,12	// Hinalle Leaflet
+IG_BlueBox,521,12	// Aloe Leaflet
+IG_BlueBox,522,12	// Mastela Fruit
+IG_BlueBox,523,12	// Holy Water
+IG_BlueBox,525,12	// Panacea
+IG_BlueBox,526,12	// Royal Jelly
+IG_BlueBox,528,12	// Monster Food
+IG_BlueBox,529,12	// Candy
+IG_BlueBox,530,12	// Candy Cane
+IG_BlueBox,531,12	// Apple Juice
+IG_BlueBox,532,12	// Banana Juice
+IG_BlueBox,533,12	// Grape Juice
+IG_BlueBox,534,12	// Carrot Juice
+IG_BlueBox,535,12	// Pumpkin
+IG_BlueBox,536,12	// Ice Cream
+IG_BlueBox,537,12	// Pet Food
+IG_BlueBox,538,12	// Well-baked Cookie
+IG_BlueBox,601,12	// Fly Wing
+IG_BlueBox,602,12	// Butterfly Wing
+IG_BlueBox,604,512	// Dead Branch
+IG_BlueBox,605,12	// Anodyne
+IG_BlueBox,606,12	// Aloevera
+IG_BlueBox,607,12	// Yggdrasil Berry
+IG_BlueBox,608,12	// Yggdrasil Seed
+IG_BlueBox,609,12	// Amulet
+IG_BlueBox,610,12	// Yggdrasil Leaf
+IG_BlueBox,611,12	// Magnifier
+IG_BlueBox,612,12	// Mini Furnace
+IG_BlueBox,613,12	// Iron Hammer
+IG_BlueBox,614,12	// Golden Hammer
+IG_BlueBox,615,12	// Oridecon Hammer
+IG_BlueBox,618,12	// Worn Out Scroll
+IG_BlueBox,619,12	// Unripe Apple
+IG_BlueBox,620,12	// Orange Juice
+IG_BlueBox,621,12	// Bitter Herb
+IG_BlueBox,622,12	// Rainbow Carrot
+IG_BlueBox,623,12	// Earthworm the Dude
+IG_BlueBox,624,12	// Rotten Fish
+IG_BlueBox,625,12	// Rusty Iron
+IG_BlueBox,626,12	// Monster Juice
+IG_BlueBox,627,12	// Sweet Milk
+IG_BlueBox,628,12	// Well-Dried Bone
+IG_BlueBox,629,12	// Singing Flower
+IG_BlueBox,630,12	// Dew Laden Moss
+IG_BlueBox,631,12	// Deadly Noxious Herb
+IG_BlueBox,632,12	// Fatty Chubby Earthworm
+IG_BlueBox,633,12	// Sweet Potato
+IG_BlueBox,634,12	// Tropical Banana
+IG_BlueBox,635,12	// Orc Trophy
+IG_BlueBox,636,12	// No Recipient
+IG_BlueBox,637,12	// Old Broom
+IG_BlueBox,638,12	// Silver Knife of Chastity
+IG_BlueBox,639,12	// Armlet of Obedience
+IG_BlueBox,640,12	// Shining Stone
+IG_BlueBox,641,12	// Contracts in Shadow
+IG_BlueBox,642,12	// Book of the Devil
+IG_BlueBox,643,12	// Pet Incubator
+IG_BlueBox,644,112	// Gift Box
+IG_BlueBox,645,12	// Concentration Potion
+IG_BlueBox,656,12	// Awakening Potion
+IG_BlueBox,657,12	// Berserk Potion
+IG_BlueBox,701,12	// Ora Ora
+IG_BlueBox,702,12	// Animal Gore
+IG_BlueBox,703,12	// Hinalle
+IG_BlueBox,704,12	// Aloe
+IG_BlueBox,705,12	// Clover
+IG_BlueBox,706,12	// Four Leaf Clover
+IG_BlueBox,707,12	// Singing Plant
+IG_BlueBox,708,12	// Ment
+IG_BlueBox,710,12	// Illusion Flower
+IG_BlueBox,711,12	// Shoot
+IG_BlueBox,712,12	// Flower
+IG_BlueBox,713,12	// Empty Bottle
+IG_BlueBox,714,10	// Emperium
+IG_BlueBox,715,12	// Yellow Gemstone
+IG_BlueBox,716,12	// Red Gemstone
+IG_BlueBox,717,12	// Blue Gemstone
+IG_BlueBox,718,12	// Garnet
+IG_BlueBox,719,12	// Amethyst
+IG_BlueBox,720,12	// Aquamarine
+IG_BlueBox,721,12	// Emerald
+IG_BlueBox,722,12	// Pearl
+IG_BlueBox,723,12	// Ruby
+IG_BlueBox,724,12	// Cursed Ruby
+IG_BlueBox,725,12	// Sardonyx
+IG_BlueBox,726,12	// Sapphire
+IG_BlueBox,727,12	// Opal
+IG_BlueBox,728,12	// Topaz
+IG_BlueBox,729,12	// Zircon
+IG_BlueBox,730,12	// 1carat Diamond
+IG_BlueBox,731,10	// 2carat Diamond
+IG_BlueBox,732,10	// 3carat Diamond
+IG_BlueBox,906,12	// Pointed Scale
+IG_BlueBox,907,12	// Resin
+IG_BlueBox,908,12	// Spawn
+IG_BlueBox,909,12	// Jellopy
+IG_BlueBox,910,12	// Garlet
+IG_BlueBox,911,12	// Scell
+IG_BlueBox,912,12	// Zargon
+IG_BlueBox,914,12	// Fluff
+IG_BlueBox,917,12	// Talon
+IG_BlueBox,920,12	// Wolf Claw
+IG_BlueBox,921,12	// Mushroom Spore
+IG_BlueBox,922,12	// Orc's Fang
+IG_BlueBox,923,12	// Evil Horn
+IG_BlueBox,924,12	// Powder of Butterfly
+IG_BlueBox,925,12	// Bill of Birds
+IG_BlueBox,926,12	// Snake Scale
+IG_BlueBox,930,12	// Rotten Bandage
+IG_BlueBox,932,12	// Skel-Bone
+IG_BlueBox,934,12	// Memento
+IG_BlueBox,937,12	// Venom Canine
+IG_BlueBox,938,12	// Sticky Mucus
+IG_BlueBox,939,12	// Bee Sting
+IG_BlueBox,940,12	// Grasshopper's Leg
+IG_BlueBox,942,12	// Yoyo Tail
+IG_BlueBox,943,12	// Solid Shell
+IG_BlueBox,945,12	// Raccoon Leaf
+IG_BlueBox,948,12	// Bear's Footskin
+IG_BlueBox,950,12	// Heart of Mermaid
+IG_BlueBox,951,12	// Fin
+IG_BlueBox,952,12	// Cactus Needle
+IG_BlueBox,953,12	// Stone Heart
+IG_BlueBox,954,12	// Shining Scale
+IG_BlueBox,955,12	// Worm Peeling
+IG_BlueBox,956,12	// Gill
+IG_BlueBox,959,12	// Stinky Scale
+IG_BlueBox,962,12	// Tentacle
+IG_BlueBox,963,12	// Sharp Scale
+IG_BlueBox,990,12	// Red Blood
+IG_BlueBox,991,12	// Crystal Blue
+IG_BlueBox,992,12	// Wind of Verdure
+IG_BlueBox,993,12	// Green Live
+IG_BlueBox,994,12	// Flame Heart
+IG_BlueBox,995,12	// Mystic Frozen
+IG_BlueBox,996,12	// Rough Wind
+IG_BlueBox,997,12	// Great Nature
+IG_BlueBox,998,12	// Iron
+IG_BlueBox,999,12	// Steel
+IG_BlueBox,1000,12	// Star Crumb
+IG_BlueBox,1002,12	// Iron Ore
+IG_BlueBox,1003,12	// Coal
+IG_BlueBox,1004,12	// Chivalry Emblem
+IG_BlueBox,1007,12	// Necklace of Wisdom
+IG_BlueBox,1008,12	// Necklace of Oblivion
+IG_BlueBox,1010,12	// Phracon
+IG_BlueBox,1011,12	// Emveretarcon
+IG_BlueBox,1019,12	// Trunk
+IG_BlueBox,1020,12	// Black Hair
+IG_BlueBox,1021,12	// Dokebi Horn
+IG_BlueBox,1029,12	// Tiger Skin
+IG_BlueBox,1042,12	// Bug Leg
+IG_BlueBox,1044,12	// Zenorc's Fang
+IG_BlueBox,1049,12	// Skirt of Virgin
+IG_BlueBox,1054,12	// Ancient Lips
+IG_BlueBox,1056,12	// Grit
+IG_BlueBox,1066,12	// Fine-grained Trunk
+IG_BlueBox,1067,12	// Solid Trunk
+IG_BlueBox,1351,6	// Battle Axe
+IG_BlueBox,1352,3	// Battle Axe
+IG_BlueBox,1354,6	// Hammer
+IG_BlueBox,1355,3	// Hammer
+IG_BlueBox,1360,6	// Two-Handed Axe
+IG_BlueBox,1361,3	// Two-Handed Axe
+IG_BlueBox,1401,6	// Javelin
+IG_BlueBox,1402,3	// Javelin
+IG_BlueBox,1407,6	// Pike
+IG_BlueBox,1408,3	// Pike
+IG_BlueBox,1451,6	// Guisarme
+IG_BlueBox,1452,3	// Guisarme
+IG_BlueBox,1504,6	// Mace
+IG_BlueBox,1505,3	// Mace
+IG_BlueBox,1519,6	// Chain
+IG_BlueBox,1520,3	// Chain
+IG_BlueBox,1604,6	// Wand
+IG_BlueBox,1605,3	// Wand
+IG_BlueBox,1607,6	// Staff
+IG_BlueBox,1608,3	// Staff
+IG_BlueBox,1707,6	// Great Bow
+IG_BlueBox,1708,3	// Great Bow
+IG_BlueBox,1710,6	// Crossbow
+IG_BlueBox,1711,3	// Crossbow
+IG_BlueBox,2101,6	// Guard
+IG_BlueBox,2102,3	// Guard
+IG_BlueBox,2103,6	// Buckler
+IG_BlueBox,2104,3	// Buckler
+IG_BlueBox,2105,6	// Shield
+IG_BlueBox,2106,3	// Shield
+IG_BlueBox,2201,3	// Sunglasses
+IG_BlueBox,2202,1	// Sunglasses
+IG_BlueBox,2203,3	// Glasses
+IG_BlueBox,2204,1	// Glasses
+IG_BlueBox,2205,3	// Diver Goggles
+IG_BlueBox,2207,3	// Fancy Flower
+IG_BlueBox,2208,6	// Ribbon
+IG_BlueBox,2209,3	// Ribbon
+IG_BlueBox,2216,6	// Biretta
+IG_BlueBox,2217,3	// Biretta
+IG_BlueBox,2220,6	// Hat
+IG_BlueBox,2221,3	// Hat
+IG_BlueBox,2295,3	// Blinker
+IG_BlueBox,2303,6	// Jacket
+IG_BlueBox,2304,3	// Jacket
+IG_BlueBox,2305,6	// Adventurer's Suit
+IG_BlueBox,2306,3	// Adventurer's Suit
+IG_BlueBox,2307,6	// Mantle
+IG_BlueBox,2308,3	// Mantle
+IG_BlueBox,2309,6	// Coat
+IG_BlueBox,2310,3	// Coat
+IG_BlueBox,2311,1	// Mink Coat
+IG_BlueBox,2312,6	// Padded Armor
+IG_BlueBox,2313,3	// Padded Armor
+IG_BlueBox,2314,6	// Chain Mail
+IG_BlueBox,2315,3	// Chain Mail
+IG_BlueBox,2316,6	// Full Plate
+IG_BlueBox,2317,1	// Full Plate
+IG_BlueBox,2318,1	// Lord's Clothes
+IG_BlueBox,2320,1	// Formal Suit
+IG_BlueBox,2321,6	// Silk Robe
+IG_BlueBox,2322,3	// Silk Robe
+IG_BlueBox,2323,6	// Scapulare
+IG_BlueBox,2324,3	// Scapulare
+IG_BlueBox,2325,6	// Saint's Robe
+IG_BlueBox,2326,3	// Saint's Robe
+IG_BlueBox,2328,6	// Wooden Mail
+IG_BlueBox,2329,3	// Wooden Mail
+IG_BlueBox,2330,6	// Tights
+IG_BlueBox,2331,1	// Tights
+IG_BlueBox,2332,6	// Silver Robe
+IG_BlueBox,2333,3	// Silver Robe
+IG_BlueBox,2335,6	// Thief Clothes
+IG_BlueBox,2336,1	// Thief Clothes
+IG_BlueBox,2337,2	// Ninja Suit
+IG_BlueBox,2339,2	// Pantie
+IG_BlueBox,2401,6	// Sandals
+IG_BlueBox,2402,3	// Sandals
+IG_BlueBox,2403,6	// Shoes
+IG_BlueBox,2404,3	// Shoes
+IG_BlueBox,2405,6	// Boots
+IG_BlueBox,2406,3	// Boots
+IG_BlueBox,2407,1	// Crystal Pumps
+IG_BlueBox,2408,3	// Shackles
+IG_BlueBox,2409,1	// High Heels
+IG_BlueBox,2501,6	// Hood
+IG_BlueBox,2502,3	// Hood
+IG_BlueBox,2503,6	// Muffler
+IG_BlueBox,2504,3	// Muffler
+IG_BlueBox,2505,6	// Manteau
+IG_BlueBox,2506,3	// Manteau
+IG_BlueBox,2508,3	// Ragamuffin Manteau
+IG_BlueBox,2601,1	// Ring
+IG_BlueBox,2602,1	// Earring
+IG_BlueBox,2603,1	// Necklace
+IG_BlueBox,2604,1	// Glove
+IG_BlueBox,2605,1	// Brooch
+IG_BlueBox,2607,1	// Clip
+IG_BlueBox,2608,1	// Rosary
+IG_BlueBox,2609,3	// Skull Ring
+IG_BlueBox,2610,3	// Gold Ring
+IG_BlueBox,2611,3	// Silver Ring
+IG_BlueBox,2612,3	// Flower Ring
+IG_BlueBox,2613,1	// Diamond Ring
+IG_BlueBox,2618,3	// Matyr's Leash
+IG_BlueBox,2621,1	// Ring
+IG_BlueBox,2622,1	// Earring
+IG_BlueBox,2623,1	// Necklace
+IG_BlueBox,2624,1	// Glove
+IG_BlueBox,2625,1	// Brooch
+IG_BlueBox,2626,1	// Rosary
+IG_BlueBox,2628,3	// Novice Armlet
+IG_BlueBox,5003,3	// Joker Jester
+IG_BlueBox,5005,3	// Gas Mask
+IG_BlueBox,5009,3	// Safety Helmet
+IG_BlueBox,5014,3	// Fin Helm
+IG_BlueBox,5015,3	// Egg Shell
+IG_BlueBox,5030,3	// Panda Hat
+IG_BlueBox,5035,3	// Poring Hat
+IG_BlueBox,5090,3	// Goblin Leader Mask
+IG_BlueBox,5111,1	// Galapago Cap
+IG_BlueBox,5113,1	// Angry Snarl
+IG_BlueBox,5114,1	// Bucket Hat
+IG_BlueBox,5118,1	// Puppy Headband
+IG_BlueBox,5120,1	// Bucket Hat
+
+IG_BlueBox,2258,1	// Spiky Band
+IG_BlueBox,2268,1	// Pipe
+IG_BlueBox,2249,1	// Coronet
+IG_BlueBox,5019,1	// Corsair
+IG_BlueBox,5007,1	// Grand Cirlet
+IG_BlueBox,989,5	// Emperium Anvil
+IG_BlueBox,1256,3	// Katar of frozen Ice
+IG_BlueBox,1258,3	// Katar of raging blaze
+IG_BlueBox,1257,3	// Katar of quaking
+IG_BlueBox,1259,3	// Katar of piercing wind
+IG_BlueBox,5053,1 	// Sphinx hat

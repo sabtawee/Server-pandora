@@ -1,0 +1,47 @@
+-	script	Event_atoni	-1,{
+
+mes "[ ^FF0000Santa^000000 ]";
+mes "Hey!! " + strcharinfo(0) +" สบายดีรึ??";
+mes "มาหาข้าต้องการ Gifbox ใช่ไหม";
+mes "ฮ่าๆ..ท่านต้องนำ Red Stocking กับเงินมาให้ข้าเสียก่อน";
+next;
+mes "[ ^FF0000Santa^000000 ]";
+mes "^FF0000Red Stocking 25 ea.^000000";
+mes "^FF0000Zeny 20,000 Zeny";
+mes "ถ้าท่านมี Red Stocking และเงินมาให้ข้า";
+mes "ข้าจะให้ท่านแลก Gifbox เดี่ยวนี้";
+next;
+menu
+"- แลกGifbox 5 ea.",Gifbox,
+"- ยกเลิก",Cancel;
+
+Gifbox:
+menu "- ขอเช๊คของที่ท่านนำมาก่อน",-,"- ไม่เอาละ",Cancel;
+
+if (countitem(7034)<25 ||  zeny < 20000) goto ssM_Menu;
+delitem 7034, 25;
+set Zeny, Zeny-20000;
+mes "[ ^FF0000Santa^000000 ]";
+mes "เอาล่ะเก่งมาก เจ้ามีของมาครบ";
+mes "รอสักครู่นะ ข้าขอหาเบ็ดที่เหมาะกับเจ้าก่อน";
+next;
+getitem 644, 5;
+mes "[ ^FF0000Santa^000000 ]";
+mes "เสร็จเรียบร้อยแล้วล่ะ นำไปใช้ดีดีล่ะ ถ้าต้องการเบ็ดอีกก็กลับมาได้ทุกเมื่อนะ สหายน้อย";
+close;
+
+ssM_Menu:
+mes "เสียใจด้วยเจ้ามีของมาไม่ครบ";
+mes "ไว้เจอกันใหม่";
+close;
+
+Cancel:
+mes "[ ^FF0000Santa^000000 ]";
+mes "มีโอกาส เราค่อยกลับมาคุยกันอีกทีแล้วกัน";
+close;
+OnInit:
+waitingroom "Event แลก Gifbox ",0;
+end;
+}
+
+izlude,69,91,6	duplicate(Event_atoni)	แลกGifbox#akira_1	1247

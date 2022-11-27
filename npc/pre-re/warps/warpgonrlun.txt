@@ -1,0 +1,32 @@
+izlude,135,97,4	script	WarpGonryun	775,{
+
+mes "[WarpGonryun]";
+	
+	mes "เจ้าต้องการไปปยังGonryun Dungeon งั้นหรือ ?";
+	mes "ข้าจะพาเจ้าไปส่ง  Ok ไหม";
+	next;
+	menu "ข้าอยากไป",M0,"ออก",M_End;
+	
+	M0:
+		if(Zeny < 50000) goto NoZenyM1;
+		set Zeny, Zeny - 50000;
+		warp "gonryun",0,0;
+		close;
+
+		NoZenyM1:
+			mes "[WarpGonryun]";
+
+			mes "เจ้าต้องมีเงินจำนวน 50,000 Zeny , ข้าถึงจะอนุญาตให้เจ้าเข้าไปได้.";
+			close;
+
+	M_End:
+		close;
+
+
+cancel:
+close;
+
+OnInit:
+waitingroom "Gonryun Dungeon",0;
+end; 
+}

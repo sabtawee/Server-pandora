@@ -1,0 +1,6 @@
+mjolnir_12,0,0	monster	Steel Chonchon	1042,20
+mjolnir_12,0,0	monster	Metaller	1058,20
+mjolnir_12,0,0	monster	Ambernite	1094,35
+mjolnir_12,0,0	monster	Dustiness	1114,35
+mjolnir_12,0,0	monster	Mantis	1139,45
+mjolnir_12,0,0	monster	Stem Worm	1215,10

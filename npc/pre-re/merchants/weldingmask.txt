@@ -1,0 +1,69 @@
+geffen_in,144,166,4	script	Blacksmith#1	63,{
+	mes "[Blacksmith]";
+	mes "เจ้ามีอะไรกับข้า หือ...";
+	emotion 0;
+	next;
+	mes "[Blacksmith]";
+	mes "ฉันคือ Blacksmith ฉันรู้สึกเป็นมืออาชีพมาก";
+	mes "เพราะฉันทำงานมากว่า 30 ปี ในเส้นทางนี้";
+	emotion 21;
+	next;
+	mes "[Blacksmith]";
+	mes "ตั้งแต่ข้าได้เป็น Blacksmith ฉันได้ค้นหาสิ่งต่างๆ ที่น่าเหลือเชื่อ";
+	next;
+	switch(select("~ ด้วยความยินดี.?:~ ไม่ได้จริงๆ....")) {
+		case 1:
+		mes "[Blacksmith]";
+		mes "Blacksmiths เป็นช่างตีโลหะ";
+		mes "ที่ต้องใช้ความพยายามมาก";
+		mes "ความร้อนมหาศาลจากโลหะ";
+		mes "จะทำให้ใบหน้าของเจ้าร้อนและดำ";
+		emotion 23;
+		next;
+		mes "[Blacksmith]";
+		mes "แต่ข้าได้คิดค้นสิ่งประดิษฐ์ของข้า";
+		mes "และข้าเรียกมันว่า ^3355FFWelding Mask^000000!";
+		emotion 5;
+		next;
+		mes "[Blacksmith]";
+		mes "เมื่อเจ้าสวมใส่มัน เจ้าจะได้รู้สึกร้อนแม้แต่นิดเดียว.";
+		next;
+		mes "[Blacksmith]";
+		mes "แต่มันต้องใช้";
+		mes "^4455FFSteel 50ea^000000 และ ^4455FF2000 Zeny^000000,";
+		mes "ในการประดิษฐ์.";
+		next;
+			switch(select("~ ฉันต้องการมัน...:~ ไม่ล่ะ, ขอบคุณ")) {
+				case 1:
+					mes "[Blacksmith]";
+					if((countitem(999) < 50) || (Zeny < 2000)) {
+						mes "หากเจ้าต้องการ ข้าจำเป็นต้องใช้  ^4455FFSteel 50ea^000000 และ ^4455FF2,000 Zeny^000000 ในการทำ Welding Mask.";
+						emotion 4;
+						close;
+					}
+					mes "ข้าจะทำให้เข้าตอนนี้เลย.......";
+					next;	
+					mes "รอสักครู่";
+					next;
+					mes "[Blacksmith]";
+					mes "อ่ะ นี่คือสิ่งประดิษฐ์ของข้า มันเป็นสิ่งที่ยอดเยี่ยมมาก!";
+					delitem 999,50;
+					set Zeny, Zeny - 2000;
+					getitem 2292,1;
+				close;
+				
+				case 2:
+					mes "[Blacksmith]";
+					mes "หากเจ้ต้องการ ^5555FFWelding Mask^000000.";
+					mes "มาหาข้าได้ตลอดเวลา.....";
+				close;
+			}
+		close;
+		
+		case 2:
+			mes "[Blacksmith]";
+			mes "ขอบคุณที่มาเยี่ยมชม!";
+			emotion 32;
+		close;
+	}
+}

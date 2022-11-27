@@ -1,0 +1,157 @@
+//==================== Script Monster ========================
+
+//============================================================
+//==================== EVENT Antonio Santa Pandora-RO ========
+//============================================================
+
+
+//============================================================
+//Prontera Field 00-11
+//============================================================
+prt_fild00,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+										 
+prt_fild01,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+										 
+prt_fild02,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+										 
+prt_fild03,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+										 
+prt_fild04,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+										 
+prt_fild05,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+										 
+prt_fild06,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+										 
+prt_fild07,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+										 
+prt_fild08,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+										 
+prt_fild09,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+										 
+prt_fild10,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+										 
+prt_fild11,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+//============================================================
+//Payon Forest 01-11
+//============================================================
+pay_fild01,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+pay_fild02,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+pay_fild03,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+pay_fild04,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+pay_fild05,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+pay_fild06,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+pay_fild07,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+pay_fild08,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+pay_fild09,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+pay_fild10,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+pay_fild11,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+//============================================================
+//Sograt Desert 01-18
+//============================================================
+moc_fild01,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+moc_fild02,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+moc_fild03,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+moc_fild04,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+moc_fild05,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+moc_fild06,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+moc_fild07,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+moc_fild08,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+moc_fild09,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+moc_fild10,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+moc_fild11,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+moc_fild12,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+moc_fild13,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+moc_fild14,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+moc_fild15,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+moc_fild16,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+moc_fild17,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+moc_fild18,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+//============================================================
+//Mt.Mjolnir 01-12
+//============================================================
+mjolnir_01,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+mjolnir_02,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+mjolnir_03,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+mjolnir_04,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+mjolnir_05,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+mjolnir_06,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+mjolnir_07,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+mjolnir_08,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+mjolnir_09,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+mjolnir_10,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+mjolnir_11,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+mjolnir_12,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+//============================================================
+//Geffen Field 00-14
+//============================================================
+gef_fild00,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+gef_fild01,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+gef_fild02,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+gef_fild03,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+gef_fild04,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+gef_fild05,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+gef_fild06,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+gef_fild07,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+gef_fild08,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+gef_fild09,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+gef_fild10,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+gef_fild11,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+gef_fild12,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+gef_fild13,0,0,0,0	monster	Antonio	1247,5,900000,1200000
+
+gef_fild14,0,0,0,0	monster	Antonio	1247,5,900000,1200000

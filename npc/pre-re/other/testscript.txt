@@ -1,0 +1,11 @@
+-	script	COSMIC_TEST	-1,{
+
+OnCommand:
+	//sc_end SC_CURSE_B_CUBE;
+	sc_start SC_CARDBOOST,180000,15;
+	end;
+
+OnInit:
+	bindatcmd "www",strnpcinfo(0)+"::OnCommand",0;
+	end;
+}

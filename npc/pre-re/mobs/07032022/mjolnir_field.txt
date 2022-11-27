@@ -1,0 +1,46 @@
+///====================================================///
+/// 		mjolnir_field07	-	mjolnir_07			   ///
+///====================================================///
+
+mjolnir_07,0,0	monster	Poporing	1031,15
+mjolnir_07,0,0	monster	Ambernite	1094,15
+mjolnir_07,0,0	monster	Coco	1104,25
+mjolnir_07,0,0	monster	Horn	1128,65
+mjolnir_07,0,0	monster	Blue Plant	1079,2,360000,520000
+mjolnir_07,0,0	monster	Green Plant	1080,7,180000,120000
+
+///====================================================///
+/// 		mjolnir_field08	-	mjolnir_08			   ///
+///====================================================///
+
+mjolnir_08,0,0	monster	Poporing	1031,15
+mjolnir_08,0,0	monster	Yoyo	1057,30
+mjolnir_08,0,0	monster	Lunatic	1063,10
+mjolnir_08,0,0	monster	Horn	1128,20
+mjolnir_08,0,0	monster	Stainer	1174,55
+mjolnir_08,0,0	monster	Blue Plant	1079,2,360000,180000
+mjolnir_08,0,0	monster	Green Plant	1080,6,180000,120000	
+
+///====================================================///
+/// 		mjolnir_field10	-	mjolnir_10			   ///
+///====================================================///
+
+mjolnir_10,0,0	monster	Poring	1002,30
+mjolnir_10,0,0	monster	Argiope	1099,100
+mjolnir_10,0,0	monster	Argos	1100,30
+mjolnir_10,0,0	monster	Mastering	1090,1,1800000
+mjolnir_10,0,0	monster	Angeling	1096,1,1800000
+mjolnir_10,0,0	monster	Green Plant	1080,10,180000,120000
+mjolnir_10,0,0	monster	Shining Plant	1083,1,1800000,900000
+
+///====================================================///
+/// 		mjolnir_field11	-	mjolnir_11			   ///
+///====================================================///
+
+mjolnir_11,0,0	monster	Mandragora	1020,50
+mjolnir_11,0,0	monster	Poporing	1031,10
+mjolnir_11,0,0	monster	Thief Bug Male	1054,30
+mjolnir_11,0,0	monster	Argiope	1099,10
+mjolnir_11,0,0	monster	Flora	1118,60
+mjolnir_11,0,0	monster	Blue Plant	1079,2,360000,180000
+mjolnir_11,0,0	monster	Green Plant	1080,11,180000,120000

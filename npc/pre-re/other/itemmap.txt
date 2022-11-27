@@ -1,0 +1,43 @@
+-	script	itemmap	-1,{  
+    OnInit:
+        bindatcmd "itemmap",strnpcinfo(3)+"::OnItemMap",99,99;
+    end;
+    
+    OnItemMap:
+        message strcharinfo(0),"โปรดเลือก คำสั่งที่ท่านต้องการใช้งาน.";
+        switch(select("01. ^0000FFแจกของในแมพที่อยู่^000000" )) {
+            
+        case 1:
+        message strcharinfo(0),"เลขไอเทม";
+        input $@item;
+
+        message strcharinfo(0),"จำนวนไอเทม.";
+        input $@amount;
+
+        message strcharinfo(0),"ท่านได้มอบ "+getitemname($@item)+" ให้แก่ผู้เล่นจำนวน "+$@amount+" ea";
+        if(select("- ^FF0000No^000000 :- ^00FF00Yes^000000") - 2) end;
+        addrid(1);
+        getitem $@item,$@amount;
+        end;
+        
+		
+        message strcharinfo(0),"ท่านได้มอบ "+callfunc("F_InsertComma",$@zeny)+"  Zeny ให้แก่ผู้เล่น";
+        if(select("- ^FF0000No^000000 :- ^00FF00Yes^000000") - 2) end;
+        addrid(1);
+        Zeny += $@zeny;
+        message strcharinfo(0),"คุณได้รับ "+callfunc("F_InsertComma",$@zeny)+" Zeny จากทีมงาน";
+        end;;
+        
+        case 2:
+        message strcharinfo(0),"จำนวน Cash.";
+        input $@cash;
+        
+        message strcharinfo(0),"ท่านได้มอบ "+callfunc("F_InsertComma",$@cash)+"  Cash Point ให้แก่ผู้เล่น";
+        addrid(1);
+        #CASHPOINTS += $@cash;
+        message strcharinfo(0),"คุณได้รับ "+callfunc("F_InsertComma",$@cash)+" Cash Point จากทีมงาน";
+            end;;
+        }
+        
+    close;
+}

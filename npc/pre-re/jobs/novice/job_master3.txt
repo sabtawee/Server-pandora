@@ -1,0 +1,650 @@
+-	script	jobchange	-1,{
+	set .@heading$, "[^0000FFJob Master^000000]";
+	set .@giftzeny1, 0;	// ได้รับเงินตอนเปลี่ยน Novice High
+	set .@giftzeny2, 0;	// ได้รับเงินตอน เปลี่ยนเป็น 2-1
+	set .@giftzeny3, 0;	// ได้รับเงินเมื่อเป็น Hi Class แล้ว
+
+if (Class==0) goto L_is_novice;
+if (Class==1) goto L_is_sword;
+if (Class==2) goto L_is_mage;
+if (Class==3) goto L_is_archer;
+if (Class==4) goto L_is_acolyte;
+if (Class==5) goto L_is_merchant;
+if (Class==6) goto L_is_thief;
+if (Class==7) goto L_is_knight;
+if (Class==8) goto L_is_priest;
+if (Class==9) goto L_is_wizard;
+if (Class==10) goto L_is_blacksmith;
+if (Class==11) goto L_is_hunter;
+if (Class==12) goto L_is_assassin;
+if (Class==14) goto L_is_crusader;
+if (Class==13) goto L_is_knight;
+if (Class==15) goto L_is_monk;
+if (Class==16) goto L_is_sage;
+if (Class==17) goto L_is_rogue;
+if (Class==18) goto L_is_alchemist;
+if (Class==19) goto L_is_bard;
+if (Class==20) goto L_is_dancer;
+if (Class==21) goto L_is_crusader;
+if (Class==23) goto L_is_supernovice;
+
+
+High:
+	mes .@heading$;
+	mes "สวัสดีค่ะ คุณ ^FF0000[ "+ strcharinfo(0) +" ]^000000";
+	mes "คุณได้มาถึงจุดสูงสุดแล้วค่ะ";
+	close;
+L_is_novice:
+	if(JobLevel < 10) goto L_notJ10;
+	if(SkillPoint >0) goto L_notUseAll;
+	mes .@heading$;
+	mes "สวัสดีค่ะ ท่าน ^FF0000[ "+ strcharinfo(0) +" ]^000000";
+	mes "ท่านมีอะไรให้ข้ารับใช้ค่ะ";
+	next;
+	menu "^009933•^000000 เปลื่ยนอาชีพ",-,"^FF0000•^000000 ยกเลิก",L_close;
+	mes .@heading$;
+	mes "ท่านต้องการเป็นอาชีพอะไรค่ะ";
+	next;
+	menu	"^009933•^000000 Swordman",swordman,
+		"^009933•^000000 Mage",mage,
+		"^009933•^000000 Archer",archer,
+		"^009933•^000000 Acolyte",acolyte,
+		"^009933•^000000 Merchant",merchant,
+		"^009933•^000000 Thief",thief,
+		"^009933•^000000 Super Novice",supernovice,
+		//"^009933•^000000 Gunslinger",gunslinger,
+		//"^009933•^000000 Ninja",ninja,
+		//"^009933•^000000 Teakwon",teakwon,
+		"^FF0000•^000000 ยกเลิก",L_close;
+
+supernovice:
+	if(BaseLevel < 45) goto L_notJ45;
+	if(JobLevel < 10) goto L_notJ10;
+	if(SkillPoint >0) goto L_notUseAll;
+	mes .@heading$;
+	mes "ตกลง Super Novice ใช่มั้ยค่ะ";
+	next;
+	menu	"^009933•^000000 ใช่",-,"^FF0000•^000000 ไม่ใช่",L_close;
+	mes .@heading$;
+	mes "ตกลง ตามนั้นค่ะ";
+	next;
+	JobChange 23;
+	mes "ท่านเป็น Super Novice แล้วค่ะ";
+	close;
+L_is_supernovice:
+	mes .@heading$;
+	mes "ท่านเป็น Super Novice แล้วค่ะ";
+	close;
+
+swordman:
+	mes .@heading$;
+	mes "ตกลง Swordman ใช่มั้ยค่ะ";
+	next;
+	menu	"^009933•^000000 ใช่",-,"^FF0000•^000000 ไม่ใช่",L_close;
+	mes .@heading$;
+	mes "ตกลง ตามนั้นค่ะ";
+	next;
+	JobChange 1;
+	mes "ท่านเป็น Swordman แล้วค่ะ";
+	close;
+mage:
+	mes .@heading$;
+	mes "ตกลง Mage ใช่มั้ยค่ะ";
+	next;
+	menu	"^009933•^000000 ใช่",-,"^FF0000•^000000 ไม่ใช่",L_close;
+	mes .@heading$;
+	mes "ตกลง ตามนั้นค่ะ";
+	next;
+	JobChange 2;
+	mes "ท่านเป็น Mage แล้วค่ะ";
+	close;
+archer:
+	mes .@heading$;
+	mes "ตกลง Archer ใช่มั้ยค่ะ";
+	next;
+	menu	"^009933•^000000 ใช่",-,"^FF0000•^000000 ไม่ใช่",L_close;
+	mes .@heading$;
+	mes "ตกลง ตามนั้นค่ะ";
+	next;
+	JobChange 3;
+	mes "ท่านเป็น Archer แล้วค่ะ";
+	close;
+acolyte:
+	mes .@heading$;
+	mes "ตกลง Acolyte ใช่มั้ยค่ะ";
+	next;
+	menu	"^009933•^000000 ใช่",-,"^FF0000•^000000 ไม่ใช่",L_close;
+	mes .@heading$;
+	mes "ตกลง ตามนั้นค่ะ";
+	next;
+	JobChange 4;
+	mes "ท่านเป็น Acolyte แล้วค่ะ";
+	close;
+merchant:
+	mes .@heading$;
+	mes "ตกลง Merchant ใช่มั้ยค่ะ";
+	next;
+	menu	"^009933•^000000 ใช่",-,"^FF0000•^000000 ไม่ใช่",L_close;
+	mes .@heading$;
+	mes "ตกลง ตามนั้นค่ะ";
+	next;
+	JobChange 5;
+	mes "ท่านเป็น Merchant แล้วค่ะ";
+	close;
+thief:
+	mes .@heading$;
+	mes "ตกลง Thief ใช่มั้ยค่ะ";
+	next;
+	menu	"^009933•^000000 ใช่",-,"^FF0000•^000000 ไม่ใช่",L_close;
+	mes .@heading$;
+	mes "ตกลง ตามนั้นค่ะ";
+	next;
+	JobChange 6;
+	mes "ท่านเป็น Thief แล้วค่ะ";
+	close;
+
+L_is_sword:
+	if(JobLevel < 40) goto L_notJ40;
+	if(SkillPoint >0) goto L_notUseAll;
+	if(JobLevel < 49) goto L_notJ50sword;
+	mes .@heading$;
+	mes "สวัสดีค่ะ ท่าน ^FF0000[ "+ strcharinfo(0) +" ]^000000";
+	mes "ท่านมีอะไรให้ข้ารับใช้ค่ะ";
+	next;
+	menu "^009933•^000000 เปลื่ยนอาชีพ",-,"^FF0000•^000000 ยกเลิก",L_close;
+	mes .@heading$;
+	mes "เลือกสายอาชีพของคุณค่ะ";
+	next;
+	menu "^009933•^000000 Knight",knight,"^FF0000•^000000 ยกเลิก",L_close;
+	//menu "^009933•^000000 Knight",knight,"^009933•^000000 Crusader",crusader,"^FF0000•^000000 ยกเลิก",L_close;
+knight:
+	mes .@heading$;
+	mes "คิดว่าใช่แล้วนะค่ะ";
+	next;
+	menu "^009933•^000000 ใช่",-,"^FF0000•^000000 ไม่ใช่",L_close;
+	mes .@heading$;
+	mes "ตกลง ตามนั้นค่ะ";
+	next;
+	JobChange 7;
+	mes .@heading$;
+	mes "เรียบร้อยค่ะ ยินดีให้บริการค่ะ";
+	close;
+crusader:
+	mes .@heading$;
+	mes "คิดว่าใช่แล้วนะค่ะ";
+	next;
+	menu "^009933•^000000 ใช่",-,"^FF0000•^000000 ไม่ใช่",L_close;
+	mes .@heading$;
+	mes "ตกลง ตามนั้นค่ะ";
+	next;
+	JobChange 14;
+	mes .@heading$;
+	mes "เรียบร้อยค่ะ ยินดีให้บริการค่ะ";
+	close;
+
+L_notJ50sword:
+	mes .@heading$;
+	mes "สวัสดีค่ะ ท่าน ^FF0000[ "+ strcharinfo(0) +" ]^000000";
+	mes "ท่านมีอะไรให้ข้ารับใช้ค่ะ";
+	next;
+	menu "^009933•^000000 เปลื่ยนอาชีพ",-,"^FF0000•^000000 ยกเลิก",L_close;
+	mes .@heading$;
+	mes "เลือกสายอาชีพของคุณค่ะ ถ้าจ๊อบไม่ใช่ 50 จะมีค่าบริการในการเปลี่ยน 100,000 Zeny";
+	next;
+	menu "^009933•^000000 Knight",knight49,"^FF0000•^000000 ยกเลิก",L_close;
+knight49:
+	mes .@heading$;
+	mes "คิดว่าใช่แล้วนะค่ะ";
+	next;
+	menu "^009933•^000000 ใช่",-,"^FF0000•^000000 ไม่ใช่",L_close;
+	mes .@heading$;
+	mes "ตกลง ตามนั้นค่ะ";
+	next;
+	if(Zeny < 100000) goto NoZeny;
+	set Zeny, Zeny - 100000;
+	JobChange 7;
+	mes .@heading$;
+	mes "เรียบร้อยค่ะ ยินดีให้บริการค่ะ";
+	close;
+	
+	
+L_is_mage:
+	if(JobLevel < 40) goto L_notJ40;
+	if(SkillPoint >0) goto L_notUseAll;
+	if(JobLevel < 49) goto L_notJ50mage;
+	mes .@heading$;
+	mes "สวัสดีค่ะ ท่าน ^FF0000[ "+ strcharinfo(0) +" ]^000000";
+	mes "ท่านมีอะไรให้ข้ารับใช้ค่ะ";
+	next;
+	menu "^009933•^000000 เปลื่ยนอาชีพ",-,"^FF0000•^000000 ยกเลิก",L_close;
+	mes .@heading$;
+	mes "เลือกสายอาชีพของคุณค่ะ";
+	next;
+	menu "^009933•^000000 Wizard",wizard,"^FF0000•^000000 ยกเลิก",L_close;
+	//menu "^009933•^000000 Wizard",wizard,"^009933•^000000 Sage",sage,"^FF0000•^000000 ยกเลิก",L_close;
+wizard:
+	mes .@heading$;
+	mes "คิดว่าใช่แล้วนะค่ะ";
+	next;
+	menu "^009933•^000000 ใช่",-,"^FF0000•^000000 ไม่ใช่",L_close;
+	mes .@heading$;
+	mes "ตกลง ตามนั้นค่ะ";
+	next;
+	JobChange 9;
+	mes .@heading$;
+	mes "เรียบร้อยค่ะ ยินดีให้บริการค่ะ";
+	close;
+sage:
+	mes .@heading$;
+	mes "คิดว่าใช่แล้วนะค่ะ";
+	next;
+	menu "^009933•^000000 ใช่",-,"^FF0000•^000000 ไม่ใช่",L_close;
+	mes .@heading$;
+	mes "ตกลง ตามนั้นค่ะ";
+	next;
+	JobChange 16;
+	mes .@heading$;
+	mes "เรียบร้อยค่ะ ยินดีให้บริการค่ะ";
+	close;
+	
+L_notJ50mage:
+	mes .@heading$;
+	mes "สวัสดีค่ะ ท่าน ^FF0000[ "+ strcharinfo(0) +" ]^000000";
+	mes "ท่านมีอะไรให้ข้ารับใช้ค่ะ";
+	next;
+	menu "^009933•^000000 เปลื่ยนอาชีพ",-,"^FF0000•^000000 ยกเลิก",L_close;
+	mes .@heading$;
+	mes "เลือกสายอาชีพของคุณค่ะ ถ้าจ๊อบไม่ใช่ 50 จะมีค่าบริการในการเปลี่ยน 100,000 Zeny";
+	next;
+	menu "^009933•^000000 Wizard",wizard49,"^FF0000•^000000 ยกเลิก",L_close;
+wizard49:
+	mes .@heading$;
+	mes "คิดว่าใช่แล้วนะค่ะ";
+	next;
+	menu "^009933•^000000 ใช่",-,"^FF0000•^000000 ไม่ใช่",L_close;
+	mes .@heading$;
+	mes "ตกลง ตามนั้นค่ะ";
+	next;
+	if(Zeny < 100000) goto NoZeny;
+	set Zeny, Zeny - 100000;
+	JobChange 9;
+	mes .@heading$;
+	mes "เรียบร้อยค่ะ ยินดีให้บริการค่ะ";
+	close;
+			
+			
+L_is_archer:
+	if(Sex==0) goto L_dancer;
+	if(Sex==1) goto L_bard;
+L_bard:
+	if(JobLevel < 40) goto L_notJ40;
+	if(SkillPoint >0) goto L_notUseAll;
+	if(JobLevel < 49) goto L_notJ50archer;
+	mes .@heading$;
+	mes "สวัสดีค่ะ ท่าน ^FF0000[ "+ strcharinfo(0) +" ]^000000";
+	mes "ท่านมีอะไรให้ข้ารับใช้ค่ะ";
+	next;
+	menu "^009933•^000000 เปลื่ยนอาชีพ",-,"^FF0000•^000000 ยกเลิก",L_close;
+	mes .@heading$;
+	mes "เลือกสายอาชีพของคุณค่ะ";
+	next;
+	menu "Hunter",hunter,"Bard",bard,"^FF0000•^000000 ยกเลิก",L_close;
+L_dancer:
+	if(JobLevel < 40) goto L_notJ40;
+	if(SkillPoint >0) goto L_notUseAll;
+	if(JobLevel < 49) goto L_notJ50archer;
+	mes .@heading$;
+	mes "สวัสดีค่ะ ท่าน ^FF0000[ "+ strcharinfo(0) +" ]^000000";
+	mes "ท่านมีอะไรให้ข้ารับใช้ค่ะ";
+	next;
+	menu "^009933•^000000 เปลื่ยนอาชีพ",-,"^FF0000•^000000 ยกเลิก",L_close;
+	mes .@heading$;
+	mes "เลือกสายอาชีพของคุณค่ะ";
+	next;
+	menu "^009933•^000000 Hunter",hunter,"^FF0000•^000000 ยกเลิก",L_close;
+	//menu "^009933•^000000 Hunter",hunter,"^009933•^000000 Dancer",dancer,"^FF0000•^000000 ยกเลิก",L_close;
+hunter:
+	mes .@heading$;
+	mes "คิดว่าใช่แล้วนะค่ะ";
+	next;
+	menu "^009933•^000000 ใช่",-,"^FF0000•^000000 ไม่ใช่",L_close;
+	mes .@heading$;
+	mes "ตกลง ตามนั้นค่ะ";
+	next;
+	JobChange 11;
+	mes .@heading$;
+	mes "เรียบร้อยค่ะ ยินดีให้บริการค่ะ";
+	close;
+bard:
+	mes .@heading$;
+	mes "คิดว่าใช่แล้วนะค่ะ";
+	next;
+	menu "^009933•^000000 ใช่",-,"^FF0000•^000000 ไม่ใช่",L_close;
+	mes .@heading$;
+	mes "ตกลง ตามนั้นค่ะ";
+	next;
+	JobChange 19;
+	mes .@heading$;
+	mes "เรียบร้อยค่ะ ยินดีให้บริการค่ะ";
+	close;
+dancer:
+	mes .@heading$;
+	mes "คิดว่าใช่แล้วนะค่ะ";
+	next;
+	menu "^009933•^000000 ใช่",-,"^FF0000•^000000 ไม่ใช่",L_close;
+	mes .@heading$;
+	mes "ตกลง ตามนั้นค่ะ";
+	next;
+	JobChange 20;
+	mes .@heading$;
+	mes "เรียบร้อยค่ะ ยินดีให้บริการค่ะ";
+	close;
+	
+L_notJ50archer:
+	mes .@heading$;
+	mes "สวัสดีค่ะ ท่าน ^FF0000[ "+ strcharinfo(0) +" ]^000000";
+	mes "ท่านมีอะไรให้ข้ารับใช้ค่ะ";
+	next;
+	menu "^009933•^000000 เปลื่ยนอาชีพ",-,"^FF0000•^000000 ยกเลิก",L_close;
+	mes .@heading$;
+	mes "เลือกสายอาชีพของคุณค่ะ ถ้าจ๊อบไม่ใช่ 50 จะมีค่าบริการในการเปลี่ยน 100,000 Zeny";
+	next;
+	menu "^009933•^000000 Hunter",hunter49,"^FF0000•^000000 ยกเลิก",L_close;
+hunter49:
+	mes .@heading$;
+	mes "คิดว่าใช่แล้วนะค่ะ";
+	next;
+	menu "^009933•^000000 ใช่",-,"^FF0000•^000000 ไม่ใช่",L_close;
+	mes .@heading$;
+	mes "ตกลง ตามนั้นค่ะ";
+	next;
+	if(Zeny < 100000) goto NoZeny;
+	set Zeny, Zeny - 100000;
+	JobChange 11;
+	mes .@heading$;
+	mes "เรียบร้อยค่ะ ยินดีให้บริการค่ะ";
+	close;
+	
+L_is_acolyte:
+	if(JobLevel < 40) goto L_notJ40;
+	if(SkillPoint >0) goto L_notUseAll;
+	if(JobLevel < 49) goto L_notJ50acolyte;
+	mes .@heading$;
+	mes "สวัสดีค่ะ ท่าน ^FF0000[ "+ strcharinfo(0) +" ]^000000";
+	mes "ท่านมีอะไรให้ข้ารับใช้ค่ะ";
+	next;
+	menu "^009933•^000000 เปลื่ยนอาชีพ",-,"^FF0000•^000000 ยกเลิก",L_close;
+	mes .@heading$;
+	mes "เลือกสายอาชีพของคุณค่ะ";
+	next;
+	menu "^009933•^000000 Priest",priest,"^FF0000•^000000 ยกเลิก",L_close;
+	//menu "^009933•^000000 Priest",priest,"^009933•^000000 Monk",monk,"^FF0000•^000000 ยกเลิก",L_close;
+priest:
+	mes .@heading$;
+	mes "คิดว่าใช่แล้วนะค่ะ";
+	next;
+	menu "^009933•^000000 ใช่",-,"^FF0000•^000000 ไม่ใช่",L_close;
+	mes .@heading$;
+	mes "ตกลง ตามนั้นค่ะ";
+	next;
+	JobChange 8;
+	mes .@heading$;
+	mes "เรียบร้อยค่ะ ยินดีให้บริการค่ะ";
+	close;
+monk:
+	mes .@heading$;
+	mes "คิดว่าใช่แล้วนะค่ะ";
+	next;
+	menu "^009933•^000000 ใช่",-,"^FF0000•^000000 ไม่ใช่",L_close;
+	mes .@heading$;
+	mes "ตกลง ตามนั้นค่ะ";
+	next;
+	JobChange 15;
+	mes .@heading$;
+	mes "เรียบร้อยค่ะ ยินดีให้บริการค่ะ";
+	close;
+	
+L_notJ50acolyte:
+	mes .@heading$;
+	mes "สวัสดีค่ะ ท่าน ^FF0000[ "+ strcharinfo(0) +" ]^000000";
+	mes "ท่านมีอะไรให้ข้ารับใช้ค่ะ";
+	next;
+	menu "^009933•^000000 เปลื่ยนอาชีพ",-,"^FF0000•^000000 ยกเลิก",L_close;
+	mes .@heading$;
+	mes "เลือกสายอาชีพของคุณค่ะ ถ้าจ๊อบไม่ใช่ 50 จะมีค่าบริการในการเปลี่ยน 100,000 Zeny";
+	next;
+	menu "^009933•^000000 Priest",priest49,"^FF0000•^000000 ยกเลิก",L_close;
+priest49:
+	mes .@heading$;
+	mes "คิดว่าใช่แล้วนะค่ะ";
+	next;
+	menu "^009933•^000000 ใช่",-,"^FF0000•^000000 ไม่ใช่",L_close;
+	mes .@heading$;
+	mes "ตกลง ตามนั้นค่ะ";
+	next;
+	if(Zeny < 100000) goto NoZeny;
+	set Zeny, Zeny - 100000;
+	JobChange 8;
+	mes .@heading$;
+	mes "เรียบร้อยค่ะ ยินดีให้บริการค่ะ";
+	close;
+
+L_is_merchant:
+	if(JobLevel < 40) goto L_notJ40;
+	if(SkillPoint >0) goto L_notUseAll;
+	if(JobLevel < 49) goto L_notJ50merchant;
+	mes .@heading$;
+	mes "สวัสดีค่ะ ท่าน ^FF0000[ "+ strcharinfo(0) +" ]^000000";
+	mes "ท่านมีอะไรให้ข้ารับใช้ค่ะ";
+	next;
+	menu "^009933•^000000 เปลื่ยนอาชีพ",-,"^FF0000•^000000 ยกเลิก",L_close;
+	mes .@heading$;
+	mes "เลือกสายอาชีพของคุณค่ะ";
+	next;
+	menu "^009933•^000000 Black Smith",blacksmith,"^FF0000•^000000 ยกเลิก",L_close;
+	//menu "^009933•^000000 Black Smith",blacksmith,"^009933•^000000 Alchemist",alchemist,"^FF0000•^000000 ยกเลิก",L_close;
+blacksmith:
+	mes .@heading$;
+	mes "คิดว่าใช่แล้วนะค่ะ";
+	next;
+	menu "^009933•^000000 ใช่",-,"^FF0000•^000000 ไม่ใช่",L_close;
+	mes .@heading$;
+	mes "ตกลง ตามนั้นค่ะ";
+	next;
+	JobChange 10;
+	mes .@heading$;
+	mes "เรียบร้อยค่ะ ยินดีให้บริการค่ะ";
+	close;
+
+alchemist:
+	mes .@heading$;
+	mes "คิดว่าใช่แล้วนะค่ะ";
+	next;
+	menu "^009933•^000000 ใช่",-,"^FF0000•^000000 ไม่ใช่",L_close;
+	mes .@heading$;
+	mes "ตกลง ตามนั้นค่ะ";
+	next;
+	JobChange 18;
+	mes .@heading$;
+	mes "เรียบร้อยค่ะ ยินดีให้บริการค่ะ";
+	close;
+	
+L_notJ50merchant:
+	mes .@heading$;
+	mes "สวัสดีค่ะ ท่าน ^FF0000[ "+ strcharinfo(0) +" ]^000000";
+	mes "ท่านมีอะไรให้ข้ารับใช้ค่ะ";
+	next;
+	menu "^009933•^000000 เปลื่ยนอาชีพ",-,"^FF0000•^000000 ยกเลิก",L_close;
+	mes .@heading$;
+	mes "เลือกสายอาชีพของคุณค่ะ ถ้าจ๊อบไม่ใช่ 50 จะมีค่าบริการในการเปลี่ยน 100,000 Zeny";
+	next;
+	menu "^009933•^000000 Black Smith",blacksmith49,"^FF0000•^000000 ยกเลิก",L_close;
+blacksmith49:
+	mes .@heading$;
+	mes "คิดว่าใช่แล้วนะค่ะ";
+	next;
+	menu "^009933•^000000 ใช่",-,"^FF0000•^000000 ไม่ใช่",L_close;
+	mes .@heading$;
+	mes "ตกลง ตามนั้นค่ะ";
+	next;
+	if(Zeny < 100000) goto NoZeny;
+	set Zeny, Zeny - 100000;
+	JobChange 10;
+	mes .@heading$;
+	mes "เรียบร้อยค่ะ ยินดีให้บริการค่ะ";
+	close;
+
+L_is_thief:
+	if(JobLevel < 40) goto L_notJ40;
+	if(SkillPoint >0) goto L_notUseAll;
+	if(JobLevel < 49) goto L_notJ50thief;
+	mes .@heading$;
+	mes "สวัสดีค่ะ ท่าน ^FF0000[ "+ strcharinfo(0) +" ]^000000";
+	mes "ท่านมีอะไรให้ข้ารับใช้ค่ะ";
+	next;
+	menu "^009933•^000000 เปลื่ยนอาชีพ",-,"^FF0000•^000000 ยกเลิก",L_close;
+	mes .@heading$;
+	mes "เลือกสายอาชีพของคุณค่ะ";
+	next;
+	menu "^009933•^000000 Assassin",assassin,"^FF0000•^000000 ยกเลิก",L_close;
+	//menu "^009933•^000000 Assassin",assassin,"^009933•^000000 Rogue",rogue,"^FF0000•^000000 ยกเลิก",L_close;
+assassin:
+	mes .@heading$;
+	mes "คิดว่าใช่แล้วนะค่ะ";
+	next;
+	menu "^009933•^000000 ใช่",-,"^FF0000•^000000 ไม่ใช่",L_close;
+	mes .@heading$;
+	mes "ตกลง ตามนั้นค่ะ";
+	next;
+	JobChange 12;
+	mes .@heading$;
+	mes "เรียบร้อยค่ะ ยินดีให้บริการค่ะ";
+	close;
+rogue:
+	mes .@heading$;
+	mes "คิดว่าใช่แล้วนะค่ะ";
+	next;
+	menu "^009933•^000000 ใช่",-,"^FF0000•^000000 ไม่ใช่",L_close;
+	mes .@heading$;
+	mes "ตกลง ตามนั้นค่ะ";
+	next;
+	JobChange 17;
+	mes .@heading$;
+	mes "เรียบร้อยค่ะ ยินดีให้บริการค่ะ";
+	close;
+	
+L_notJ50thief:
+	mes .@heading$;
+	mes "สวัสดีค่ะ ท่าน ^FF0000[ "+ strcharinfo(0) +" ]^000000";
+	mes "ท่านมีอะไรให้ข้ารับใช้ค่ะ";
+	next;
+	menu "^009933•^000000 เปลื่ยนอาชีพ",-,"^FF0000•^000000 ยกเลิก",L_close;
+	mes .@heading$;
+	mes "เลือกสายอาชีพของคุณค่ะ ถ้าจ๊อบไม่ใช่ 50 จะมีค่าบริการในการเปลี่ยน 100,000 Zeny";
+	next;
+	menu "^009933•^000000 Assassin",assassin49,"^FF0000•^000000 ยกเลิก",L_close;
+assassin49:
+	mes .@heading$;
+	mes "คิดว่าใช่แล้วนะค่ะ";
+	next;
+	menu "^009933•^000000 ใช่",-,"^FF0000•^000000 ไม่ใช่",L_close;
+	mes .@heading$;
+	mes "ตกลง ตามนั้นค่ะ";
+	next;
+	if(Zeny < 100000) goto NoZeny;
+	set Zeny, Zeny - 100000;
+	JobChange 12;
+	mes .@heading$;
+	mes "เรียบร้อยค่ะ ยินดีให้บริการค่ะ";
+	close;
+
+L_is_knight:
+	set jobsw,1;
+	goto highnovice;
+L_is_priest:
+	set jobal,1;
+	goto highnovice;
+L_is_wizard:
+	set jobmg,1;
+	goto highnovice;
+L_is_blacksmith:
+	set jobmc,1;
+	goto highnovice;
+L_is_hunter:
+	set jobac,1;
+	goto highnovice;
+L_is_assassin:
+	set jobtf,1;
+	goto highnovice;
+	close;
+L_is_crusader:
+	set jobsw,2;
+	goto highnovice;
+L_is_monk:
+	set jobal,2;
+	goto highnovice;
+L_is_sage:
+	set jobmg,2;
+	goto highnovice;
+L_is_rogue:
+	set jobtf,2;
+	goto highnovice;
+L_is_alchemist:
+	set jobmc,2;
+	goto highnovice;
+L_is_bard:
+	set jobac,2;
+	goto highnovice;
+L_is_dancer:
+	set jobac,3;
+	goto highnovice;
+
+highnovice:
+	//if(BaseLevel < 99) goto L_notJ99;
+	//if(JobLevel < 50) goto L_notJ50;
+	//if(SkillPoint >0) goto L_notUseAll;
+	mes .@heading$;
+	mes "สวัสดีค่ะ ท่าน ^FF0000[ "+ strcharinfo(0) +" ]^000000";
+	mes "ท่านมาถึงสูงสุดสายอาชีพของคุณแล้วคะ";
+	close;
+
+L_notJ45:
+	mes .@heading$;
+	mes "Lv ของท่านยังไม่ถึง 45 ค่ะ";
+	close;
+L_notJ99:
+	mes .@heading$;
+	mes "Lv ของท่านยังไม่ถึง 99 ค่ะ";
+	close;
+L_notJ10:
+	mes .@heading$;
+	mes "Job Lv ของท่านยังไม่ถึง 10 ค่ะ";
+	close;
+L_notJ40:
+	mes .@heading$;
+	mes "Job Lv ของท่านยังไม่ถึง 40 ค่ะ";
+	close;
+L_notJ50:
+	mes .@heading$;
+	mes "Job Lv ของท่านยังไม่ถึง 50 ค่ะ";
+	close;
+L_notUseAll:
+	mes .@heading$;
+	mes "Skill Point ยังใช้ไม่หมดค่ะ";
+	close;
+L_close:
+	mes .@heading$;
+	mes "ยินดีให้บริการค่ะ";
+	close;
+NoZeny:
+	mes .@heading$;
+	mes "เจ้าต้องมีเงินจำนวน 100000 Zeny , ข้าถึงจะเปลี่ยนอาชีพให้เจ้าได้.";
+	close;
+
+OnInit:
+	waitingroom "๐ เปลี่ยนอาชีพ ๐", 0;
+	end;
+}
+
+
+morocc,160,160,3	duplicate(jobchange)	เปลี่ยนอาชีพ#01	833

@@ -1,0 +1,30 @@
+-	shop	F_shop_Weapon	48,11503:250,11504:250
+
+
+-	script	shop_Weapon	-1,{
+	mes "[ ^FF0000Shop GvG^000000 ]";
+	mes "ยินดีต้อนรับ,นายท่าน !";
+	mes "ฉันจำหน่าย อาวุธของ Class พิเศษ ^FF0000Ninja Gunslinger^000000";
+	mes "เพื่อความสะดวกสบายให้กับผู้เล่น";
+	mes "คุณต้องการซื้อหรือไม่ ?";
+	next;
+	switch(select("~ ใช่ (ฉันต้องการ):~ เปล่า, แวะมาคุยเฉยๆ")) {
+		
+		case 1:	callshop "F_shop_Weapon",1; break;
+		case 2: 
+			mes "[ ^FF0000Shop Weapon^000000 ]";
+			mes "ขอบคุณน่ะ...";
+			mes "ถ้าคุณต้องการซื้ออย่าลืม";
+			mes "แวะมาใช้บริการล่ะ ? ?";
+		close;
+	
+	}
+end;
+Oninit:
+	waitingroom "  Shop Weapon ",0;
+end;
+}
+
+morocc,159,143,4	duplicate(shop_Weapon)	Weapon Shop#1	714
+
+

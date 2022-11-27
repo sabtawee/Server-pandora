@@ -1,0 +1,31 @@
+-	shop	F_shop_Exp	645,1100014:499000
+
+
+-	script	shop_exp	-1,{
+	mes "[ ^FF0000Exp Book^000000 ]";
+	mes "ยินดีต้อนรับ,นายท่าน !";
+	mes "ฉันจำหน่าย สมุด เก็บ EXP";
+	mes "เพื่อนำไปเก็บ % drop";
+	mes "คุณต้องการซื้อหรือไม่ ?";
+	next;
+	switch(select("~ ใช่ (ฉันต้องการ):~ เปล่า, แวะมาคุยเฉยๆ")) {
+		
+		case 1:	callshop "F_shop_Exp",1; break;
+		case 2: 
+			mes "[ ^FF0000Shop Officer^000000 ]";
+			mes "ขอบคุณน่ะ...";
+			mes "ถ้าคุณต้องการซื้ออย่าลืม";
+			mes "แวะมาใช้บริการล่ะ ? ?";
+		close;
+	
+	}
+end;
+Oninit:
+	waitingroom "จำหน่าย EXP BOOK",0;
+end;
+}
+
+//payon,116,84,4	duplicate(shop_guild)	Shop GVG#1	77
+izlude,96,91,6	duplicate(shop_exp)	Shop Exp#2	645
+//alde_gld,174,84,6	duplicate(shop_guild)	Shop GVG#3	645
+//alde_gld,130,107,6	duplicate(shop_guild)	Shop GVG#4	645

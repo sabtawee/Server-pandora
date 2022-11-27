@@ -1,0 +1,505 @@
+////////////////////////////////////////////////////////////////////////////////////////
+////-- Whipsering Rain
+
+// ฟังก์ชัน สำหรับไอเท็ม ใช้ในการลงทะเบียน
+function	script	PT3VPT3	{
+	mes " ^0004ff•:[ Party V Party ]:• ^000000";
+	mes " ปาร์ตี้ของคุณต้องการจะเข้าร่วมหรือไม่?";
+	menu " ~ เข้าร่วม",-," • ยกเลิก",-;
+	set .@menu_selected,@menu;
+	if(.@menu_selected == 1){
+		doevent "PT3VS_CONTOL::OnGetQueue";
+	}	
+	end;
+}
+
+// ฟังก์ชัน สำหรับไอเท็ม ใช้ในการเข้าดู
+function	script	PT3VPT3_WATCH	{
+	mes " ^0004ff•:[ Party V Party ]:• ^000000";
+	mes " คุณต้องการเข้าชมกดการประลองหรือไม่?";
+	menu " ~ เข้าชม",-," • ยกเลิก",-;
+	set .@menu_selected,@menu;
+	if(.@menu_selected == 1){
+		getmapxy(.@map$,.@x,.@y,BL_PC);
+		@t_map$ = .@map$;
+		@t_mapx = .@x;
+		@t_mapy = .@y;
+		warp "magpvp",69,87;
+	}		
+	end;
+}
+
+-	script	PT3VS_CONTOL	-1,{
+	
+OnGetQueue:
+	.@p_pid = getcharid(1);
+	.@lead_accid = getcharid(3);
+	query_sql "SELECT `party_id` FROM `char` WHERE `party_id`='"+.@p_pid+"'",.@count_member;
+	
+	if(is_party_leader(.@p_pid)){
+		
+		if(.@count_member >= 1){
+			for(.@i=0;.@i<getarraysize($pvp3pt_id);.@i++){
+				if(.@p_pid == $pvp3pt_id[.@i])
+					.@check = 1;
+			}
+			
+			if(!.@check){
+				query_sql "SELECT `account_id` FROM `char` WHERE `party_id`= "+.@p_pid+";",.@acc_id;
+				if(.@acc_id){
+					for(.@x=0;.@x<getarraysize(.@acc_id);.@x++){
+						if(attachrid(.@acc_id[.@x])){
+							if(gettimetick(2) < partyv3_cd){
+							.@cd_name$[.@x] = strcharinfo(0);
+							.@cd_time[.@x] = partyv3_cd;
+							.@cd_check++;
+							}
+						}
+						detachrid;
+					}		
+				}
+				
+				attachrid(.@lead_accid);
+				
+				if(.@cd_check){
+					dispbottom "[Party V Party] สมาชิกในปาร์ตี้ของคุณติด cooldown";
+					for(.@x=0;.@x<getarraysize(.@cd_name$);.@x++){
+						dispbottom "ผู้เล่น [" + .@cd_name$[.@x] + "] ยังติด cooldown อีก ["+ ((.@cd_time[.@x]-gettimetick(2)) % (24*60*60) % (60*60) / (60)) +"] นาที";
+					}
+					end;
+				}			
+				
+				$pvp3pt_id[getarraysize($pvp3pt_id)]     = .@p_pid;
+				$pvp3pt_name$[getarraysize($pvp3pt_name$)]  = strcharinfo(1);
+				announce "ปาร์ตี้ [" + strcharinfo(1) + "] ได้ลงทะเบียน Party V Party [3v3] แล้ว, ขณะมีทั้งหมด " + getarraysize($pvp3pt_id) + " ทีม",BC_ALL|BC_BLUE;
+				end;
+			}else{
+				dispbottom "[Party V Party] ทีมของคุณลงทะเบียนไปแล้ว";
+				end;
+			}
+		}
+		
+	}else{
+		dispbottom "[Party V Party] คุณไม่ใช่หัวหน้าปาร์ตี้";
+		end;
+	}
+	end;	
+
+OnTimer300000: // ประกาศทุกๆ 5 นาที
+	if(getarraysize($pvp3pt_id) > 0){
+		announce "ขณะนี้ Party V Party [3v3] มีทีมลงทะเบียนอยู่ " + getarraysize($pvp3pt_id) + " ทีม",BC_ALL|BC_BLUE;
+	}
+	stopnpctimer;
+	initnpctimer;
+	end;
+	
+OnInit:
+	initnpctimer;
+	end;	
+}
+
+-	script	PT3VS_CONTOL_EXTRA	-1,{
+	
+OnTimer15000: // เช็คคิวทุกๆ 15 วิ
+	if(getarraysize($pvp3pt_id) >= 2 && $prtvprt_inbattle == 0){
+		
+		// เช็คปาร์ตี้ คิวแรก
+		query_sql "SELECT `account_id` FROM `char` WHERE `party_id`= "+$pvp3pt_id[0]+";",.@p1_acc_id;
+		if(.@p1_acc_id){
+			for(.@x=0;.@x<getarraysize(.@p1_acc_id);.@x++){
+				if(attachrid(.@p1_acc_id[.@x])){
+					.@p1_check++;
+				}
+				detachrid;
+			}		
+		}
+		
+	// เช็คปาร์ตี้ คิวสอง
+		query_sql "SELECT `account_id` FROM `char` WHERE `party_id`= "+$pvp3pt_id[1]+";",.@p2_acc_id;
+		if(.@p2_acc_id){
+			for(.@x=0;.@x<getarraysize(.@p2_acc_id);.@x++){
+				if(attachrid(.@p2_acc_id[.@x])){
+					.@p2_check++;
+				}
+				detachrid;
+			}		
+		}
+		
+		if(.@p1_check != 3){
+			announce "[Party V Party] ปาร์ตี้ [" +$pvp3pt_name$[0]+ "] มีคนไม่พอ/หรือเกินกำหนด ถูกลบออกจากคิวประลอง",BC_ALL|BC_BLUE;
+			deletearray $pvp3pt_id[0],1;
+			deletearray $pvp3pt_name$[0],1;
+			.@cheatchk = 1;
+		}
+		
+		if(.@p2_check != 3){
+			announce "[Party V Party] ปาร์ตี้ [" +$pvp3pt_name$[0]+ "] มีคนไม่พอ/หรือเกินกำหนด ถูกลบออกจากคิวประลอง",BC_ALL|BC_BLUE;
+			deletearray $pvp3pt_id[1],1;
+			deletearray $pvp3pt_name$[1],1;
+			.@cheatchk = 1;
+		}
+		
+		if(!.@cheatchk){
+			
+			query_sql "SELECT `account_id` FROM `char` WHERE `party_id`= "+$pvp3pt_id[0]+";",.@p1_accid;
+			if(.@p1_accid){
+				for(.@x=0;.@x<getarraysize(.@p1_accid);.@x++){
+					if(attachrid(.@p1_accid[.@x])){
+						getmapxy(.@map$,.@mapx,.@mapy,BL_PC);
+						partyv3_cd = gettimetick(2) + 1800;
+						@t_map$ = .@map$;
+						@t_mapx = .@mapx;
+						@t_mapy = .@mapy;
+					}
+					detachrid;
+				}	
+			}			
+			
+			query_sql "SELECT `account_id` FROM `char` WHERE `party_id`= "+$pvp3pt_id[1]+";",.@p2_accid;
+			if(.@p2_accid){
+				for(.@x=0;.@x<getarraysize(.@p2_accid);.@x++){
+					if(attachrid(.@p2_accid[.@x])){
+						getmapxy(.@map$,.@mapx,.@mapy,BL_PC);
+						partyv3_cd = gettimetick(2) + 1800;
+						@t_map$ = .@map$;
+						@t_mapx = .@mapx;
+						@t_mapy = .@mapy;
+					}
+					detachrid;
+				}	
+			}				
+			
+			.@r_pos = rand(1,10);
+			if((.@r_pos % 2 ) == 0){
+				warpparty "magpvp",21,70,$pvp3pt_id[0];
+				warpparty "magpvp",118,70,$pvp3pt_id[1];
+			}else{
+				warpparty "magpvp",21,70,$pvp3pt_id[1];
+				warpparty "magpvp",118,70,$pvp3pt_id[0];
+			}
+			$prtvprt_inbattle = 1;
+			announce "[Party V Party] การ PVP ระหว่างปาร์ตี้ [" +$pvp3pt_name$[0]+ "] กับ [" +$pvp3pt_name$[1]+ "] กำลังจะเริ่มใน 10 วิข้างหน้า",BC_ALL|BC_BLUE;
+			$pt_infight_id[0]   = $pvp3pt_id[0];
+			$pt_infight_name$[0] = $pvp3pt_name$[0];
+			$pt_infight_id[1]   = $pvp3pt_id[1];
+			$pt_infight_name$[1] = $pvp3pt_name$[1];
+			deletearray $pvp3pt_id[0],2;
+			deletearray $pvp3pt_name$[0],2;
+			donpcevent "PT3VS_MAP_CONTROL::OnTriggerTimer";
+		}
+		stopnpctimer;
+		initnpctimer;
+		end;
+		
+	}
+	stopnpctimer;
+	initnpctimer;
+	end;	
+
+OnInit:
+	initnpctimer;
+	end;
+	
+}
+
+magpvp,0,0,0	script	PT3VS_MAP_CONTROL	-1,{
+	
+OnTimer1000: // ประกาศ 1 นาที
+	mapannounce "magpvp","การประลองระหว่างปาร์ตี้จะเริ่มใน อีก 10 วิ",BC_ALL|BC_BLUE;
+	end;	
+OnTimer2000: // ประกาศ 1 นาที
+	mapannounce "magpvp","การประลองระหว่างปาร์ตี้จะเริ่มใน อีก 9 วิ",BC_ALL|BC_BLUE;
+	end;	
+OnTimer3000: // ประกาศ 1 นาที
+	mapannounce "magpvp","การประลองระหว่างปาร์ตี้จะเริ่มใน อีก 8 วิ",BC_ALL|BC_BLUE;
+	end;	
+OnTimer4000: // ประกาศ 1 นาที
+	mapannounce "magpvp","การประลองระหว่างปาร์ตี้จะเริ่มใน อีก 7 วิ",BC_ALL|BC_BLUE;
+	end;	
+OnTimer5000: // ประกาศ 1 นาที
+	mapannounce "magpvp","การประลองระหว่างปาร์ตี้จะเริ่มใน อีก 6 วิ",BC_ALL|BC_BLUE;
+	end;	
+OnTimer6000: // ประกาศ 1 นาที
+	mapannounce "magpvp","การประลองระหว่างปาร์ตี้จะเริ่มใน อีก 5 วิ",BC_ALL|BC_BLUE;
+	end;	
+OnTimer7000: // ประกาศ 1 นาที
+	mapannounce "magpvp","การประลองระหว่างปาร์ตี้จะเริ่มใน อีก 4 วิ",BC_ALL|BC_BLUE;
+	end;	
+OnTimer8000: // ประกาศ 1 นาที
+	mapannounce "magpvp","การประลองระหว่างปาร์ตี้จะเริ่มใน อีก 3 วิ",BC_ALL|BC_BLUE;
+	end;	
+OnTimer9000: // ประกาศ 1 นาที
+	mapannounce "magpvp","การประลองระหว่างปาร์ตี้จะเริ่มใน อีก 2 วิ",BC_ALL|BC_BLUE;
+	end;	
+OnTimer10000: // ประกาศ 1 นาที
+	mapannounce "magpvp","การประลองระหว่างปาร์ตี้จะเริ่มใน อีก 1 วิ",BC_ALL|BC_BLUE;
+	end;	
+OnTimer11000: // ประกาศ 1 นาที
+	mapannounce "magpvp","ซัดเลย วัยรุ่น!!!!!",BC_ALL|BC_BLUE;
+	stopnpctimer;
+	killmonsterall .map_name$;
+	delwall "magpvp_block_1";
+	delwall "magpvp_block_2";
+	donpcevent "PT3VS_MAP_EXTRA::OnTriggerTimer";
+	donpcevent "PT3VS_MAP_KILLCHK::OnTriggerTimer";
+	end;	
+
+OnTriggerTimer:
+
+	// กำแพงกัน ทีมซ้าย
+	monster .map_name$,28,72,"",1905,1;
+	monster .map_name$,28,71,"",1905,1;
+	monster .map_name$,28,70,"",1905,1;
+	monster .map_name$,28,69,"",1905,1;
+	monster .map_name$,28,68,"",1905,1;
+	monster .map_name$,28,67,"",1905,1;
+	setwall .map_name$,28,72,6,4,0,"magpvp_block_1";
+	
+	// กำแพงกัน ทีมขวา
+	monster .map_name$,111,72,"",1905,1;
+	monster .map_name$,111,71,"",1905,1;
+	monster .map_name$,111,70,"",1905,1;
+	monster .map_name$,111,69,"",1905,1;
+	monster .map_name$,111,68,"",1905,1;
+	monster .map_name$,111,67,"",1905,1;
+	setwall .map_name$,111,72,6,4,0,"magpvp_block_2";	
+
+	initnpctimer;
+	end;
+	
+OnPCLoadMapEvent:
+	setpcblock PCBLOCK_ATTACK|PCBLOCK_SKILL, true;
+	end;	
+	
+OnInit:
+	.map_name$ = "magpvp";
+	
+	// กำแพงกันคนดูส่วนบน	
+	setwall .map_name$,86,74,16,6,0,"magpvp_t_1";
+	setwall .map_name$,86,75,9,0,0, "magpvp_t_2";
+	setwall .map_name$,86,84,33,2,0,"magpvp_t_3";
+	setwall .map_name$,53,84,10,4,0,"magpvp_t_4";
+	setwall .map_name$,53,74,16,2,0,"magpvp_t_5";
+	
+	// กำแพงกันคนดูส่วนล่าง	
+	setwall .map_name$,86,65,16,6,0,"magpvp_b_1";
+	setwall .map_name$,86,64,9,4,0, "magpvp_b_2";
+	setwall .map_name$,86,55,33,2,0,"magpvp_b_3";
+	setwall .map_name$,53,55,10,0,0,"magpvp_b_4";
+	setwall .map_name$,53,65,16,2,0,"magpvp_b_5";
+	
+	setmapflag .map_name$, MF_LOADEVENT;
+	setmapflag .map_name$, MF_NOSAVE;
+	setmapflag .map_name$, MF_NOMEMO;
+	setmapflag .map_name$, MF_NOWARP;
+	setmapflag .map_name$, MF_NOWARPTO;
+	setmapflag .map_name$, MF_NOTELEPORT;
+	setmapflag .map_name$, MF_NOPENALTY;
+	setmapflag .map_name$, MF_NOBRANCH;
+	setmapflag .map_name$, MF_NOICEWALL;	
+	setmapflag .map_name$, MF_PVP;	
+	
+	end;
+	
+}
+
+magpvp,0,0,0	script	PT3VS_MAP_KILLCHK	-1,{
+
+OnTimer1000:
+	.@p_1_count = party_member_count("magpvp",$pt_infight_id[0]);
+	.@p_2_count = party_member_count("magpvp",$pt_infight_id[1]);
+	if(.@p_1_count == 0){
+		announce "[Party V Party] สิ้นสุดการประลอง",BC_ALL|BC_BLUE;
+		sleep 2000;
+		announce "ปาร์ตี้ ["+$pt_infight_name$[1]+"] ได้รับชัยชนะจากการประลองระหว่างปาร์ตี้",BC_ALL|BC_BLUE;
+		$prtvprt_inbattle = 0;
+		stopnpctimer;
+		$prt_win_id = $pt_infight_id[1];
+		$prt_lose_id = $pt_infight_id[0];
+		donpcevent "PT3VS_MAP_BUFF::OnTriggerTimer";
+		end;
+	}
+	if(.@p_2_count == 0){
+		announce "[Party V Party] สิ้นสุดการประลอง",BC_ALL|BC_BLUE;
+		sleep 2000;
+		announce "ปาร์ตี้ ["+$pt_infight_name$[0]+"] ได้รับชัยชนะจากการประลองระหว่างปาร์ตี้",BC_ALL|BC_BLUE;
+		$prtvprt_inbattle = 0;
+		stopnpctimer;
+		$prt_win_id = $pt_infight_id[0];
+		$prt_lose_id = $pt_infight_id[1];
+		donpcevent "PT3VS_MAP_BUFF::OnTriggerTimer";
+		end;
+	}
+	stopnpctimer;
+	initnpctimer;
+	end;
+
+OnTriggerTimer:
+	initnpctimer;
+	end;
+	
+}
+
+magpvp,0,0,0	script	PT3VS_MAP_EXTRA	-1,{
+
+OnTimer300000: // time limit 5 นาที
+	announce "[Party V Party] หมดเวลาสำหรับการประลอง",BC_ALL|BC_BLUE;
+	.@p_1_count = party_member_count("magpvp",$pt_infight_id[0]);
+	.@p_2_count = party_member_count("magpvp",$pt_infight_id[1]);
+	if(.@p_1_count > .@p_2_count){
+		sleep 2000;
+		announce "ปาร์ตี้ ["+$pt_infight_name$[0]+"] ได้รับชัยชนะจากการประลองระหว่างปาร์ตี้",BC_ALL|BC_BLUE;
+		$prt_win_id = $pt_infight_id[0];
+		$prt_lose_id = $pt_infight_id[1];
+		donpcevent "PT3VS_MAP_BUFF::OnTriggerTimer";
+	}else if(.@p_1_count == .@p_2_count){
+		sleep 2000;
+		announce "การประลองออกมาเสมอ",BC_ALL|BC_BLUE;
+		$prt_draw = 1;
+		donpcevent "PT3VS_MAP_BUFF::OnTriggerTimer";		
+	}
+	else{
+		sleep 2000;
+		announce "ปาร์ตี้ ["+$pt_infight_name$[1]+"] ได้รับชัยชนะจากการประลองระหว่างปาร์ตี้",BC_ALL|BC_BLUE;
+		$prt_win_id = $pt_infight_id[1];
+		$prt_lose_id = $pt_infight_id[0];
+		donpcevent "PT3VS_MAP_BUFF::OnTriggerTimer";
+	}
+	$prtvprt_inbattle = 0;
+	end;
+
+OnTriggerTimer:
+	initnpctimer;
+	end;
+
+OnStopTimer:
+	stopnpctimer;
+	end;
+	
+}
+
+magpvp,0,0,0	script	PT3VS_MAP_BUFF	-1,{
+	
+OnTimer2000:
+
+	if($prt_draw == 1){
+		
+		query_sql "SELECT `account_id` FROM `char` WHERE `party_id`= "+$pt_infight_id[0]+";",.@p1_acc_id;
+		if(.@p1_acc_id){
+			for(.@x=0;.@x<getarraysize(.@p1_acc_id);.@x++){
+				if(attachrid(.@p1_acc_id[.@x])){
+					atcommand "@alive";
+					percentheal 100,50;
+					showscript "กำลังวาร์ปกลับจุดเดิม..";
+					progressbar "ffff00",2;
+					sleep2 1000;
+					warp @t_map$,@t_mapx,@t_mapy;
+				}
+			}		
+		}
+		
+		query_sql "SELECT `account_id` FROM `char` WHERE `party_id`= "+$pt_infight_id[1]+";",.@p2_acc_id;
+		if(.@p2_acc_id){
+			for(.@x=0;.@x<getarraysize(.@p2_acc_id);.@x++){
+				if(attachrid(.@p2_acc_id[.@x])){
+					atcommand "@alive";
+					percentheal 100,50;
+					showscript "กำลังวาร์ปกลับจุดเดิม..";
+					progressbar "ffff00",2;
+					sleep2 1000;
+					warp @t_map$,@t_mapx,@t_mapy;
+				}
+			}		
+		}
+		$prt_draw = 0;
+		donpcevent "PT3VS_MAP_EXTRA::OnStopTimer";
+		end;
+	}
+	
+	// แจกบัฟที่ชนะ + วาร์ปกลับ
+	query_sql "SELECT `account_id` FROM `char` WHERE `party_id`= "+$prt_win_id+";",.@w_acc_id;
+	if(.@w_acc_id){
+		for(.@x=0;.@x<getarraysize(.@w_acc_id);.@x++){
+			if(attachrid(.@w_acc_id[.@x])){
+				atcommand "@alive";
+				percentheal 100,50;
+				specialeffect2 68;
+				sc_start SC_BLESSING,900000,5;
+				sc_start SC_INCREASEAGI,900000,5;
+				sc_start SC_JEXPBOOST,1800000,20;
+				sc_start SC_EXPBOOST,1800000,20;
+				// บัฟ 30 นาที แก้เอง
+				//sc_start SC_BLESSING,1800000,10;
+				//sc_start SC_INCREASEAGI,1800000,10;
+				
+				showscript "กำลังวาร์ปกลับจุดเดิม..";
+				progressbar "ffff00",2;
+				sleep2 1000;
+				warp @t_map$,@t_mapx,@t_mapy;
+			}
+		}		
+	}
+	
+	// ชุปที่แพ้ + วาร์ปกลับ
+	query_sql "SELECT `account_id` FROM `char` WHERE `party_id`= "+$prt_lose_id+";",.@l_acc_id;
+	if(.@l_acc_id){
+		for(.@x=0;.@x<getarraysize(.@l_acc_id);.@x++){
+			if(attachrid(.@l_acc_id[.@x])){
+				atcommand "@alive";
+				percentheal 100,50;
+				sc_start SC_BLESSING,900000,5;
+				sc_start SC_INCREASEAGI,900000,5;
+				showscript "กำลังวาร์ปกลับจุดเดิม..";
+				progressbar "ffff00",2;
+				sleep2 1000;
+				warp @t_map$,@t_mapx,@t_mapy;
+			}
+		}		
+	}
+	donpcevent "PT3VS_MAP_EXTRA::OnStopTimer";
+	end;	
+	
+OnTriggerTimer:
+	initnpctimer;
+	end;	
+	
+}
+
+
+//////////////////////////////////////////////////////
+///// NPC ควบคุม
+
+magpvp,69,91,0	script	WARP#magpvp_1	10237,1,1,{
+	
+	end;
+
+OnInit:
+	waitingroom "วาร์ปออก",0;
+	end;
+
+OnTouch:
+	setpcblock PCBLOCK_ATTACK|PCBLOCK_SKILL, false;
+	warp @t_map$,@t_mapx,@t_mapy;
+	end;
+	
+}
+
+magpvp,69,48,0	duplicate(WARP#magpvp_1)	WARP#magpvp_2	10237,1,1
+
+magpvp,45,77,0	warp	prtvprt_1	1,1,magpvp,45,59
+magpvp,94,77,0	warp	prtvprt_2	1,1,magpvp,94,59
+
+magpvp,45,62,0	warp	prtvprt_3	1,1,magpvp,45,80
+magpvp,94,62,0	warp	prtvprt_4	1,1,magpvp,94,80
+
+
+magpvp,119,70,3	script	enableatk#1	-1,5,4,{
+	
+OnTouch:
+	showscript "ทำการปลดล็อกการโจมตี";
+	setpcblock PCBLOCK_ATTACK|PCBLOCK_SKILL, false;
+	end;
+
+}
+
+magpvp,21,70,0	duplicate(enableatk#1)	enableatk#2	-1,5,4

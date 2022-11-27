@@ -1,0 +1,94 @@
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+-	script	preview_gacha10	-1,{ 
+// =============================================================
+function PreviewAddItems;
+// =============================================================
+OnInit:
+	freeloop(1);
+	setarray .Shops$[10],"- ตัวอย่างของรางวัล";
+// =============================================================
+
+	PreviewAddItems(10,18703,1,0,0);
+	PreviewAddItems(10,18523,1,0,0);
+	PreviewAddItems(10,5388,1,0,0);
+	PreviewAddItems(10,5739,1,0,0);
+	PreviewAddItems(10,5574,1,0,0);
+	PreviewAddItems(10,5764,1,0,0);
+	PreviewAddItems(10,14527,1,0,0);
+	PreviewAddItems(10,13534,1,0,0);
+	PreviewAddItems(10,13810,1,0,0);
+	PreviewAddItems(10,12901,1,0,0);
+	PreviewAddItems(10,12208,1,0,0);
+	PreviewAddItems(10,12009,1,0,0);
+	PreviewAddItems(10,12008,1,0,0);
+	PreviewAddItems(10,12059,1,0,0);
+	PreviewAddItems(10,12066,1,0,0);
+	PreviewAddItems(10,12042,1,0,0);
+	PreviewAddItems(10,12043,1,0,0);
+	PreviewAddItems(10,12046,1,0,0);
+	PreviewAddItems(10,12048,1,0,0);
+	PreviewAddItems(10,12051,1,0,0);
+	PreviewAddItems(10,12063,1,0,0);
+	PreviewAddItems(10,12069,1,0,0);
+	PreviewAddItems(10,12211,1,0,0);
+	PreviewAddItems(10,12221,1,0,0);
+	PreviewAddItems(10,12209,1,0,0);
+	PreviewAddItems(10,6293,1,0,0);
+
+	
+// =============================================================
+
+	freeloop(0);
+	set .menu$,"";
+	for(set .@i,1; .@i<=getarraysize(.Shops$); set .@i,.@i+1) {
+		set .menu$, .menu$+.Shops$[.@i]+":";
+		npcshopdelitem "preview_gacha_shop"+.@i,909;
+	}
+	end;
+
+OnMainMenu:
+
+	set .@size, getarraysize(@i);
+	if (!.@size) set .@i, select(.menu$);
+	else if (.@size == 1) set .@i, @i[0];
+	else {
+		for(set .@j,0; .@j<.@size; set .@j,.@j+1)
+			set .@menu$, .@menu$+.Shops$[@i[.@j]]+":";
+		set .@i, @i[select(.@menu$)-1];
+	}
+	deletearray @i[0],getarraysize(@i);
+	if (.Shops$[.@i] == "") {
+		message strcharinfo(0),"เกิดข้อผิดพลาด.";
+		end;
+	}
+	callshop "preview_gacha_shop"+.@i,1;
+	npcshopattach "preview_gacha_shop"+.@i;
+	end;
+
+OnBuyItem:
+	end;
+
+function PreviewAddItems {
+	
+	npcshopadditem "preview_gacha_shop"+getarg(0),getarg(1),((.ShowZeny)?getarg(3):0);
+	return;
+}
+
+}
+
+function	script	preview_gacha_shop10	{
+
+	deletearray @i[0],getarraysize(@i);
+	for(set .@i,0; .@i<getargcount(); set .@i,.@i+1)
+		set @i[.@i],getarg(.@i);
+	doevent "preview_gacha10::OnMainMenu";
+	end;
+}
+
+-	shop	preview_gacha_shop10	-1,909:-1
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+

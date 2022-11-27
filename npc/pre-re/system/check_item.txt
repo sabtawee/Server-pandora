@@ -1,0 +1,32 @@
+izlude,138,161,4	script	Check Item	866,{
+	mes "[ ตรวจสอบไอเท็ม ]";
+	mes " ";
+	mes "กรุณาใส่รหัส Item ID";
+	mes " ";
+	mes "^FF0000Ex.	Jellopy ระบุตัวเลข 909^000000";
+	input .@item_id;
+	next;
+	if ( getitemname(.@item_id) == "" || getitemname(.@item_id) == "null" )
+	{
+		mes "[ ตรวจสอบไอเท็ม ]";
+		mes "ขออภัยด้วยค่ะ ?.";
+		mes "รหัสไอเท็มไม่มีอยู่ในฐานข้อมูล";
+		end;
+	}
+	query_sql( "SELECT SUM(`amount`) FROM `inventory` WHERE `nameid` = '"+.@item_id+"';", .@inventory );
+	query_sql( "SELECT SUM(`amount`) FROM `cart_inventory` WHERE `nameid` = '"+.@item_id+"';", .@cart );
+	query_sql( "SELECT SUM(`amount`) FROM `storage` WHERE `nameid` = '"+.@item_id+"';", .@storage );
+	query_sql( "SELECT SUM(`amount`) FROM `guild_storage` WHERE `nameid` = '"+.@item_id+"';", .@g_storage );
+	mes "[ ตรวจสอบไอเท็ม ]";
+	mes "ไอเท็ม : <ITEM>"+getitemname(.@item_id)+"<INFO>"+.@item_id+"</INFO></ITEM>";
+	mes "===================";
+	mes "ไอเท็มติดตัว : "+callfunc("F_InsertComma",.@inventory)+" ea";
+	mes "รถเข็น : "+callfunc("F_InsertComma",.@cart)+" ea";
+	mes "คลังสินค้า : "+callfunc("F_InsertComma",.@storage)+" ea";
+	mes "รวมทั้งหมด : "+callfunc("F_InsertComma",.@inventory+.@cart+.@storage+.@g_storage)+" ea";
+	close;
+
+OnInit:
+	waitingroom " ตรวจสอบไอเท็ม",0;
+	end;
+}

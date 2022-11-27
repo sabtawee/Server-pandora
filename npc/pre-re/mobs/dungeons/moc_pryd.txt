@@ -1,0 +1,46 @@
+							///====================================================///
+							// New Create and Modify by @แว่นเล็ก at " Pandora-ro " 	//
+							///====================================================///
+
+
+///====================================================///
+//	moc_pryd01 -  Pyramids 1F							//
+///====================================================///
+
+moc_pryd01,0,0	monster	Familiar	1005,50
+moc_pryd01,0,0	monster	Poporing	1031,20
+moc_pryd01,0,0	monster	Spore	1014,20
+
+///====================================================//
+//		moc_pryd02 -  Pyramids 2F					//
+///====================================================//
+
+moc_pryd02,0,0	monster	Archer Skeleton	1016,35
+moc_pryd02,0,0	monster	Soldier Skeleton	1028,70
+moc_pryd02,0,0	monster	Poporing	1031,20
+moc_pryd02,0,0	monster	Drainliar	1111,30
+moc_pryd02,0,0	monster	Isis	1029,20,180000,60000
+moc_pryd02,0,0	monster	Mummy	1041,30
+
+
+//==================================================
+// moc_pryd05 - Inside Pyramid B1
+//==================================================
+moc_pryd05,0,0	monster	Minorous	1149,120
+moc_pryd05,0,0	monster	Mummy	1041,10
+moc_pryd05,0,0	monster	Verit	1032,50
+//moc_pryd05,0,0	monster	Isis	1029,20,150000,75000
+//moc_pryd05,0,0	monster	Ghoul	1036,20
+
+//==================================================
+// moc_pryd06 - Inside Pyramid B2
+//==================================================
+moc_pryd06,0,0	monster	Verit	1032,10
+moc_pryd06,0,0	monster	Mummy	1041,50
+moc_pryd06,0,0	monster	Isis	1029,30,150000,75000
+moc_pryd06,0,0	monster	Minorous	1149,150
+moc_pryd06,0,0	monster	Khalitzburg	1132,20
+moc_pryd06,100,90,80,50	monster	Ancient Mummy	1297,40
+moc_pryd06,100,90,80,50	monster	Mimic	1191,20
+
+moc_pryd06,102,85,1,1	boss_monster	Amon Ra	1511,1,3600000,3600000,0

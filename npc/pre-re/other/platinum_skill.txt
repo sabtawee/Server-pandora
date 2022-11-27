@@ -1,0 +1,88 @@
+-	script	PlatinumSkill	-1,{
+    mes "[ ^3333FFเรียนสกิลเสริมทักษะ^000000 ]";
+    mes "สวัสดี คุณ,^FF0000" +strcharinfo(0)+ "^000000";
+    mes "ฉันสามารถเพิ่มสกิลเสริม";
+    mes "ให้แก่ตัวละครของคุณได้";
+    mes "ไม่เสียค่าบริการใดๆหรอกน่ะ"; 
+    mes "คุณต้องการเรียนรู้สกิลเสริมมั่ย ?";
+    next;
+    if (select("~ ใช่ ฉันต้องการเรียน:~ เปล่า, แวะมาคุยเฉยๆ") == 2) {
+        mes "[ ^3333FFเรียนสกิลเสริมทักษะ^000000 ]";
+        mes "ขอบใจเจ้ามากนะ";
+		mes "แต่ก่อนจากกันจงจำเอาไว้";
+		mes "ไม่มีผู้ใดหรอกที่แก่เกินเรียน";
+		close;
+    }
+    if (BaseClass == Job_Novice ||  BaseClass == Job_Baby_Novice) {
+        skill 142,1,0; // First Aid
+		skill 143,1,0; // Play Dead
+		specialeffect2 131;
+    } else if (BaseClass == Job_Swordman ||  BaseClass == Job_Baby_Swordman) {
+        skill 144,1,0; // Moving HP-Recovery
+        skill 145,1,0; // Fatal Blow
+        skill 146,1,0; // Auto Berserk
+		specialeffect2 131;
+    } else if (BaseClass == Job_Mage || BaseClass == Job_Baby_Mage) {
+        skill 157,1,0; // Energy Coat
+		specialeffect2 131;
+    } else if (BaseClass == Job_Archer || BaseClass == Job_Baby_Archer) {
+        skill 147,1,0; // Arrow Crafting
+        skill 148,1,0; // Arrow Repel
+		specialeffect2 131;
+    } else if (BaseClass == Job_Merchant || BaseClass == Job_Baby_Merchant) {
+        skill 153,1,0; // Cart Revolution
+        skill 154,1,0; // Change Cart
+        skill 155,1,0; // Crazy Uproar
+		specialeffect2 131;
+    } else if (BaseClass == Job_Thief || BaseClass == Job_Baby_Thief) {
+        skill 149,1,0; // Sand Attack
+        skill 150,1,0; // Back Slide
+        skill 151,1,0; // Find Stone
+        skill 152,1,0; // Stone Fling
+		specialeffect2 131;
+    } else if (BaseClass == Job_Acolyte || BaseClass == Job_Baby_Acolyte) {
+        skill 156,1,0; // Holy Light
+		specialeffect2 131;
+    }
+    if (Class == Job_Knight ||  Class == Job_Baby_Knight) {
+        skill 144,1,0; // Moving HP-Recovery
+        skill 145,1,0; // Fatal Blow
+        skill 146,1,0; // Auto Berserk
+		specialeffect2 131;
+    } else if (Class == Job_Wizard || Class == Job_Baby_Wizard) {
+        skill 1006,1,0; // Sight Blaster
+        skill 157,1,0; // Energy Coat
+		specialeffect2 131;
+    } else if (Class == Job_Hunter || Class == Job_Baby_Hunter) {
+        skill 147,1,0; // Arrow Crafting
+        skill 148,1,0; // Arrow Repel
+		specialeffect2 131;
+    } else if (Class == Job_Blacksmith || Class == Job_Baby_Blacksmith) {
+		skill 1012,1,0; // Unfair Trick
+		skill 153,1,0; // Cart Revolution
+        skill 154,1,0; // Change Cart
+        skill 155,1,0; // Crazy Uproar
+		specialeffect2 131;
+    } else if (Class == Job_Assassin || Class == Job_Baby_Assassin) {
+        skill 1003,1,0; // Sonic Acceleration
+        skill 149,1,0; // Sand Attack
+        skill 150,1,0; // Back Slide
+        skill 151,1,0; // Find Stone
+        skill 152,1,0; // Stone Fling
+		specialeffect2 131;
+    } else if (Class == Job_Priest || Class == Job_Baby_Priest) {
+		specialeffect2 131;
+    }
+    mes "[ ^3333FFเรียนสกิลเสริมทักษะ^000000 ]";
+    mes "เรียนวิชา สำเร็จแล้ว !";
+	mes "เมื่อเจ้าปรารถนาที่จะเรียน";
+	mes "ข้าก็พร้อมจะสอนเจ้าอีกเสมอ";
+	mes "ดูแลสุขภาพให้ดีล่ะเจ้าหนู โฮะ ๆ ๆ";
+    close;
+
+OnInit:
+	waitingroom "• รับสกิลเสริม", 0;
+end;	
+}
+
+izlude,89,91,5	duplicate(PlatinumSkill)	เรียนสกิลเสริมทักษะ	743

@@ -1,0 +1,256 @@
+-	script	Rewardcbt	-1,{
+
+	if ( getgmlevel() == 99 )
+	{
+		mes "[ Item Reward ]";
+		mes "สวัสดีท่าน GM Master ^FF0000"+ strcharinfo(0) +"^000000";
+		mes "เป็นไงบ้างสบายดีหรือป่าว";
+		mes "แล้วคุณมีอะไรให้ฉันช่วยเหลือมัย ?";
+		next;
+		switch(prompt("~ Menu ^FF0000สำหรับผู้ดูแลระบบ^000000 :~ Menu สำหรับผู้เล่นรับของรางวัล"))
+		{	
+			case 1:
+
+				switch(select("~ ส่งรางวัลกิจกรรม","~ ตรวจสอบรายการรางวัล","~ ยกเลิก"))
+				{
+					case 1:
+						mes "[ Item Reward ]";
+						mes "กรุณากรอก User ID ของผู้เล่น";
+						mes "0 = ยกเลิก";
+						set .@userid$,"";
+						input .@userid$;
+						if(.@userid$ != "0")
+						{
+
+							query_sql "SELECT `account_id` FROM `login` WHERE `userid` LIKE '"+escape_sql(.@userid$)+"'",.@aid;
+							if(getarraysize(.@aid) > 1)
+							{
+								mes "^FF0000ERROR: ตรวจพบ User ID ผู้เล่นที่มากกว่า 1 รายการ^000000";
+							}
+							else if(getarraysize(.@aid) == 0)
+							{
+								mes "USER ID: "+.@userid$;
+								mes "^FF0000ERROR: ไม่พบ User ID ผู้เล่นในฐานข้อมูล^000000";
+							}
+							else
+							{
+
+								set .@account_id,.@aid;
+								set .@aid,0;
+								mes " ";
+								mes "USER ID: ^000088"+.@userid$+"^000000";
+								mes "Account ID: ^000088"+.@account_id+"^000000";
+								next;
+								mes "[ Item Reward ]";
+								mes "USER ID: ^000088"+.@userid$+"^000000";
+								mes "Account ID: ^000088"+.@account_id+"^000000";
+								mes " ";
+								mes "กรุณาใส่ ITEM ID ที่ต้องการจะส่ง";
+								input .@item;
+								if(.@item)
+								{
+									mes "กรุณาใส่จำนวน ITEM ที่ต้องการจะส่ง";
+									input .@amount,0,30000;
+									if(.@amount)
+									{
+										next;
+										mes "[ Item Reward ]";
+										mes "USER ID: ^000088"+.@userid$+"^000000";
+										mes "Account ID: ^000088"+.@account_id+"^000000";
+										mes "รายการไอเท็ม > ^000088"+getitemname(.@item)+"^000000";
+										mes "จำนวนไอเท็ม > ^000088"+.@amount+" รายการ^000000";
+										if(select("~ ยืนยัน","~ ยกเลิก")==1)
+										{
+											query_sql "INSERT INTO `reward_npc` VALUES ('','"+escape_sql(.@userid$)+"','"+.@account_id+"','"+.@item+"','"+.@amount+"','0',NULL)";
+											next;
+											mes "[ Item Reward ]";
+											mes "^009900ทำการบันทึกลงฐานข้อมูลเรียบร้อยแล้ว^000000";
+											set .@account_id,0;
+											set .@item,0;
+											set .@amount,0;
+										}
+									}
+								}
+							}
+							deletearray .@aid[0],getarraysize(.@aid);
+						}
+						break;
+						
+					case 2:
+					
+						set .@choice,select("~ เช็คไอดีผู้เล่นทั้งหมดที่ยังไม่ได้รับของรางวัล","~ เช็คไอดีผู้เล่นที่ยังไม่ได้รับของรางวัล");
+						if(.@choice == 2)
+						{
+							mes "[ Item Reward ]";
+							mes "กรุณากรอก User ID ที่ต้องการจะตรวจสอบ";
+							mes "0 = ยกเลิก";
+							set .@userid$,"";
+							input .@userid$;
+							if(.@userid$ != "0")
+							{
+								query_sql "SELECT `account_id` FROM `login` WHERE `userid` LIKE '"+escape_sql(.@userid$)+"'",.@aid;
+								if(getarraysize(.@aid) > 1)
+								{
+									mes "^FF0000ERROR: ตรวจพบ User ID ผู้เล่นที่มากกว่า 1 รายการ^000000";
+								}
+								else if(getarraysize(.@aid) == 0)
+								{
+									mes "^FF0000ERROR: ไม่พบ User ID ผู้เล่นในฐานข้อมูล^000000";
+								}
+								else
+								{
+									if(select("~ รายการที่ยังไม่ได้รับ","~ รายการที่รับไปแล้ว")==1)
+									{
+										set .@status,0;
+									}
+									else
+									{
+										set .@status,1;
+									}
+									
+									next;
+									query_sql "SELECT `item_id`,`rew_amount` FROM `reward_npc` WHERE `account_id` = '"+.@aid+"' AND `rew_status` = '"+.@status+"' ORDER BY `id` DESC LIMIT "+.query_limit,.@rewlist,.@amtlist;
+									mes "[ Item Reward ]";
+									mes "^009900USERID: "+.@userid$+"^000000";
+									mes "=======================";
+									if(getarraysize(.@rewlist))
+									{
+										for(set .@i,0 ; .@i < getarraysize(.@rewlist) ; set .@i,.@i+1)
+										{
+											mes "^000088"+getitemname(.@rewlist[.@i])+"^000000 จำนวน "+.@amtlist[.@i]+" รายการ";
+										}
+										mes "=======================";
+										deletearray .@rewlist[0],getarraysize(.@rewlist);
+										deletearray .@amtlist[0],getarraysize(.@amtlist);
+									}
+									else
+									{
+										mes "^FF0000ไม่พบรายการบนฐานข้อมูล^000000";
+									}
+								}
+								deletearray .@aid[0],getarraysize(.@aid);
+							}
+						}
+						else
+						{
+						VIEW_AGAIN:
+							query_sql "SELECT DISTINCT(`userid`) FROM `reward_npc` WHERE `rew_status` = '0' LIMIT "+.query_limit,.@userlist$;
+							if(getarraysize(.@userlist$))
+							{
+								set .@menu$,"";
+								for(set .@i,0 ; .@i < getarraysize(.@userlist$) ; set .@i,.@i+1)
+								{
+									set .@menu$,.@menu$+""+.@userlist$[.@i]+":";
+								}
+								set .@choice,select(.@menu$+"^FF8800กลับเมนูหลัก^000000");
+								
+								if(.@choice <= getarraysize(.@userlist$))
+								{
+									set .@user$,.@userlist$[.@choice-1];
+									query_sql "SELECT `item_id`,`rew_amount` FROM `reward_npc` WHERE `userid` LIKE '"+.@user$+"' AND `rew_status` = 0   ORDER BY `id` DESC LIMIT "+.query_limit,.@item,.@amount;
+									
+									if(getarraysize(.@item) && getarraysize(.@item) == getarraysize(.@amount))
+									{
+										mes "[ Item Reward ]";
+										mes "USERID: ^000088"+.@user$+"^000000";
+										mes "=======================";
+										for(set .@i,0 ; .@i < getarraysize(.@item) ; set .@i,.@i+1)
+										{
+											mes getitemname(.@item[.@i])+" จำนวน "+.@amount[.@i]+" รายการ";
+										}
+										mes "=======================";
+										deletearray .@item[0],getarraysize(.@item);
+										deletearray .@amount[0],getarraysize(.@amount);
+										next;
+										goto VIEW_AGAIN;
+									}
+								}
+							}
+							else
+							{
+								mes "[ Item Reward ]";
+								mes "^FF0000ไม่พบรายการบนฐานข้อมูล^000000";
+							}	
+						}
+						break;
+						
+					default:
+						mes "[ Item Reward ]";
+						mes "ไว้พบกันใหม่";
+						close;
+						break;
+				}
+				end;
+			
+			case 2:
+				goto PLAYER;
+				end;
+		}
+		end;
+	}
+	else
+	{
+PLAYER:
+		mes "[ Item reward ]";
+		mes "สวัสดีคุณ ^0000FF"+ strcharinfo(0) +"^000000";
+		mes "ลองกดดูครับ GM ส่งของไรให้?";
+		next;
+		switch(prompt("~ ใช่..ฉันมารับของรางวัลเท่านั้นล่ะ..!"))
+		{	
+			case 1:
+				deletearray .@id[.@j],getarraysize(.@id);
+				query_sql "SELECT `id`,`item_id`,`rew_amount` FROM `reward_npc` WHERE `account_id` = '"+getcharid(3)+"' AND `rew_status` = '0' LIMIT "+.query_limit+"",.@id,.@item,.@amount;
+				if(.@id && getarraysize(.@id))
+				{
+				RECEIVE_REWARD:
+					mes "[ Item Reward ]";
+					mes "ขอแสดงความยินดีด้วยค่ะ";
+					mes "คุณ ^0000FF"+ strcharinfo(0) +"^000000 มีรายการไอเท็มส่งถึงคุณ";
+					mes "ส่งจาก Game Master โชคดีค่ะ ?";
+					set .@menu$,"";
+					for( set .@i,0 ; .@i < getarraysize(.@id) ; set .@i,.@i+1 )
+					{
+						set .@menu$,.@menu$+"^ff0000"+getitemname(.@item[.@i])+"^000000 จำนวน "+.@amount[.@i]+" ea:";
+					}
+					set .@menu,select(.@menu$+"ยังไม่รับตอนนี้");
+					if(.@menu <= getarraysize(.@id))
+					{
+						set .@j,.@menu-1;
+						next;
+						query_sql "UPDATE `reward_npc` SET `rew_status` = '1', `received` = '"+gettimestr("%Y-%m-%d %H:%M:%S",21)+"' WHERE `id` = '"+.@id[.@j]+"' AND `item_id` = "+.@item[.@j]+" AND `rew_amount` = "+.@amount[.@j]+" LIMIT 1";
+						getitem .@item[.@j],.@amount[.@j];
+						mes "[ Item Reward ]";
+						mes "ได้รับ "+getitemname(.@item[.@j]);
+						mes "จำนวน "+.@amount[.@j]+" รายการ";
+						//query_sql ("DELETE FROM `reward_npc` WHERE `id` = "+.@id[.@j]+"");
+						deletearray .@id[.@j],1;
+						deletearray .@item[.@j],1;
+						deletearray .@amount[.@j],1;
+						if(getarraysize(.@id))
+						{
+							next;
+							goto RECEIVE_REWARD;
+						}
+					}
+				}
+				else
+				{
+					mes "[ Item Reward ]";
+					mes "เสียใจด้วยค่ะ...!";
+					mes "คุณ ^0000FF"+ strcharinfo(0) +"^000000 ไม่มีรายการไอเท็มส่งถึงคุณ";
+				}
+				close2;
+				end;
+		}
+	}
+	end;
+
+OnInit:
+	waitingroom "  บุรุษไปรษณีย์", 0;
+	query_sql "CREATE TABLE IF NOT EXISTS `reward_npc` ( `id` INT( 5 ) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY ,`userid` VARCHAR( 23 ) NOT NULL, `account_id` INT( 11 ) UNSIGNED NOT NULL , `item_id` INT( 5 ) UNSIGNED NOT NULL , `rew_amount` INT( 5 ) UNSIGNED NOT NULL , `rew_status` BOOL NOT NULL , `received` DATETIME default NULL) ENGINE = MYISAM";	
+	set .query_limit,128;
+	end;
+}
+
+//new_1-1,60,101,4	duplicate(Rewardcbt)	รับของรางวัล Server#1	10005
+izlude,137,157,4	duplicate(Rewardcbt)	รับของ Server#2	865

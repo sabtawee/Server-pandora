@@ -1,0 +1,23 @@
+izlude,106,91,4	script	Cash Bonus	718,{
+
+OnMenu:
+	mes "[ ^0000ffCash Bonus^000000 ]";
+	mes "สวัสดี คุณ,^FF0000 " + strcharinfo(0) + " ^000000";
+	next;
+	switch(select("~ Check Bonus Donate:~ ยกเลิกการสนทนา")) {
+		case 1:
+			mes "[ ^0000ffCash Bonus^000000 ]";
+			sleep2 500;
+			mes "โปรดรอสักครู่..กำลังตรวจสอบ";
+			sleep2 500;
+			mes "คุณมี Cash Bonus ทั้งหมด : ";
+			sleep2 500;
+			mes "- ^FF0000"+ callfunc("F_InsertComma",#CASHBONUS) +"^000000 Points";
+		close;
+		default: mes "[ Cash Bonus ]"; mes "ลาก่อน..แล้วพบกันใหม่นะครับ !"; close;
+	}
+	end;
+Oninit:
+	waitingroom " CHECK BONUS DONATE",0;
+	end;
+	}

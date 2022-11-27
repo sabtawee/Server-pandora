@@ -1,0 +1,15 @@
+////////////////////////////////////////////////////////////////////////////////////////
+////-- Whipsering Rain
+
+// NPC ������¡ �����Ԩ��
+izlude,135,92,4	script	HotWeekCraft#1	112,{
+	
+	end;
+	
+OnInit:
+	setunitdata getnpcid(0),UNPC_GROUP_ID,2;
+	waitingroom " Hot Craft",0;
+	end;	
+	
+}
+

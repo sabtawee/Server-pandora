@@ -1,0 +1,40 @@
+////////////////////////////////////////////////////////////////////////////////////////
+////-- Whipsering Rain
+//
+//prtg_cas02,0,0,0	script	GuildCount	-1,{
+//
+//OnPCLoadMapEvent:
+//	query_sql "SELECT `char_id` FROM `char` WHERE `guild_id`='"+getcharid(2)+"';",.@char_id;
+//	if(getarraysize(.@char_id) > .Max_Member){
+//		warp "SavePoint",0,0;
+//		sleep2 1000;
+//		dispbottom "จำนวนคนต่อกิลที่จะเข้าได้ ต้องไม่เกิน 12 คน";
+//	}
+//	end;
+//	
+//OnInit:
+//	.gvg_map$ = "prtg_cas02";
+//	setmapflag .gvg_map$,mf_loadevent;
+//	.Max_Member = 12;
+//	end;
+//}
+
+-	script	GuildCount	-1,{
+OnInit:
+setarray .map$,"prtg_cas01";
+set .map_size,getarraysize(.map$);
+for (.@i = 0; .@i < .map_size; .@i++)
+setmapflag .map$[.@i],mf_loadevent;
+.Max_Member	= 12;
+end;
+
+OnPCLoadMapEvent:
+.@p_gid = getcharid(2);
+    if(guild_member_count(.map$,.@p_gid) >= .Max_Member){
+        mes "จำนวนคนต่อกิลที่จะเข้าได้ ต้องไม่เกิน 16 คน";
+        close2;
+        warp "SavePoint",0,0;
+    }else{
+
+    }
+}

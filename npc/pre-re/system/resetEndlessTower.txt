@@ -1,0 +1,31 @@
+// =========== Script - erasquest ===========
+// - MODIFY BY BANKDEV
+// - VERSION (1.0)
+
+function	script	F_QUEST	{
+
+	mes "สวัสดี คุณ ^FF0000" + strcharinfo(0)+ "^000000 ต้องการ RESET EndlessTowe ?";
+    switch ( select("ยืนยัน", "ยกเลิก")){
+        case 1:
+            mes "RESET EndlessTowe เรียบร้อย";
+            erasequest 60200;
+	        erasequest 60201;
+            break;
+        case 2:
+            getitem getarg(0),1;
+            end;
+            break;
+    }
+    end;
+}
+
+//- Id: 37002
+//    AegisName: RE_EndlessTower
+//    Name: RE EndlessTower
+//    Type: Usable
+//    Weight: 10
+//    NoUse:
+//      Override: 100
+//      Sitting: true
+//    Script: |
+//      callfunc "F_QUEST",37002;

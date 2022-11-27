@@ -1,0 +1,30 @@
+
+// =========== Script - บัตรเปลี่ยนชื่อ ===========
+// - MODIFY BY BANKDEV
+// - VERSION (1.0)
+
+function	script	Change_name	{
+
+	mes "สวัสดี คุณ ^FF0000" + strcharinfo(0)+ "^000000 ต้องการเปลี่ยนชื่อใช่หรือไม่ ?";
+	mes "ฉันสามารถเปลี่ยนชื่อให้คุณได้ค่ะ ";
+	next;
+	mes " โปรดกรอกชื่อที่คุณต้องการจะเปลี่ยน";
+	mes " ความยาว ^FF0000 ตัวอักษรห้ามเกิน 15 ตัว ^000000";
+	next;
+	input .@new$;
+	mes " ^FF0000[ บัตรเปลี่ยนชื่อ ] ^000000";
+	mes " คุณต้องการเปลี่ยนชื่อตามนี้ : ";
+	mes " ชื่อเดิม : " +strcharinfo(0);
+	mes " ชื่อใหม่ : " +.@new$;
+	next;
+	if (select("ตกลง:ยังก่อนดีกว่า") - 1) close;
+		mes " ^FF0000[ บัตรเปลี่ยนชื่อ ] ^000000";
+	mes "^0000FFกำลังอัพเดทชื่อตัวละคร . . .^000000";
+	query_sql "UPDATE `char` SET `name` = '"+escape_sql(.@new$)+"' WHERE `char_id` = '"+getcharid(0)+"'";
+	next;
+	mes "^FF0000กรุณาเข้าเกมส์ใหม่ ขอบคุณค่ะ ^00000";
+	next;
+	atcommand "@kick " +strcharinfo(0);
+	end;
+
+}

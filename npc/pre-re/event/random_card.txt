@@ -1,0 +1,141 @@
+
+
+/*
+	เพิ่ม extra_function.txt ก่อน NPC ตัวนี้
+*/
+
+-	shop	card_merge_shop	-1,909:100
+
+izlude,121,83,6	script	Card Recycle#Card	533,{
+	.@is_gm = ( getgmlevel() >= .gm_level && .gm_level > 0 );
+	
+	mes "เลือกเมนูที่ต้องการ";
+	if ( !.zeny_cost ) {
+		mes "ไม่สามารถสุ่มได้";
+		mes "คุณต้องจ่าย ^FF0000"+callfunc("F_InsertComma",.zeny_cost)+" Zeny^000000 ต่อการผสมการ์ด 1 ครั้ง.";
+	}
+	mes " ";
+	next;
+	switch ( select( 
+		( .@is_gm ) ? "~ ^FF0000[GM] ตั้งค่าของที่ได้จากการผสม^000000":"",
+		"~ ผสม การ์ด "+.card_count+" ใบ / 1ครั้ง",
+		"~ รายละเอียดกิจกรรม"
+	)) {
+		case 1:
+			mes "[ Card Recycle ]";
+			mes "ระบุ Item ID ที่ต้องการให้เป็นรางวัลสุ่มการ์ด";
+			mes "ใส่ 0 = สุ่มการ์ด";
+			input $card_cycle_reward_id,0,99999;
+			if ( getitemname( $card_cycle_reward_id ) != "null" ) {
+				mes "รางวัลสุ่มการ์ดถูกตั้งเป็น " + getitemname( $card_cycle_reward_id );
+			}
+			else {
+				mes "[ Card Recycle ]";
+				mes "รางวัลถูกตั้งเป็น สุ่ม Card ปกติ.";
+				if ( $card_cycle_reward_id > 0 )
+					$card_cycle_reward_id = 0;
+			}
+			break;
+		case 2:
+			if( Zeny >= .zeny_cost ){
+				if( npcshopattach( .shop_npc_name$ ) ){
+					deletearray @sold_nameid;
+					mes "[ Card Recycle ]";
+					mes "ใส่ Card ^FF0000 "+.card_count+" ใบ^000000 ที่ต้องการผสม.";
+					callshop .shop_npc_name$,2;
+					end;
+				}
+			}else{
+				mes "[ Card Recycle ]";
+				mes "คุณมี Zeny ไม่เพียงพอ";
+				mes "ต้องการ Zeny " + .zeny_cost;
+				mes "เพื่อใช้บริการ";
+				end;
+			}
+			break;
+		default:
+			mes "[ Card Recycle ]";
+			mes "คุณต้องมีการ์ดขยะ ";
+			mes "จำนวน ^FF0000"+.card_count+" ใบ กับ "+callfunc("F_InsertComma",.zeny_cost)+" Zeny^000000";
+			mes "เพื่อสุ่ม 1 ครั้ง. มีโอกาสได้รับการ์ดหายาก";
+			break;
+	}
+	close;
+
+OnSellItem:
+	.@sold_size = getarraysize( @sold_nameid );
+	if( .@sold_size == .card_count ){
+		mes "^0055FF[ตรวจสอบ Card]^000000";
+		for( .@i = 0; .@i < .@sold_size; .@i++ ){
+			if( compare( .forbidden_card$,"|"+@sold_nameid[.@i]+"|" ) ){
+				mes " ~ "+getitemname( @sold_nameid[.@i] )+"^000000 ไม่สามารถใช้ได้.";
+				close;
+			}
+			.@item_type[.@i] = getiteminfo( @sold_nameid[.@i],2 );
+			.@not_valid = ( .@item_type[.@i] != IT_CARD || @sold_nameid[.@i] < .card_id_range[0] || @sold_nameid[.@i] > .card_id_range[1] );
+			mes " ~ "+getitemname( @sold_nameid[.@i] )+"^000000 "+( ( .@not_valid )?"^FF0000ไม่ใช่Card":"" )+"ถูกต้อง ^000000.";
+			if( .@not_valid ) .@failed++;
+		}
+		if( !.@failed ){
+			mes " ";
+			mes "ยืนยันจะใช้ "+.card_count+" Cards เพื่อผสม Item ??";
+			next;
+			if( select( "ยืนยัน","ยกเลิก" ) == 1 ){
+				Zeny -= .zeny_cost;
+				for( .@i = 0; .@i < .@sold_size; .@i++ )
+					delitem @sold_nameid[.@i],1;
+					
+				if ( !$card_cycle_reward_id ) {
+					mes "กำลังทำการผสมการ์ด.....";
+					for( .@i = 0; .@i < 25 ; .@i++ ){
+						if( .@i == 20 )
+							mes "^777777-- หยุดการสุ่มไอเท็ม --^000000";
+						cutin callfunc("card_illust",rand( .card_id_range[0],.card_id_range[1])),4;
+						sleep2 ( .@i * 25 + 100 );
+					}
+					do{
+						.@new_card = rand( .card_id_range[0],.card_id_range[1] );
+					} while( compare( .forbidden_card$,"|"+.@new_card+"|" ) );
+					
+					if ( !$card_cycle_reward_id )
+						cutin callfunc("card_illust",.@new_card),4;
+				}
+				else {
+					.@new_card = $card_cycle_reward_id;
+				}
+				
+				mes "ทำการผสมสำเร็จ : ";
+				announce "[ Card Recycle ] : ผู้เล่น "+strcharinfo(0)+" ได้รับ การ์ด "+getitemname( .@new_card )+" จำนวน 1ea.",8;
+				getitem .@new_card,1;
+			}
+		}
+		
+	}
+	else{
+		mes "โปรดตรวจสอบว่าใส่ครบ ^FF0000 "+.card_count+" Card^000000.";
+	}
+	close2;
+	cutin "",255;
+	end;
+
+OnInit:
+	// gm level 
+	.gm_level = 99;
+	
+	// จำนวนการ์ดที่จะใช้ในการสุ่มแต่ละครั้ง
+	.card_count = 3;
+
+	// Cash ที่จะใช้ต่อการสุ่ม 1 ครั้ง.
+	.zeny_cost = 500000;
+
+	// การ์ดที่แบน ไม่ให้สุ่มได้ และจะใช้สุ่มไม่ได้เช่นกัน
+	.forbidden_card$ = "|4198|4054|4047|4047|4140|4320|4241|4290|4144|4147|4142|4132|4128|4143|4137|4123|4146|4131|4148|4121|4135|4318|4324|4168|4305|4276|4134|4263|4236|4302|4145|";
+
+	// ระยะสุ่มการ์ด รหัสน้อยสุด - มากสุด
+	setarray .card_id_range,4001,4347;
+	.shop_npc_name$ = "card_merge_shop";
+	waitingroom "[ Card Recycle ]",0;
+
+end;
+	
+}

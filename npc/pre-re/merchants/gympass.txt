@@ -1,0 +1,51 @@
+izlude,94,126,4	script	เพิ่มน้ำหนัก	864,{
+	mes "^0066FF[ Ripped Cabus ]^000000";
+	mes "สกิล Enlarge Weight Limit";
+	mes "สกิลนี้ทำให้ถือของได้หนักขึ้น";
+	mes "Weight +200/1 ครั้ง";
+	mes "1 ตัวละครสามารถเรียนได้ 10 ครั้ง";
+	mes "ใช้ ^FF0000Gym Membership Card^000000 ในการเรียน";
+	next;
+	switch(select("^ff0000~^000000 ยืนยัน เรียนเพิ่้มน้ำหนัก:^ff0000~^000000 ยกเลิกการสนทนา")) {
+	case 1:
+		if (gympassmemory < 10) {
+			set .@add_carry,gympassmemory + 1;
+			set .@remain_carry,10 - .@add_carry;
+			if (countitem(7776) > 0) {
+				mes "^0066FF[ Ripped Cabus ]^000000";
+				mes "เตรียมตัว ! ! !";
+				next;
+				mes "^0066FF[ Ripped Cabus ]^000000";
+				mes "โอมพุทโธ นะโมพุทธายะ !";
+				next;
+				specialeffect2 EF_SIGHTRASHER;
+				next;
+				mes "^0066FF[ Ripped Cabus ]^000000";
+				mes "ขอบคุณที่ใช้บริการครับ";
+				delitem 7776,1; //Max_Weight_Up_Scroll
+				set gympassmemory,.@add_carry;
+				skill "ALL_INCCARRY",.@add_carry,SKILL_PERM_GRANT;
+				end;
+			}
+			else {
+				mes "^0066FF[ Ripped Cabus ]^000000";
+				mes "เสียใจด้วย คุณไม่มีไอเท็ม";
+				mes "^FF0000Gym Membership Card^000000";
+				end;
+			}
+		}
+		else {
+			mes "^0066FF[ Ripped Cabus ]^000000";
+			mes "คุณไม่สามารถเรียนได้แล้ว";
+			mes "คุณเรียนไปถึงเลเวล 10 แล้ว..!";
+			end;
+		}
+	case 2:
+		mes "^0066FF[ Ripped Cabus ]^000000";
+		mes "ไม่เป็นไร ขอบคุณที่ใช้บริการครับ";
+		end;
+	}
+OnInit:
+	waitingroom "~ บริการเพิ่มน้ำหนัก", 0;
+end;
+}

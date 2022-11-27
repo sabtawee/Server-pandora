@@ -1,0 +1,69 @@
+							///====================================================///
+							// New Create and Modify by @แว่นเล็ก at " Pandora-ro " 	//
+							///====================================================///
+
+///====================================================///
+//				iz_dun00 -  Byalan DungeonF1			//
+///====================================================///
+
+iz_dun00,0,0	monster	Vadon	1066,45
+	
+iz_dun00,0,0	monster	Hydra	1068,40
+	
+iz_dun00,0,0	monster	Marina	1141,35
+	
+iz_dun00,0,0	monster	Kukre	1070,45
+	
+iz_dun00,0,0	monster	Plankton	1161,85
+	
+iz_dun00,0,0	monster	Black Mushroom	1084,5,180000,90000
+
+///====================================================///
+//				iz_dun01 -  Byalan DungeonF2			//
+///====================================================///
+
+iz_dun01,0,0	monster	Thara Frog	1034,57
+	
+iz_dun01,0,0	monster	Vadon	1066,55
+	
+iz_dun01,0,0	monster	Cornutus	1067,15,300000,180000
+	
+iz_dun01,0,0	monster	Hydra	1068,45
+	
+iz_dun01,0,0	monster	Kukre	1070,35
+	
+iz_dun01,0,0	monster	Marina	1141,45
+	
+iz_dun01,0,0	monster	Plankton	1161,20
+	
+iz_dun01,0,0	monster	Black Mushroom	1084,10,180000,90000
+
+///====================================================///
+//				iz_dun02 -  Byalan DungeonF3			//
+///====================================================///
+
+iz_dun02,0,0	monster	Thara Frog	1034,50
+	
+iz_dun02,0,0	monster	Obeaune	1044,70
+	
+iz_dun02,0,0	monster	Cornutus	1067,60
+	
+iz_dun02,0,0	monster	Hydra	1068,50
+	
+iz_dun02,0,0	monster	Marse	1144,50
+	
+iz_dun02,0,0	monster	Merman	1264,1,1800000,1200000
+	
+iz_dun02,0,0	monster	Black Mushroom	1084,15,180000,120000
+
+
+//==================================================
+// iz_dun05 - Undersea Tunnel F6
+//==================================================
+iz_dun05,0,0	monster	Sropho	2201,50,5000
+iz_dun05,0,0	monster	Sedora	2204,60,5000
+iz_dun05,0,0	monster	Pot Dofle	2203,30,5000
+iz_dun05,0,0	monster	King Dramoh	2198,25,5000
+iz_dun05,0,0,0,0	boss_monster	Kraken	2202,1,7200000,1800000,0
+
+

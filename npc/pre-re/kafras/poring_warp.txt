@@ -1,0 +1,201 @@
+//===== rAthena Script =======================================
+//= Healer
+//===== By: ==================================================
+//= Euphy
+//===== Current Version: =====================================
+//= 1.1
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: =========================================
+//= Basic healer script.
+//===== Additional Comments: =================================
+//= 1.0 Initial script.
+//= 1.1 Aligned coordinates with @go.
+//============================================================
+
+
+//= Translated & Modified by Start (Discord ID: Start#1356)
+
+
+-	script	Healer	-1,{
+mes "^FF0099สวัดดีนักผจญภัย ? ^000000";
+mes "ข้ามีหน้าที่ช่วยเหลือนักผจญภัย";
+mes "ชื่อของข้า Poing Pandora";
+mes "เจ้าต้องการให้ข้าช่วยสิ่งใดกัน ?";
+next;
+if(#APACHE_PREMIUM_TIME > gettimetick(2) || vip_status(VIP_STATUS_ACTIVE)){
+menu "- ^0412EBAB Free !!^000000",AB,"- ^0412EBWarp Guild War^000000",GVG,"- ^FF0033เข้าสู่ห้อง PVP^000000",PVP,"- ยกเลิก",cancel;
+}
+mes "^3333FF[ Warp GVG ]^000000";
+mes "หากคุณไม่มี Vip";
+mes "ฉันจะคิดค่าบริการครั้งละ 500Zeny";
+next;
+if(zeny < 500) goto Lv_50;
+set Zeny, Zeny-500;
+menu "- ^0412EBWarp Guild War^000000",GVG,"- ^FF0033เข้าสู่ห้อง PVP^000000",PVP,"- ยกเลิก",cancel;
+
+AB:
+sc_end SC_STONE;
+sc_end SC_FREEZE;
+sc_end SC_STUN;
+sc_end SC_SLEEP;
+sc_end SC_POISON;
+sc_end SC_CURSE;
+sc_end SC_SILENCE;
+sc_end SC_CONFUSION;
+sc_end SC_BLIND;
+sc_end SC_BLEEDING;
+sc_end SC_DPOISON;
+
+sc_end SC_QUAGMIRE;
+sc_end SC_AETERNA;
+sc_end SC_HALLUCINATION;
+sc_end SC_SLOWDOWN;
+sc_end SC_BERSERK;
+sc_end SC_CHANGEUNDEAD;
+sc_end SC_DECREASEAGI;
+sc_end SC_ORCISH;
+sc_end SC_SKE;
+sc_end SC_SWOO;
+sc_end SC_SKA;
+
+sc_end SC_STRIPWEAPON;
+sc_end SC_STRIPSHIELD;
+sc_end SC_STRIPARMOR;
+sc_end SC_STRIPHELM;
+
+specialeffect2 EF_HEAL2;
+specialeffect2 EF_INCAGILITY;
+specialeffect2 EF_BLESSING;
+
+percentheal 100,1;
+sc_start SC_BLESSING,1800000,10;
+sc_start SC_INCREASEAGI,1800000,10;
+sc_start SC_MAGNIFICAT,900000,1;
+sc_start SC_GLORIA,360000,5;
+
+
+Lv_50:
+mes "^3333FF[ Warp GVG ]^000000";
+mes "ท่านไม่มีเงิน 500z !!!";
+mes ".....ดังนั้น.....";
+mes "ฉันไม่สามารถให้ ท่าน Warp ได้";
+mes "ขอบคุณที่ใช้บริการ";
+end;
+GVG:
+menu 
+"1.Kriemhild ("+getmapusers("prtg_cas01")+" คน)",Kriemhild,
+"2.Swanhild ("+getmapusers("prtg_cas02")+" คน)",Swanhild,
+"3.Fadhgridh ("+getmapusers("prtg_cas03")+" คน)",Fadhgridh,
+"4.Skoegul ("+getmapusers("prtg_cas04")+" คน)",Skoegul,
+"5.Gondul ("+getmapusers("prtg_cas05")+" คน)",Gondul,
+"6.BrightArbor ("+getmapusers("payg_cas01")+" คน)",BrightArbor,
+"7.ScarletPalace ("+getmapusers("payg_cas02")+" คน)",ScarletPalace,
+"8.HolyShadow ("+getmapusers("payg_cas03")+" คน)",HolyShadow,
+"9.SacredAltar ("+getmapusers("payg_cas04")+" คน)",SacredAltar,
+"10.BambooGroyeHill ("+getmapusers("payg_cas05")+" คน)",BambooGroyeHill,
+"11.Repherion ("+getmapusers("gefg_cas01")+" คน)",Repherion,
+"12.Eeyorbriggar ("+getmapusers("gefg_cas02")+" คน)",Eeyorbriggar,
+"13.Yesnelph ("+getmapusers("gefg_cas03")+" คน)",Yesnelph,
+"14.Bergel("+getmapusers("gefg_cas04")+" คน)",Bergel,
+"15.Mersetzdeitz ("+getmapusers("gefg_cas05")+" คน)",Mersetzdeitz,
+"16.Neuschwanstein ("+getmapusers("aldeg_cas01")+" คน)",Neuschwanstein,
+"17.Hohenschwangau ("+getmapusers("aldeg_cas02")+" คน)",Hohenschwangau,
+"18.Nuernberg ("+getmapusers("aldeg_cas03")+" คน)",Nuernberg,
+"19.Wuerzburg ("+getmapusers("aldeg_cas04")+" คน)",Wuerzburg,
+"20.Rothenburg ("+getmapusers("aldeg_cas05")+" คน)",Rothenburg,
+
+"- ยกเลิก",cancel;
+
+Kriemhild:
+warp "prt_gld",138,64;
+end;
+Swanhild:
+warp "prt_gld",240,128;
+end;
+Fadhgridh:
+warp "prt_gld",153,137;
+end;
+Skoegul:
+warp "prt_gld",111,240;
+end;
+Gondul:
+warp "prt_gld",208,240;
+end;
+BrightArbor:
+warp "pay_gld",121,233;
+end;
+ScarletPalace:
+warp "pay_gld",295,116;
+end;
+HolyShadow:
+warp "pay_gld",319,293;
+end;
+SacredAltar:
+warp "pay_gld",140,160;
+end;
+BambooGroyeHill:
+warp "pay_gld",198,264;
+end;
+Repherion:
+warp "gef_fild13",153,50;
+end;
+Eeyorbriggar:
+warp "gef_fild13",308,240;
+end;
+Yesnelph:
+warp "gef_fild13",147,240;
+end;
+Bergel:
+warp "gef_fild13",193,278;
+end;
+Mersetzdeitz:
+warp "gef_fild13",309,86;
+end;
+Neuschwanstein:
+warp "alde_gld",48,83;
+end;
+Hohenschwangau:
+warp "alde_gld",95,249;
+end;
+Nuernberg:
+warp "alde_gld",142,85;
+end;
+Wuerzburg:
+warp "alde_gld",239,242;
+end;
+Rothenburg:
+warp "alde_gld",264,90;
+end;
+
+PVP:
+warp "pvp_y_1-2",0,0;
+end;
+
+cancel:
+close;
+
+
+
+	
+}
+
+// Duplicates
+//============================================================
+izlude,90,168,4	duplicate(Healer)	Poing Warp#izl031	508
+izlude,66,210,4	duplicate(Healer)	Poing Warp#izl11	508
+izlude,115,206,4	duplicate(Healer)	Poing Warp#izl01	508
+izlude,145,205,4	duplicate(Healer)	Poing Warp#izl02	508
+izlude,148,181,4	duplicate(Healer)	Poing Warp#izl03	508
+izlude,161,168,4	duplicate(Healer)	Poing Warp#izl04	508
+izlude,169,146,4	duplicate(Healer)	Poing Warp#izl05	508
+izlude,106,118,4	duplicate(Healer)	Poing Warp#izl06	508
+izlude,55,155,4	duplicate(Healer)	Poing Warp#izl07	508
+izlude,148,118,4	duplicate(Healer)	Poing Warp#izl08	508
+izlude,204,174,4	duplicate(Healer)	Poing Warp#izl09	508
+izlude,176,76,6	duplicate(Healer)	Poing Warp#izl10	508
+payon,97,125,4	duplicate(Healer)	Poing Warp#pay01	508
+payon,42,149,4	duplicate(Healer)	Poing Warp#pay02	508
+
+
+

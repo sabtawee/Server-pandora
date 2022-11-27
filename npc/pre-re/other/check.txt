@@ -1,0 +1,28 @@
+-	script	#who_active		HIDDEN_WARP_NPC,{
+
+OnInit:
+        bindatcmd "whox",strnpcinfo(3)+"::OnAtcommandReload",99,99;
+    end;
+
+OnAtcommandReload:
+    .@user = getunits(BL_PC,.@array$[0]);
+    freeloop(1);
+    for (.@i=0; .@i<.@user; .@i++) {
+        .@check = checkvending(.@array$[.@i]);
+        if (!.@check)
+            .@total1++;
+        if (.@check&1)
+            .@total2++;
+        if (.@check&2)
+            .@total3++;
+        if (.@check&4)
+            .@total4++;
+    }
+    freeloop(0);
+    mes "All player = "+.@user+" players.";
+    mes "No vending = "+.@total1+" players.";
+    mes "Normal vending = "+.@total2+" players.";
+    mes "Buying = "+.@total4+" players.";
+    mes "^ff0000Autotrade = "+.@total3+" players.^000000";
+    end;
+}

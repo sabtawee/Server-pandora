@@ -1,0 +1,56 @@
+//------------------------------------------------------------
+// Whispering Rain
+
+-	script	BR_WAR_CONTROL#guild_vs3	-1,{
+
+OnAgitStart4:
+	announce "วอปั่นๆ ได้เริ่มขึ้นแล้ววว ทางเข้าอยู่ที่ด้านบน ซ้าย IZLUDE",bc_blue|bc_all;
+	gvgon strnpcinfo(2);
+	SetCastleData strnpcinfo(2),CD_GUILD_ID, 0;
+	callsub OnAgitInit4;
+	end;
+
+OnStartArena:
+	setarray .@emproom[0],50,50;
+	monster strnpcinfo(2),.@emproom[0],.@emproom[1],"Emperium",1288,1,"BR_WAR_CONTROL#guild_vs3::OnAgitBreak";
+	$EMP_ID = $@mobid[0];
+	
+	// สปอนมอนห้องหิน
+	//monster strnpcinfo(2),.@emproom[0],.@emproom[1],"Raydric Archer",1276,5;
+	end;
+
+OnAgitBreak:
+	set .@GID,getcharid(2);
+	if (.@GID <= 0) {
+		set .@notice$,"Character "+strcharinfo(0)+" ("+getcharid(0)+") broke the Emperium in Castle: "+strnpcinfo(2)+" while guildless. No data will be saved and Emperium respawned.";
+ 		logmes .@notice$; debugmes .@notice$;
+		donpcevent "BR_WAR_CONTROL#guild_vs3::OnStartArena";
+		end;
+	}
+	SetCastleData strnpcinfo(2),CD_GUILD_ID, .@GID;
+	mapannounce strnpcinfo(2),"The emperium has been destroyed.",bc_map|bc_woe,"0x00CCFF",FW_NORMAL,12;
+	MapRespawnGuildID strnpcinfo(2),.@GID,6;
+
+	donpcevent "BR_WAR_CONTROL#guild_vs3::OnRecvBR";
+	sleep 500; // Slow down script execution slightly.
+	if(agitcheck4()){
+		donpcevent "BR_WAR_CONTROL#guild_vs3::OnStartArena";
+	}
+	sleep 7000;
+	announce "The [" + getcastlename(strnpcinfo(2)) + "] castle has been conquered by the [" + getguildName(.@GID) + "] guild.",bc_all|bc_woe;
+	end;		
+
+OnAgitEnd4:
+	gvgoff strnpcinfo(2);
+	KillMonster strnpcinfo(2),"BR_WAR_CONTROL#guild_vs3::OnAgitBreak";
+	announce "สิ้นสุดการ วอปั่นๆ แล้ว",bc_blue|bc_all;
+	end;
+	
+OnAgitInit4:
+	donpcevent "BR_WAR_CONTROL#guild_vs3::OnStartArena";
+OnRecvBR:
+	donpcevent "BR WAR#flag::OnRecvBRCastle";
+	end;	
+	
+}
+

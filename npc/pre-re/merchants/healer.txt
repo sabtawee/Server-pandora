@@ -1,0 +1,939 @@
+//===== rAthena Script =======================================
+//= Healer
+//===== By: ==================================================
+//= Euphy
+//===== Current Version: =====================================
+//= 1.1
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: =========================================
+//= Basic healer script.
+//===== Additional Comments: =================================
+//= 1.0 Initial script.
+//= 1.1 Aligned coordinates with @go.
+//============================================================
+
+
+//= Translated & Modified by Start (Discord ID: Start#1356)
+
+
+-	script	Healer01	-1,{
+mes "^FF0099สวัดดีนักผจญภัย ? ^000000";
+mes "ข้ามีหน้าที่ช่วยเหลือนักผจญภัย";
+mes "ชื่อของข้า Pandora Warp";
+mes "เจ้าต้องการให้ข้าช่วยสิ่งใดกัน ?";
+next;
+
+//if(#APACHE_PREMIUM_TIME > gettimetick(2)){
+
+menu "- ^0000FF Warp Teleport^000000",PVP,"- ยกเลิก",cancel;
+
+//}
+
+menu "- ^0000FFHeal & BUFF^000000",AB,"- ^FF9900Warp Guild War^000000",GVG,"- ยกเลิก",cancel;
+
+GVG:
+menu "1.Kriemhild",Kriemhild,"2.Swanhild",Swanhild,"3.Fadhgridh",Fadhgridh,"4.Skoegul",Skoegul,"5.Gondul",Gondul,"6.BrightArbor",BrightArbor,"7.ScarletPalace",ScarletPalace,"8.HolyShadow",HolyShadow,"9.SacredAltar",SacredAltar,"10.BambooGroyeHill",BambooGroyeHill,"11.Repherion",Repherion,"12.Eeyorbriggar",Eeyorbriggar,"13.Yesnelph",Yesnelph,"14.Bergel",Bergel,"15.Mersetzdeitz",Mersetzdeitz,"16.Neuschwanstein",Neuschwanstein,"17.Hohenschwangau",Hohenschwangau,"18.Nuernberg",Nuernberg,"19.Wuerzburg",Wuerzburg,"20.Rothenburg",Rothenburg,"- ยกเลิก",cancel;
+Kriemhild:
+warp "prt_gld",138,64;
+end;
+Swanhild:
+warp "prt_gld",240,128;
+end;
+Fadhgridh:
+warp "prt_gld",153,137;
+end;
+Skoegul:
+warp "prt_gld",111,240;
+end;
+Gondul:
+warp "prt_gld",208,240;
+end;
+BrightArbor:
+warp "pay_gld",121,233;
+end;
+ScarletPalace:
+warp "pay_gld",295,116;
+end;
+HolyShadow:
+warp "pay_gld",319,293;
+end;
+SacredAltar:
+warp "pay_gld",140,160;
+end;
+BambooGroyeHill:
+warp "pay_gld",198,264;
+end;
+Repherion:
+warp "gef_fild13",153,50;
+end;
+Eeyorbriggar:
+warp "gef_fild13",308,240;
+end;
+Yesnelph:
+warp "gef_fild13",147,240;
+end;
+Bergel:
+warp "gef_fild13",193,278;
+end;
+Mersetzdeitz:
+warp "gef_fild13",309,86;
+end;
+Neuschwanstein:
+warp "alde_gld",48,83;
+end;
+Hohenschwangau:
+warp "alde_gld",95,249;
+end;
+Nuernberg:
+warp "alde_gld",142,85;
+end;
+Wuerzburg:
+warp "alde_gld",239,242;
+end;
+Rothenburg:
+warp "alde_gld",264,90;
+end;
+
+PVP:
+menu "Kiel Robot Factory ^FF0099( ค่าบริการ 50K )^000000",Krdfac,"Rachel Sanctuary ^FF0099( ค่าบริการ 50K )^000000",Rach,"Bio Lab ^FF0099( ค่าบริการ 100K )^000000",Bio,"Juperos Ruins ^FF0099( ค่าบริการ 50K )^000000",Jupr,"Einbech Mine Dungeon ^FF0099( ค่าบริการ 50K )^000000",Ein,"Ayothaya Dongeon ^FF0099( ค่าบริการ 50K )^000000",Ayoth,"Gonryun Dongeon ^FF0099( ค่าบริการ 50K )^000000",Gony,"Niflheim ^FF0099( ค่าบริการ 50K )^000000",nif,"Magma Dungeon ^FF0099( ค่าบริการ 50K )^000000",magma,"Lou Yang Dungeon ^FF0099( ค่าบริการ 50K )^000000",lou,"gefenia Dungeon ^FF0099( ค่าบริการ 50K )^000000",gefi,"Amatsu Dungeon ^FF0099( ค่าบริการ 50K )^000000",amasu,"Payon Dungeon ^FF0099( ค่าบริการ 50K )^000000",pyd,"Pyramid Dungeon ^FF0099( ค่าบริการ 50K )^000000",prd,"Bibilyn Island ^FF0099( ค่าบริการ 50K )^000000",bll,"Ant Hell ^FF0099( ค่าบริการ 50K )^000000",AntHell,"Clock Tower ^FF0099( ค่าบริการ 50K )^000000",ctw,"Morroc Sphinx ^FF0099( ค่าบริการ 50K )^000000",spx,"Geffen Dungeon ^FF0099( ค่าบริการ 50K )^000000",Geffen,"Coal Mine ^FF0099( ค่าบริการ 50K )^000000",coal,"Orc Dungeon ^FF0099( ค่าบริการ 50K )^000000",orc,"Hidden Temple ^FF0099( ค่าบริการ 50K )^000000",hden,"Prontera Sewers ^FF0099( ค่าบริการ 50K )^000000",prts,"Sunken Ship ^FF0099( ค่าบริการ 50K )^000000",sun,"Turtle Island ^FF0099( ค่าบริการ 50K )^000000",turl,"Toy Factory ^FF0099( ค่าบริการ 50K )^000000",toy,"GlastHeim ^FF0099( ค่าบริการ 50K )^000000",glast,"Abyss Lake ^FF0099( ค่าบริการ 50K )^000000",abyss,"- ยกเลิก",cancel;
+pyd:
+menu "pay_dun00",p1,"pay_dun01",p2,"pay_dun02",p3,"pay_dun03",p4,"pay_dun04",p5,"- ยกเลิก",cancel;
+p1:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "pay_dun00",0,0;
+end;
+p2:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "pay_dun01",0,0;
+end;
+p3:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "pay_dun02",0,0;
+end;
+p4:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "pay_dun03",0,0;
+end;
+p5:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "pay_dun04",0,0;
+end;
+
+prd:
+menu "moc_pryd01",py1,"moc_pryd02",py2,"moc_pryd03",py3,"moc_pryd04",py4,"moc_prydb1",py5,"moc_prydb2",py6,"- ยกเลิก",cancel;
+py1:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "moc_pryd01",0,0;
+end;
+py2:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "moc_pryd02",0,0;
+end;
+py3:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "moc_pryd03",0,0;
+end;
+py4:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "moc_pryd04",0,0;
+end;
+py5:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "moc_pryd05",0,0;
+end;
+py6:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "moc_pryd06",0,0;
+end;
+
+bll:
+menu "iz_dun00",bl1,"iz_dun01",bl2,"iz_dun02",bl3,"iz_dun03",bl4,"iz_dun04",bl5,"- ยกเลิก",cancel;
+bl1:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "iz_dun00",0,0;
+end;
+bl2:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "iz_dun01",0,0;
+end;
+bl3:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "iz_dun02",0,0;
+end;
+bl4:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "iz_dun03",0,0;
+end;
+bl5:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "iz_dun04",0,0;
+end;
+
+AntHell:
+menu "anthell01",an1,"anthell02",an2,"- ยกเลิก",cancel;
+an1:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "anthell01",0,0;
+end;
+an2:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "anthell02",0,0;
+end;
+
+ctw:
+menu "c_tower1",ctw1,"c_tower2",ctw2,"c_tower3",ctw3,"c_tower4",ctw4,"alde_dun01",ctw5,"alde_dun02",ctw6,"alde_dun03",ctw7,"alde_dun04",ctw8,"- ยกเลิก",cancel;
+ctw1:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "c_tower1",0,0;
+end;
+ctw2:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "c_tower2",0,0;
+end;
+ctw3:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "c_tower3",0,0;
+end;
+ctw4:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "c_tower4",0,0;
+end;
+ctw5:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "alde_dun01",0,0;
+end;
+ctw6:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "alde_dun02",0,0;
+end;
+ctw7:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "alde_dun03",0,0;
+end;
+ctw8:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "alde_dun04",0,0;
+end;
+
+spx:
+menu "in_sphinx1",spx1,"in_sphinx2",spx2,"in_sphinx3",spx3,"in_sphinx4",spx4,"in_sphinx5",spx5,"- ยกเลิก",cancel;
+spx1:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "in_sphinx1",0,0;
+end;
+spx2:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "in_sphinx2",0,0;
+end;
+spx3:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "in_sphinx3",0,0;
+end;
+spx4:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "in_sphinx4",0,0;
+end;
+spx5:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "in_sphinx5",0,0;
+end;
+
+Geffen:
+menu "gef_dun00",Geffen1,"gef_dun01",Geffen2,"gef_dun02",Geffen3,"- ยกเลิก",cancel;
+Geffen1:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "gef_dun00",0,0;
+end;
+Geffen2:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "gef_dun01",0,0;
+end;
+Geffen3:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "gef_dun02",0,0;
+end;
+
+coal:
+menu "mjo_dun01",coal1,"mjo_dun02",coal2,"mjo_dun03",coal3,"- ยกเลิก",cancel;
+coal1:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "mjo_dun01",0,0;
+end;
+coal2:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "mjo_dun02",0,0;
+end;
+coal3:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "mjo_dun03",0,0;
+end;
+
+orc:
+menu "orcsdun01",orc1,"orcsdun02",orc2,"- ยกเลิก",cancel;
+orc1:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "orcsdun01",0,0;
+end;
+orc2:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "orcsdun02",0,0;
+end;
+
+hden:
+menu "prt_maze01",Hidden1,"prt_maze02",Hidden2,"prt_maze03",Hidden3,"- ยกเลิก",cancel;
+Hidden1:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "prt_maze01",0,0;
+end;
+Hidden2:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "prt_maze02",0,0;
+end;
+Hidden3:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "prt_maze03",0,0;
+end;
+
+prts:
+menu "prt_sewb1",prts1,"prt_sewb2",prts2,"prt_sewb3",prts3,"prt_sewb4",prts3,"- ยกเลิก",cancel;
+prts1:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "prt_sewb1",0,0;
+end;
+prts2:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "prt_sewb2",0,0;
+end;
+prts3:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "prt_sewb3",0,0;
+end;
+prts4:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "prt_sewb4",0,0;
+end;
+
+sun:
+menu "treasure01",sun1,"treasure02",sun2,"- ยกเลิก",cancel;
+sun1:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "treasure01",0,0;
+end;
+sun2:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "treasure02",0,0;
+end;
+
+turl:
+menu "tur_dun01",turl1,"tur_dun02",turl2,"tur_dun03",turl3,"tur_dun04",turl4,"- ยกเลิก",cancel;
+turl1:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "tur_dun01",0,0;
+end;
+turl2:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "tur_dun02",0,0;
+end;
+turl3:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "tur_dun03",0,0;
+end;
+turl4:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "tur_dun04",0,0;
+end;
+
+toy:
+menu "xmas_dun01",toy1,"xmas_dun01",toy2,"- ยกเลิก",cancel;
+toy1:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "xmas_dun01",0,0;
+end;
+toy2:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "xmas_dun02",0,0;
+end;
+
+glast:
+menu "Inside GlastHeim",glast01,"GlastHeim Chivalry",glast02,"GlastHeim Underprison",glast03,"GlastHeim Culvert",glast04,"GlastHeim Dungeon Cave",glast05,"Glast Heim Staircase Dungeon",glast06,"Glast Heim Churchyar",glast07,"- ยกเลิก",cancel;
+glast01:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "glast_01",0,0;
+end;
+glast02:
+menu "ChivalryF1",gl01,"ChivalryF2",gl02,"- ยกเลิก",cancel;
+gl01:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "gl_knt01",0,0;
+end;
+gl02:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "gl_knt02",0,0;
+end;
+glast03:
+menu "Underprison F1",gl03,"Underprison F2",gl04,"- ยกเลิก",cancel;
+gl03:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "gl_prison",0,0;
+end;
+gl04:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "gl_prison1",0,0;
+end;
+glast04:
+menu "Culvert01",gl05,"Culvert02",gl06,"Culvert03",gl07,"Culvert04",gl08,"- ยกเลิก",cancel;
+gl05:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "gl_sew01",0,0;
+end;
+gl06:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "gl_sew02",0,0;
+end;
+gl07:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "gl_sew03",0,0;
+end;
+gl08:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "gl_sew04",0,0;
+end;
+glast05:
+menu "Cave F1",gl09,"Cave F2",gl10,"- ยกเลิก",cancel;
+gl09:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "gl_dun01",0,0;
+end;
+gl10:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "gl_dun02",0,0;
+end;
+glast06:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "gl_step",0,0;
+end;
+glast07:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "gl_chyard",0,0;
+end;
+
+amasu:
+menu "amu_dun01",amasu1,"amu_dun02",amasu2,"amu_dun03",amasu3,"- ยกเลิก",cancel;
+amasu1:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "ama_dun01",0,0;
+end;
+amasu2:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "ama_dun02",0,0;
+end;
+amasu3:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "ama_dun03",0,0;
+end;
+
+gefi:
+menu "gefenia01",gefi01,"gefenia02",gefi02,"gefenia03",gefi03,"gefenia04",gefi04,"- ยกเลิก",cancel;
+gefi01:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "gefenia01",0,0;
+end;
+gefi02:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "gefenia02",0,0;
+end;
+gefi03:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "gefenia03",0,0;
+end;
+gefi04:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "gefenia04",0,0;
+end;
+
+lou:
+menu "lou_dun01",lou1,"lou_dun02",lou2,"lou_dun03",lou3,"- ยกเลิก",cancel;
+lou1:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "lou_dun01",0,0;
+end;
+lou2:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "lou_dun02",0,0;
+end;
+lou3:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "lou_dun03",0,0;
+end;
+
+magma:
+menu "mag_dun01",magma01,"mag_dun02",magma02,"- ยกเลิก",cancel;
+magma01:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "mag_dun01",0,0;
+end;
+magma02:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "mag_dun02",0,0;
+end;
+
+nif:
+menu "niflheim",nif01,"niflheim Fild01",nif02,"niflheim Fild02",nif03,"- ยกเลิก",cancel;
+nif01:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "niflheim",203,175;
+end;
+nif02:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "nif_fild01",0,0;
+end;
+nif03:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "nif_fild02",0,0;
+end;
+
+krfy:
+menu "Kiel Robot Factory F1",krfy01,"Kiel Robot Factory F2",krfy02,"- ยกเลิก",cancel;
+krfy01:
+warp "kh_dun01",0,0;
+end;
+krfy02:
+warp "kh_dun02",99,230;
+end;
+
+Gony:
+menu "gon_dun01",Gony01,"gon_dun02",Gony02,"gon_dun03",Gony03,"- ยกเลิก",cancel;
+Gony01:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "gon_dun01",152,53;
+end;
+Gony02:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "gon_dun02",0,0;
+end;
+Gony03:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "gon_dun03",0,0;
+end;
+
+Ayoth:
+menu "ayo_dun01",Ayoth01,"ayo_dun02",Ayoth02,"- ยกเลิก",cancel;
+Ayoth01:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "ayo_dun01",0,0;
+end;
+Ayoth02:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "ayo_dun02",0,0;
+end;
+
+Jupr:
+menu "Juperos01",Jupr01,"Juperos02",Jupr02,"Juperos Core",Jupr03,"- ยกเลิก",cancel;
+Jupr01:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "juperos_01",0,0;
+end;
+Jupr02:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "juperos_02",0,0;
+end;
+Jupr03:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "jupe_core",0,0;
+end;
+
+Bio:
+menu "Bio Laboratory F1",Bio01,"Bio Laboratory F2",Bio02,"Bio Laboratory F3",Bio03,"- ยกเลิก",cancel;
+Bio01:
+if(Zeny < 100000) goto NoZenyM2;
+set Zeny, Zeny - 100000;
+warp "lhz_dun01",0,0;
+end;
+Bio02:
+if(Zeny < 100000) goto NoZenyM2;
+set Zeny, Zeny - 100000;
+warp "lhz_dun02",0,0;
+end;
+Bio03:
+if(Zeny < 100000) goto NoZenyM2;
+set Zeny, Zeny - 100000;
+warp "lhz_dun03",0,0;
+end;
+
+Ein:
+menu "ein_dun01",Ein01,"ein_dun02",Ein02,"- ยกเลิก",cancel;
+Ein01:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "ein_dun01",0,0;
+end;
+Ein02:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "ein_dun02",0,0;
+end;
+
+NoZenyM1:
+mes "[Warp]";
+mes "เจ้าต้องมีเงินจำนวน 50,000 Zeny , ข้าถึงจะอนุญาตให้เจ้าเข้าไปได้.";
+close;
+
+NoZenyM2:
+mes "[Warp]";
+mes "เจ้าต้องมีเงินจำนวน 100,000 Zeny , ข้าถึงจะอนุญาตให้เจ้าเข้าไปได้.";
+close;
+
+Rach:
+menu "ra_san01",Rach01,"ra_san02",Rach02,"ra_san03",Rach03,"ra_san04",Rach04,"ra_san05",Rach05,"- ยกเลิก",cancel;
+Rach01:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "ra_san01",0,0;
+end;
+Rach02:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "ra_san02",0,0;
+end;
+Rach03:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "ra_san03",0,0;
+end;
+Rach04:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "ra_san04",0,0;
+end;
+Rach05:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "ra_san05",0,0;
+end;
+
+Krdfac:
+menu "kh_dun01",Krdfac01,"kh_dun02",Krdfac02,"- ยกเลิก",cancel;
+Krdfac01:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "kh_dun01",0,0;
+end;
+Krdfac02:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "kh_dun02",0,0;
+end;
+
+abyss:
+if(Zeny < 50000) goto NoZenyM1;
+set Zeny, Zeny - 50000;
+warp "abyss_01",0,0;
+end;
+
+AB:
+if(#APACHE_PREMIUM_TIME > gettimetick(2)){
+	sc_end SC_STONE;
+	sc_end SC_FREEZE;
+	sc_end SC_STUN;
+	sc_end SC_SLEEP;
+	sc_end SC_POISON;
+	sc_end SC_CURSE;
+	sc_end SC_SILENCE;
+	sc_end SC_CONFUSION;
+	sc_end SC_BLIND;
+	sc_end SC_BLEEDING;
+	sc_end SC_DPOISON;
+	
+	sc_end SC_QUAGMIRE;
+	sc_end SC_AETERNA;
+	sc_end SC_HALLUCINATION;
+	sc_end SC_SLOWDOWN;
+	sc_end SC_BERSERK;
+	sc_end SC_CHANGEUNDEAD;
+	sc_end SC_DECREASEAGI;
+	sc_end SC_ORCISH;
+	sc_end SC_SKE;
+	sc_end SC_SWOO;
+	sc_end SC_SKA;
+	
+	
+	specialeffect2 EF_HEAL2;
+	specialeffect2 EF_INCAGILITY;
+	specialeffect2 EF_BLESSING;
+	
+	percentheal 100,1;
+	sc_start SC_STRFood,1800000,5;
+	sc_start SC_AGIFood,1800000,5;
+	sc_start SC_VITFood,1800000,5;
+	sc_start SC_INTFood,1800000,5;
+	sc_start SC_DEXFood,1800000,5;
+	sc_start SC_LUKFood,1800000,5;
+	sc_start SC_BLESSING,1800000,10;
+	sc_start SC_INCREASEAGI,1800000,10;
+	//sc_start SC_MAGNIFICAT,900000,1;
+	//sc_start SC_GLORIA,1800000,5;
+	
+	atcommand "@identifyall";
+	
+	while ( getbrokenid(1)){
+		atcommand "@repairall";
+		}
+	
+	if (.@Delay)
+		@HD = gettimetick(2) + .@Delay;
+	end;
+	}
+		if(BaseLevel > 99 && #APACHE_PREMIUM_TIME < gettimetick(2)) goto Lv_55;
+	sc_end SC_STONE;
+	sc_end SC_FREEZE;
+	sc_end SC_STUN;
+	sc_end SC_SLEEP;
+	sc_end SC_POISON;
+	sc_end SC_CURSE;
+	sc_end SC_SILENCE;
+	sc_end SC_CONFUSION;
+	sc_end SC_BLIND;
+	sc_end SC_BLEEDING;
+	sc_end SC_DPOISON;
+	
+	sc_end SC_QUAGMIRE;
+	sc_end SC_AETERNA;
+	sc_end SC_HALLUCINATION;
+	sc_end SC_SLOWDOWN;
+	sc_end SC_BERSERK;
+	sc_end SC_CHANGEUNDEAD;
+	sc_end SC_DECREASEAGI;
+	sc_end SC_ORCISH;
+	sc_end SC_SKE;
+	sc_end SC_SWOO;
+	sc_end SC_SKA;
+	
+	sc_end SC_STRIPWEAPON;
+	sc_end SC_STRIPSHIELD;
+	sc_end SC_STRIPARMOR;
+	sc_end SC_STRIPHELM;
+	
+	specialeffect2 EF_HEAL2;
+	specialeffect2 EF_INCAGILITY;
+	specialeffect2 EF_BLESSING;
+	
+	percentheal 100,1;
+	
+	sc_start SC_BLESSING,1800000,5;
+	sc_start SC_INCREASEAGI,1800000,5;
+	//sc_start SC_MAGNIFICAT,1800000,5;
+	//sc_start SC_GLORIA,1800000,5;
+	
+	atcommand "@identifyall";
+	
+	while ( getbrokenid(1)){
+		atcommand "@repairall";
+		}
+	
+	if (.@Delay)
+		@HD = gettimetick(2) + .@Delay;
+	end;
+close;
+
+cancel:
+close;
+
+Lv_55:
+	if(zeny < 1500) goto 1k;
+	set @healab,gettimetick(2);
+	mes "^3333FF[ Healer ]^000000";
+	mes "หากคุณมีเลเวลมากกว่า 80";
+	mes "ฉันจะคิดค่าบริการครั้งละ 1,500Zeny";
+	next;
+	mes "^3333FF[ Healer ]^000000";
+	mes "ฉันขอตรวจสอบข้อมูลสักครู่..";
+	mes "โอ้..คุณเลเวลเกินแล้วน่ะ";
+	mes "ดังนั้นคุณจะเสียค่าบริการ 1,500Zeny";
+	mes "... พร้อมหรือยัง ? ...";
+	mes "ฉันจะให้พรกับท่านแล้วน่ะ !";
+	close2;
+	set Zeny, Zeny-1500;
+	specialeffect 411;
+	progressbar "FF0000",1; 
+	specialeffect2 42;
+	specialeffect2 37;
+	specialeffect2 313;
+	emotion 3;
+	//sc_start SC_BLESSING,1000*60*15,3;
+	sc_start SC_INCREASEAGI,1000*60*15,3;
+	sc_end SC_Poison;
+	sc_end SC_Freeze;
+	sc_end SC_Sleep;
+	sc_end SC_Stan;
+	sc_end SC_Stun;
+	sc_end SC_Stone;
+	sc_end SC_Silence;
+	sc_end SC_Blind;
+	sc_end SC_Bleeding;
+	sc_end SC_Confusion;
+	sc_end SC_Curse;
+	sc_end SC_Hallucination;
+	sc_end SC_ORCISH;
+	sc_end SC_Xmas;
+	//percentheal 100,100;
+	end;
+1k:
+	mes "^3333FF[ Healer ]^000000";
+	mes"เสียใจด้วยค่ะ !";
+	mes"ฉันต้องการค่าบริการ 1,500Zeny";
+	mes"ขอบคุณที่ใช้บริการค่ะ";
+	end;
+OnInit:
+waitingroom "Warp Dungeon",0;
+end;
+}
+
+// Duplicates
+//============================================================
+//alberta,25,240,6	duplicate(Healer)	Healer#alb	442
+//alberta,110,59,6	duplicate(Healer)	Healer#alb01	442
+//aldebaran,135,118,6	duplicate(Healer)	Healer#alde	442
+//amatsu,200,79,4	duplicate(Healer)	Healer#ama	508
+//ayothaya,207,169,6	duplicate(Healer)	Healer#ayo	508
+//comodo,184,158,6	duplicate(Healer)	Healer#com	442
+//einbech,57,36,6	duplicate(Healer)	Healer#einbe	508
+//einbroch,57,202,6	duplicate(Healer)	Healer#einbr	508
+//geffen,115,72,6	duplicate(Healer)	Healer#gef	442
+//gonryun,156,122,6	duplicate(Healer)	Healer#gon	508
+//hugel,89,150,6	duplicate(Healer)	Healer#hug	508
+izlude,122,110,6	duplicate(Healer01)	Warp#izl	442	//Pre-RE: (125,118)
+//izlude,159,168,4	duplicate(Healer)	Healer#izl01	508
+//izlude,121,74,4	duplicate(Healer)	Healer#izl02	508
+//izlude,105,119,4	duplicate(Healer)	Healer#izl03	508
+//jawaii,250,139,4	duplicate(Healer)	Healer#jaw	508
+//lighthalzen,152,100,6	duplicate(Healer)	Healer#lhz	508
+//louyang,226,103,4	duplicate(Healer)	Healer#lou	508
+//manuk,272,144,6	duplicate(Healer)	Healer#man	508
+//mid_camp,203,289,6	duplicate(Healer)	Healer#mid	508
+//moc_ruins,72,164,4	duplicate(Healer)	Healer#moc	442
+//morocc,154,97,4	duplicate(Healer)	Healer#mor	442
+//morocc,156,258,4	duplicate(Healer)	Healer#mor1	442
+//morocc,291,211,4	duplicate(Healer)	Healer#mor2	442
+//morocc,37,173,4	duplicate(Healer)	Healer#mor3	442
+//morocc,142,58,4	duplicate(Healer)	Healer#mor4	442
+//morocc,208,110,4	duplicate(Healer)	Healer#mor5	442
+//morocc,108,111,4	duplicate(Healer)	Healer#mor6	442
+//morocc,49,77,4	duplicate(Healer)	Healer#mor7	442
+//morocc,33,35,4	duplicate(Healer)	Healer#mor8	442
+//moscovia,220,191,4	duplicate(Healer)	Healer#mos	508
+//niflheim,212,182,5	duplicate(Healer)	Healer#nif	508
+//payon,179,106,4	duplicate(Healer)	Healer#pay	442
+//payon,97,122,4	duplicate(Healer)	Healer#pay2	442
+//pay_arche,57,127,4	duplicate(Healer)	Healer#pay01	442
+//prontera,146,85,4	duplicate(Healer)	Healer#prt	442
+//prontera,161,326,4	duplicate(Healer)	Healer#prt1	442
+//prontera,272,211,4	duplicate(Healer)	Healer#prt2	442
+//prontera,36,211,4	duplicate(Healer)	Healer#prt3	442
+//rachel,125,116,6	duplicate(Healer)	Healer#rac	508
+//splendide,201,153,4	duplicate(Healer)	Healer#spl	508
+//thor_camp,249,74,4	duplicate(Healer)	Healer#thor	508
+//umbala,105,148,3	duplicate(Healer)	Healer#umb	508
+//veins,217,121,4	duplicate(Healer)	Healer#ve	508
+//xmas,143,136,4	duplicate(Healer)	Healer#xmas	442
+//yuno,164,45,4	duplicate(Healer)	Healer#yuno	508
+//
+//// Duplicates (Renewal)
+////============================================================
+//brasilis,194,221,6	duplicate(Healer)	Healer#bra	508
+//dewata,195,187,4	duplicate(Healer)	Healer#dew	508
+//dicastes01,201,194,4	duplicate(Healer)	Healer#dic	508
+//ecl_in01,45,60,4	duplicate(Healer)	Healer#ecl	508
+//malangdo,132,114,6	duplicate(Healer)	Healer#mal	508
+//malaya,227,204,6	duplicate(Healer)	Healer#ma	508
+//mora,55,152,4	duplicate(Healer)	Healer#mora	508

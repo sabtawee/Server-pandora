@@ -1,0 +1,36 @@
+// =========== Script - erasquest ===========
+// - MODIFY BY BANKDEV
+// - VERSION (1.0)
+
+function	script	E_QUEST	{
+
+	mes "สวัสดี คุณ ^FF0000" + strcharinfo(0)+ "^000000 ต้องการ RESET OGH ?";
+    switch ( select("ยืนยัน", "ยกเลิก")){
+        case 1:
+            mes "RESET OGH เรียบร้อย";
+            erasequest 12316;
+	        erasequest 12317;
+	        erasequest 12318;
+            erasequest 12319;
+            erasequest 12320;
+            erasequest 12321;
+            erasequest 12322;
+            break;
+        case 2:
+            getitem getarg(0),1;
+            end;
+            break;
+    }
+    end;
+}
+
+//- Id: 1100004
+//    AegisName: RE_OGH
+//    Name: RE OGH
+//    Type: Usable
+//    Weight: 10
+//    NoUse:
+//      Override: 100
+//      Sitting: true
+//    Script: |
+//      callfunc "E_QUEST",1100004;

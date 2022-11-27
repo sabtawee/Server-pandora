@@ -1,0 +1,33 @@
+function	script	randomc4	{
+//ของแรร์
+	setarray .RARE_ITEMLIST[0],20582,20588,20592,20762;
+//ของออกง่ายๆ
+	setarray .OTH_ITEMLIST[0],7620,7619,6635,1100003,12412,12411,1100005,1100004,7776,19542,19543,19555,19824,19780,20008,20007,20407,31577,31673,31611,31625,31833,19574;
+	
+	setarray .TRUE_ITEMLIST[0],19542,19543,19555,19824,19780,20008,20007,20407,31577,31673,31611,31625,31833,19574;
+	
+	setarray .min_amount,1;
+	setarray .max_amount,1;
+    set .rand, rand(0,50);
+    switch(.rand){
+        case 20: case 30:
+            set .Random, rand( getarraysize( .TRUE_ITEMLIST ) );
+            getitem .TRUE_ITEMLIST[ .Random ], 1;
+			announce "[ ยินดีด้วย : คุณ“ "+strcharinfo(0)+" ได้รับไอเทม "+getitemname(.TRUE_ITEMLIST[ .Random ])+" จาก Lucky Egg C4 จำนวน 1ea ]",bc_all,0x0066FF;
+        break;
+		
+		case 49:
+            set .Random, rand( getarraysize( .RARE_ITEMLIST ) );
+            getitem .RARE_ITEMLIST[ .Random ], 1;
+			announce "[ ยินดีด้วย : คุณ“ "+strcharinfo(0)+" ได้รับไอเทม "+getitemname(.RARE_ITEMLIST[ .Random ])+" จาก Lucky Egg C4 จำนวน 1ea ]",bc_all,0xFF0066;
+        break;
+       
+        default:
+			set .@amount,rand( .min_amount[.@random],.max_amount[.@random] );
+            set .Random, rand( getarraysize( .OTH_ITEMLIST ) );
+			getitem .OTH_ITEMLIST[ .Random ], .@amount;
+			announce "[ ยินดีด้วย : คุณ“ "+strcharinfo(0)+" ได้รับไอเทม "+getitemname(.OTH_ITEMLIST[ .Random ])+" จาก Lucky Egg C4 จำนวน 1ea ]",bc_all,0x04FF00;
+        break;
+    }
+ 
+}

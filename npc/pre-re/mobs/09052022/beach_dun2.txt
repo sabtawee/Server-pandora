@@ -1,0 +1,8 @@
+//==================================================
+// beach_dun2 - Ruande, the North Cave
+//==================================================
+beach_dun2,0,0	monster	Megalith	1274,15
+beach_dun2,0,0	monster	Nereid	1255,10
+beach_dun2,0,0	monster	Stalactic Golem	1278,95
+beach_dun2,0,0	monster	Tri Joint	1279,20
+beach_dun2,0,0	monster	Hydra	1068,10

@@ -1,0 +1,49 @@
+///====================================================///
+/// 		moc_fild16 -  Sograt Dessert Field 16  	   ///
+///====================================================///
+
+moc_fild16,0,0	monster	Muka	1055,35
+moc_fild16,0,0	monster	Metaller	1058,17
+moc_fild16,0,0	monster	Hode	1127,50
+moc_fild16,0,0	monster	Sandman	1165,70
+
+///====================================================///
+/// 		moc_fild17 -  Sograt Dessert Field 17  	   ///
+///====================================================///
+         
+moc_fild17,0,0	monster	Metaller	1058,70
+moc_fild17,0,0	monster	Andre	1095,30
+moc_fild17,0,0	monster	Drops	1113,25
+moc_fild17,0,0	monster	Frilldora	1119,45,60000,60000
+moc_fild17,0,0	monster	Hode	1127,40
+moc_fild17,0,0	monster	Piere	1160,35
+moc_fild17,0,0	monster	Sandman	1165,15
+moc_fild17,270,106	monster	Blue Plant	1079,1,180000,90000,1
+moc_fild17,40,258	monster	Yellow Plant	1081,1,180000,12000,1
+moc_fild17,144,151	monster	Yellow Plant	1081,1,180000,12000,1
+moc_fild17,243,138	monster	Yellow Plant	1081,1,180000,12000,1
+moc_fild17,335,191	monster	Yellow Plant	1081,1,180000,12000,1
+moc_fild17,347,224	monster	Yellow Plant	1081,1,180000,12000,1
+moc_fild17,359,258	monster	Yellow Plant	1081,1,180000,12000,1
+moc_fild17,0,0	boss_monster	Phreeoni	1159,1,7200000,0,1
+
+///====================================================///
+/// 		moc_fild18 -  Sograt Dessert Field 18  	   ///
+///====================================================///
+
+moc_fild18,0,0	monster	Chonchon	1011,18
+moc_fild18,0,0	monster	Anacondaq	1030,40
+moc_fild18,0,0	monster	Steel Chonchon	1042,29
+moc_fild18,0,0	monster	Muka	1055,50
+moc_fild18,0,0	monster	Drops	1113,23
+moc_fild18,0,0	monster	Hode	1127,70
+moc_fild18,0,0	monster	Dragon Fly	1091,1,7200000,3600000,1
+moc_fild18,143,352	monster	Yellow Plant	1081,1,180000,120000,1
+moc_fild18,72,333	monster	Yellow Plant	1081,1,180000,120000,1
+moc_fild18,119,285	monster	Yellow Plant	1081,1,180000,120000,1
+moc_fild18,71,210	monster	Yellow Plant	1081,1,180000,120000,1
+moc_fild18,135,119	monster	Yellow Plant	1081,1,180000,120000,1
+moc_fild18,230,144	monster	Yellow Plant	1081,1,180000,120000,1
+moc_fild18,325,207	monster	Yellow Plant	1081,1,180000,120000,1
+moc_fild18,325,272	monster	Yellow Plant	1081,1,180000,120000,1
+

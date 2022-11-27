@@ -1,0 +1,31 @@
+-	shop	F_shop_guild	645,300012:15000,300013:15000,300014:15000,300015:15000
+
+
+-	script	shop_guild	-1,{
+	mes "[ ^FF0000Shop GVG^000000 ]";
+	mes "ยินดีต้อนรับ,นายท่าน !";
+	mes "ฉันจำหน่าย ไวท์ บูล  สำหรับ กิลวอร์";
+	mes "เพื่อเตรียมความพร้อมให้กับผู้เล่น";
+	mes "คุณต้องการซื้อหรือไม่ ?";
+	next;
+	switch(select("~ ใช่ (ฉันต้องการ):~ เปล่า, แวะมาคุยเฉยๆ")) {
+		
+		case 1:	callshop "F_shop_guild",1; break;
+		case 2: 
+			mes "[ ^FF0000Shop Officer^000000 ]";
+			mes "ขอบคุณน่ะ...";
+			mes "ถ้าคุณต้องการซื้ออย่าลืม";
+			mes "แวะมาใช้บริการล่ะ ? ?";
+		close;
+	
+	}
+end;
+Oninit:
+	waitingroom "ไครหมดเติมดิ มีขาย !!",0;
+end;
+}
+
+//payon,116,84,4	duplicate(shop_guild)	Shop GVG#1	77
+izlude,129,170,6	duplicate(shop_guild)	Shop GVG#2	645
+alde_gld,174,84,6	duplicate(shop_guild)	Shop GVG#3	645
+alde_gld,130,107,6	duplicate(shop_guild)	Shop GVG#4	645

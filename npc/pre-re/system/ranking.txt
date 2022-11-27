@@ -1,0 +1,33 @@
+izlude,75,91,6	script	Ranking	541,{
+    
+    mes "ท่านต้องการตรวจสอบ Ranking อะไร";
+    next;
+    menu "^009933•^000000 Lv",L_lv,"^009933•^000000 Zeny",L_zeny,"^FF0000•^000000 ยกเลิก",L_close;
+    close;
+L_lv:
+    mes "[Lv Ranking]";    
+    mes "Top " + .MaxShow + " Lvเยอะสุด:";    
+    query_sql "select `name`,`base_level` from `char` where `base_level` > 0 order by `base_level` desc limit " + .MaxShow + "", .@name$, .@base_level;    for( .@i = 0; .@i < getarraysize(.@base_level); .@i++ )        
+    mes "ผู้เล่นชื่อ ^639C00" + .@name$[.@i] + "^000000 | Lv: ^639CC0" + .@base_level[.@i] + "^000000";
+    mes "------------------";
+    close;
+    
+L_zeny:
+    mes "[Zeny Ranking]";    
+    mes "Top " + .MaxShow + " ผู้เล่นรวยสุด:";    
+    query_sql "select `name`,`zeny` from `char` where `zeny` > 0 order by `zeny` desc limit " + .MaxShow + "", .@name$, .@zeny;    for( .@i = 0; .@i < getarraysize(.@zeny); .@i++ )        
+    mes "ผู้เล่นชื่อ ^639C00" + .@name$[.@i] + "^000000 | Zeny: ^639CC0" + .@zeny[.@i] + "^000000";
+    mes "------------------";
+    close;
+
+    
+L_close:
+    mes "ยินดีให้บริการ";
+    close;
+    
+    
+    OnInit:    
+    .MaxShow = 10;
+    waitingroom "• Ranking",0;
+    end;
+}

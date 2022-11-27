@@ -1,0 +1,2 @@
+in_sphinx4,0,0	monster	Minorous	1149,70
+in_sphinx4,0,0	monster	Mimic	1191,5,600000,300000

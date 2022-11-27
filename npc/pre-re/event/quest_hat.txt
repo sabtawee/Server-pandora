@@ -1,0 +1,235 @@
+-	script	Quest_Hat	-1,{ 
+
+callfunc "hat_quest_shop"; 
+
+OnInit:
+	waitingroom	"~ อัพเกรด Costume",0;
+	end;
+}
+
+//============================================================
+// Script Core
+//============================================================
+
+-	script	quest_shop	-1,{ 
+
+function Add; 
+function Chk; 
+function Slot; 
+function A_An;
+
+OnInit:
+
+	freeloop(1);
+
+// ===========================================================
+//  Configulator Shop
+// ===========================================================
+
+	set .Announce,1;	// Announce quest completion? (1: yes / 0: no)
+	set .ShowSlot,0;	// Show item slots? (2: all equipment / 1: if slots > 0 / 0: never)
+	set .ShowID,0;  	// Show item IDs? (1: yes / 0: no)
+	set .ShowZeny,0;	// Show Zeny cost, if any? (1: yes / 0: no)
+	set .MaxStack,10000;	// Max number of quest items purchased at one time.
+
+// ===========================================================
+//  Points 
+//	setarray .Points$[0],"<variable name>","<display name>";
+// ===========================================================
+
+	setarray .Points$[0],"#CASHPOINTS","Cash Points";
+
+// ===========================================================
+//  Shop Dummy Data
+//	setarray .Shops$[1],"<Shop 1>","<Shop 2>"{,...};
+// ===========================================================
+
+	setarray .Shops$[1],"~ อัพเกรดหู ปาก เป็น Costume";
+
+// ===========================================================
+//  Quest items
+//	Add(<shop ID>,<reward ID>,<reward amount>,<Zeny cost>,<point cost>,<required item ID>,<required item amount>{,...});
+// ===========================================================
+
+// Headgear A
+    Add(1,19551,1,400000,0,2286,1,35029,5,2331,1,985,10,984,10);
+    Add(1,19552,1,400000,0,2269,1,35029,5,2406,3,985,10,984,10);
+    Add(1,19902,1,400000,0,2267,1,2402,5,35029,3,985,5,984,5);
+    Add(1,36001,1,1000000,0,2256,1,35029,5,923,50,985,25,984,25);
+    Add(1,36002,1,1000000,0,2258,1,35029,5,944,250,985,25,984,25);
+    Add(1,36003,1,1000000,0,2235,1,35029,5,930,250,985,25,984,25);
+    Add(1,36004,1,1000000,0,2234,1,35029,5,955,250,985,25,984,25);
+    Add(1,36005,1,1000000,0,5007,1,35029,5,931,250,985,25,984,25);
+    Add(1,36006,1,1000000,0,5019,1,35029,5,932,250,985,25,984,25);
+    Add(1,36007,1,1000000,0,5016,1,35029,5,1029,2,948,250,985,25,984,25);
+    Add(1,36016,1,1000000,0,2249,1,35029,5,939,150,518,50,985,25,984,25);
+    Add(1,36017,1,1000000,0,2274,1,35029,5,1059,250,985,25,984,25);
+    Add(1,36018,1,1000000,0,2254,1,35029,5,509,250,985,25,984,25);
+    Add(1,36008,1,1000000,0,2268,1,35029,3,948,50,985,15,984,15);
+    Add(1,37003,1,1000000,0,2255,1,35029,3,948,50,985,15,984,15);
+    Add(1,35056,1,500000,0,35013,1,35029,2,985,10,984,10);
+    Add(1,35057,1,500000,0,35014,1,35029,2,985,10,984,10);
+    Add(1,35058,1,500000,0,35015,1,35029,2,985,10,984,10);
+    Add(1,35059,1,500000,0,35016,1,35029,2,985,10,984,10);
+    Add(1,35060,1,500000,0,35017,1,35029,2,985,10,984,10);
+    Add(1,35061,1,500000,0,35018,1,35029,2,985,10,984,10);
+    Add(1,35062,1,500000,0,35019,1,35029,2,985,10,984,10);
+    Add(1,35063,1,500000,0,35020,1,35029,2,985,10,984,10);
+    Add(1,35064,1,500000,0,35021,1,35029,2,985,10,984,10);
+    Add(1,35065,1,500000,0,35022,1,35029,2,985,10,984,10);
+    Add(1,35066,1,500000,0,35023,1,35029,2,985,10,984,10);
+
+// =============================================================
+
+	freeloop(0);
+	set .menu$,"";
+	for(set .@i,1; .@i<=getarraysize(.Shops$); set .@i,.@i+1) {
+		set .menu$, .menu$+.Shops$[.@i]+":";
+		npcshopdelitem "hat_quest_shop"+.@i,909;
+	}
+	end;
+
+OnMenu:
+
+	set .@size, getarraysize(@i);
+	if (!.@size) set .@i, select(.menu$);
+	else if (.@size == 1) set .@i, @i[0];
+	else {
+		for(set .@j,0; .@j<.@size; set .@j,.@j+1)
+			set .@menu$, .@menu$+.Shops$[@i[.@j]]+":";
+		set .@i, @i[select(.@menu$)-1];
+	}
+	deletearray @i[0],getarraysize(@i);
+	if (.Shops$[.@i] == "") {
+		message strcharinfo(0),"เกิดข้อผิดพลาด.";
+		end;
+	}
+	dispbottom "[ อัพเกรด Costume ] โปรดเลือกไอเท็มที่คุณต้องการทำเควส.";
+	callshop "hat_quest_shop"+.@i,1;
+	npcshopattach "hat_quest_shop"+.@i;
+	end;
+
+OnBuyItem:
+	setarray .@q[0],@bought_nameid[0],((@bought_quantity[0] > .MaxStack)?.MaxStack:@bought_quantity[0]);
+	copyarray .@q[3],getd(".q_"+.@q[0]+"[0]"),getarraysize(getd(".q_"+.@q[0]));
+	set .@q[2],.@q[1]*.@q[3];
+	if (!.@q[2] || .@q[2] > 30000) {
+		message strcharinfo(0),"You can't purchase that many "+getitemname(.@q[0])+".";
+		end;
+	}
+	mes "[ อัพเกรด Costume ]";
+	mes "ไอเท็มที่เลือก:";
+	mes "^0055FF"+((.@q[2] > 1)?.@q[2]+"x ":"")+Slot(.@q[0])+"^000000";
+	mes "ไอเท็มที่ต้องการ:";
+	//message strcharinfo(0),"Item ID: "+.@q[0]+".";
+	disable_items;
+	if (.@q[4]) mes "- "+Chk(Zeny,.@q[4]*.@q[1])+( callfunc("F_InsertComma", .@q[4]*.@q[1] ))+" Zeny^000000";
+	if (.@q[5]) mes "- "+Chk(getd(.Points$[0]),.@q[5]*.@q[1])+(.@q[5]*.@q[1])+" "+.Points$[1]+" ("+getd(.Points$[0])+"/"+(.@q[5]*.@q[1])+")^000000";
+	if (.@q[6]) for(set .@i,6; .@i<getarraysize(.@q); set .@i,.@i+2)
+		mes "- "+Chk(countitem(.@q[.@i]),.@q[.@i+1]*.@q[1])+((.ShowID)?"{"+.@q[.@i]+"} ":"")+Slot(.@q[.@i])+" ("+countitem(.@q[.@i])+"/"+(.@q[.@i+1]*.@q[1])+")^000000";
+	next;
+	setarray @qe[1], getiteminfo(.@q[0],5), getiteminfo(.@q[0],11);
+	if (@qe[2] > 0 && ((@qe[1] & 1) || (@qe[1] & 256) || (@qe[1] & 512) || (@qe[1] & 1024) || (@qe[1] & 2048) || (@qe[1] & 4096) || (@qe[1] & 4) || (@qe[1] & 8192)))
+		set .@preview,1;
+	addtimer 1000, strnpcinfo(0)+"::OnEnd";
+	while(1) {
+		switch(select("~ แลก ^0055FF"+getitemname(.@q[0])+"^000000:~ ^FF0000ไม่ล่ะ,ไอเท็มยังไม่ครบ^000000")) {
+		case 1:
+			if (@qe[0]) { 
+				mes "[ อัพเกรด Costume ]";
+				mes "คุณ... ไม่มีไอเท็มที่ต้องใช้แลกเปลี่ยน";
+				close;
+			}
+			if (!checkweight(.@q[0],.@q[2])) {
+				mes "[ อัพเกรด Costume ]";
+				mes "^FF0000กรุณา ลด น้ำหนักลงจำนวน "+(((.@q[2]*getiteminfo(.@q[0],6))+Weight-MaxWeight)/10)+" หน่วย เพื่อที่จะสำเร๊จเควสดังกล่าวได้.^000000";
+				close;
+			}
+			if (.@q[4]) set Zeny, Zeny-(.@q[4]*.@q[1]);
+			if (.@q[5]) setd .Points$[0], getd(.Points$[0])-(.@q[5]*.@q[1]);
+			if (.@q[6]) for(set .@i,6; .@i<getarraysize(.@q); set .@i,.@i+2)
+				delitem .@q[.@i],.@q[.@i+1]*.@q[1];
+			getitem .@q[0],.@q[2];
+			if (.Announce) announce "[ ผู้เล่น : "+strcharinfo(0)+" ได้รับไอเท็ม "+((.@q[2] > 1)?.@q[2]+" จำนวน "+getitemname(.@q[0]):A_An(getitemname(.@q[0])))+" ea. จาก อัพเกรด Costume ]",0;
+			specialeffect2 EF_FLOWERLEAF;
+			close;
+		case 2:
+			close;
+		}
+	}
+
+OnEnd:
+
+	if (@qe[7]) {
+		changelook LOOK_HEAD_BOTTOM, @qe[3];
+		changelook LOOK_HEAD_TOP, @qe[4];
+		changelook LOOK_HEAD_MID, @qe[5];
+		changelook LOOK_ROBE, @qe[6];
+	}
+	deletearray @qe[0],8;
+	end;
+
+function Add {
+
+	if (getitemname(getarg(1)) == "null") {
+		debugmes "Quest reward #"+getarg(1)+" invalid (skipped).";
+		return;
+	}
+	setarray .@j[0],getarg(2),getarg(3),getarg(4);
+	for(set .@i,5; .@i<getargcount(); set .@i,.@i+2) {
+		if (getitemname(getarg(.@i)) == "null") {
+			debugmes "Quest requirement #"+getarg(.@i)+" invalid (skipped).";
+			return;
+		} else
+			setarray .@j[.@i-2],getarg(.@i),getarg(.@i+1);
+	}
+	copyarray getd(".q_"+getarg(1)+"[0]"),.@j[0],getarraysize(.@j);
+	npcshopadditem "hat_quest_shop"+getarg(0),getarg(1),((.ShowZeny)?getarg(3):0);
+	return;
+}
+
+function Chk {
+
+	if (getarg(0) < getarg(1)) {
+		set @qe[0],1;
+		return "^FF0000";
+	} else
+		return "^0000FF";
+}
+
+function Slot {
+
+	set .@s$,getitemname(getarg(0));
+	switch(.ShowSlot) {
+		case 1: if (!getitemslots(getarg(0))) return .@s$;
+		case 2: if (getiteminfo(getarg(0),2) == 4 || getiteminfo(getarg(0),2) == 5) return .@s$+" ["+getitemslots(getarg(0))+"]";
+		default: return .@s$;
+	}
+}
+
+function A_An {
+
+	setarray .@A$[0],"a","e","i","o","u";
+	set .@B$, "_"+getarg(0);
+	for(set .@i,0; .@i<5; set .@i,.@i+1)
+		if (compare(.@B$,"_"+.@A$[.@i])) return "-> "+getarg(0);
+	return "a "+getarg(0);
+}
+}
+
+function	script	hat_quest_shop	{
+
+	deletearray @i[0],getarraysize(@i);
+	for(set .@i,0; .@i<getargcount(); set .@i,.@i+1)
+		set @i[.@i],getarg(.@i);
+	doevent "quest_shop::OnMenu";
+	end;
+}
+
+
+// Dummy shop data -- copy as needed.
+//============================================================
+-	shop	hat_quest_shop1	-1,909:-1
+
+
+izlude,63,91,6	duplicate(Quest_Hat)	อัพเกรด Costume	759

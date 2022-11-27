@@ -1,0 +1,21 @@
+alde_gld,167,84,4	script	Kafra Employee::kaf_aldebaran#1	113,{
+	cutin "kafra_05",2;
+	callfunc "F_KafSet";
+	mes "[Kafra Employee]";
+	mes "Kafra Corporation ทำงานเพื่อให้บริการที่สะดวกสบายแก่คุณเสมอ";
+	mes "ข้าจะช่วยเหลือได้อย่างไร";
+	callfunc "F_Kafra",5,0,1,20,600;
+	savepoint "alde_gld",168,88,1,1;
+	callfunc "F_KafEnd",0,1,"ในเมือง Al De Baran";
+}
+
+alde_gld,136,107,4	script	Kafra Employee::kaf_aldebaran#1	113,{
+	cutin "kafra_05",2;
+	callfunc "F_KafSet";
+	mes "[Kafra Employee]";
+	mes "Kafra Corporation ทำงานเพื่อให้บริการที่สะดวกสบายแก่คุณเสมอ";
+	mes "ข้าจะช่วยเหลือได้อย่างไร";
+	callfunc "F_Kafra",5,0,1,20,600;
+	savepoint "alde_gld",134,103,1,1;
+	callfunc "F_KafEnd",0,1,"ในเมือง Al De Baran";
+}

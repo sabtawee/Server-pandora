@@ -1,0 +1,418 @@
+-	script	Poring Casino	-1,{
+	mes .header$;
+	mes "สวัสดีท่าน ` " + strcharinfo(0) + " `";
+	mes "มีอะไรให้เราช่วยหรือไม่ ?";
+	for(set .@i,0; .@i < getstrlen(strnpcinfo(2)); set .@i, .@i + 1)
+		if(charat(strnpcinfo(2),.@i) == "-"){
+			set .@zeny, atoi(substr(strnpcinfo(2),.@i+1,getstrlen(strnpcinfo(2))-1));
+			set .@npc_id, atoi(substr(strnpcinfo(2),0,.@i-1));
+		}
+	mes "เห็ดตัวนี้ใช้เงินเดิมพัน ^FF6699" + F_InsertComma(.@zeny) + "^000000";
+	query_sql ("SELECT `id` FROM `poring_casino` WHERE `account_id` = '" + getcharid(3) + "' AND `npc_id` = '" + .@npc_id + "' LIMIT 1",.@id);
+	query_sql ("SELECT `id` FROM `poring_casino_reward` WHERE `account_id` = '" + getcharid(3) + "' AND `npc_id` = '" + .@npc_id + "' LIMIT 1",.@reward_id);
+	next;
+	switch(select("~ ลงพนัน","~ ดูรายละเอียดกิจกรรม",(.@id > 0 ? "^FF0000~ ยกเลิกพนัน^000000" : ""),(.@reward_id > 0 ? "^21920D~ รับรางวัลย้อนหลัง^000000" : ""),"~ ดูผลย้อนหลัง (15 รอบ)","~ ไม่มีอะไร")){
+		// Play Event
+		case 1:
+			if(getd("$@CASINO_ISPLAYING" + .@npc_id)){	
+				mes .header$;
+				mes "^FF0000กิจกรรมได้เริ่มต้น^000000";
+				mes "^FF0000ขึ้นแล้วไม่สามารถพนันได้^000000";
+				mes "^FF0000กรุณารอรอบถัดไป^000000";
+				end;
+			}
+			query_sql ("SELECT `id`,`poring_choose` FROM `poring_casino` WHERE `account_id` = '" + getcharid(3) + "' AND `npc_id` = '" + .@npc_id + "' LIMIT 1",.@pc_id_self,.@pc_choose_self);
+			if(.@pc_id_self > 0){
+				mes .header$;
+				mes "ท่านลงพนันกับทางเราไว้แล้ว";
+				mes "ท่านเลือกตัวเห็ดสี ^FF6699" + (.@pc_choose_self == 1 ? "^FF0000เห็ดแดง" : "^7D26CDเห็ดม่วง") + "^000000";
+				mes "เป็นจำนวน ^FF6699" + F_InsertComma(.@zeny) + "^000000 Zeny";
+				end;
+			}
+			if(getd("#CASINOCOOLDOWN" + .@npc_id) > gettimetick(2)){				mes .header$;
+				mes "ท่านเพิ่งจะ ^FF0000ยกเลิกพนัน^000000";
+				mes "กับเราไปเมื่อไม่นานนี้";
+				mes "ท่านสามารถลงได้อีกครั้งในอีก";
+				mes "^FF0000" + (getd("#CASINOCOOLDOWN" + .@npc_id) - gettimetick(2)) + " วินาที^000000";
+				end;
+			}
+			mes .header$;
+			mes "ท่านต้องการจะลงตัวไหน";
+			query_sql ("SELECT `poring_choose`,`charname` FROM `poring_casino` WHERE `npc_id` = '" + .@npc_id + "'",.@choose_mes,.@char_mes$);
+			if(getarraysize(.@choose_mes) > 0)
+				mes "-- รายชื่อคนที่แทง --";
+			for(set .@i, 0; .@i < getarraysize(.@choose_mes); set .@i, .@i + 1)
+				switch(.@choose_mes[.@i]){
+					case 1: mes "[ ^FF6699เห็ดแดง^000000 ] : " + .@char_mes$[.@i]; break;
+					case 2: mes "[ ^6633CCเห็ดม่วง^000000 ] : " + .@char_mes$[.@i]; break;
+				}
+			next;
+			switch(select("^FF0000~ เห็ดแดง^000000","^7D26CD~ เห็ดม่วง^000000","")){
+				case 1: set .@pc_poring_choose, 1; break;
+				case 2: set .@pc_poring_choose, 2; break;
+			}
+			mes .header$;
+			mes "ท่านต้องการจะลงตัวสี";
+			mes (.@pc_poring_choose == 1 ? "^FF6699เห็ดแดง" : "^1A9005เห็ดม่วง") + "^000000 จริงๆใช่หรือไม่ ?";
+			mes "รวมภาษีแล้วท่านจะต้องเสีย";
+			set .@zeny_pay, .@zeny + (.percenttax*.@zeny)/100;
+			mes "^FF6699" + F_InsertComma(.@zeny_pay) + "^000000 Zeny";
+			next;
+			if(select("~ ใช่","~ ไม่ใช่") == 2) end;
+			if(Zeny < .@zeny_pay){
+				mes .header$;
+				mes "ท่านมี ^FF0000Zeny ไม่เพียงพอ^000000";
+				mes "กลับไปหา Zeny มาก่อน";
+				mes "แล้วค่อยกลับมาหาข้าใหม่";
+				end;
+			}
+			if(getd("$@CASINO_ISPLAYING" + .@npc_id)){
+				mes .header$;
+				mes "^FF0000กิจกรรมได้เริ่มต้น^000000";
+				mes "^FF0000ขึ้นแล้วไม่สามารถพนันได้^000000";
+				mes "^FF0000กรุณารอรอบถัดไป^000000";
+				end;
+			}
+			set Zeny, Zeny - .@zeny_pay;
+			query_sql ("INSERT INTO `poring_casino`(`poring_choose`,`amount`,`npc_id`,`account_id`,`charname`) VALUES('" + .@pc_poring_choose + "','" + .@zeny + "','" + .@npc_id + "','" + getcharid(3) + "','" + strcharinfo(0) + "')");
+			donpcevent "Casino#" + .@npc_id + "-" + .@pc_poring_choose + "::OnBet";	
+			break;
+			
+		// View Info
+		case 2:
+			mes .header$;
+			mes "ท่านสามารถเลือกแทงได้แค่";
+			mes "^FF66991^000000 ตัวโดยถ้าหากท่านถูกรางวัล";
+			mes "ท่านจะได้รับรางวัล 2 เท่าแต่";
+			mes "แต่ถ้าท่าน^FF0000ยกเลิกพนัน^000000";
+			mes "ท่านจะได้รับเงินพนันคืนแต่";
+			mes "จะเสียค่าภาษีที่จ่ายไว้";
+			next;
+			mes .header$;
+			mes "เกมจะเริ่มต้นเมื่อมีผู้พนันแทง";
+			mes "ทั้ง 2 ฝั่งเท่ากันและจะเริ่มสุ่ม";
+			mes "หลังจากนั้นอีก 15 วินาที";
+			mes "ผู้ที่ชนะพนันจะได้เงิน Zeny";
+			mes "โดยอัติโนมัติโดย แต่จะต้องออนเกม";
+			mes "อยู่เมื่อจบกิจกรรม";
+			break;
+			
+		// Cancel Bet
+		case 3:
+			if(getd("$@CASINO_ISPLAYING" + .@npc_id)){	
+				mes .header$;
+				mes "^FF0000กิจกรรมได้เริ่มต้น^000000";
+				mes "^FF0000ขึ้นแล้วไม่สามารถยกเลิก^000000";
+				mes "^FF0000พนันได้แล้ว ขอให้ท่านชนะ^000000";
+				mes "^FF0000พนันจ้า ^^^000000";
+				end;
+			}
+			mes .header$;
+			mes "ท่านต้องการจะ ^FF0000ยกเลิก^000000";
+			mes "พนันตัวนี้จริงๆใช่ไหม ถ้าท่าน";
+			mes "ยกเลิกไปแล้วจะไม่สามารถลงพนัน";
+			mes "ได้เป็นเวลา ^FF6699" + .cooldown + "^000000 วินาที";
+			mes "และ^FF0000ไม่ได้เงินภาษีคืน^000000";
+			next;
+			if(select("~ ยกเลิกเดี๋ยวนี้","~ ไม่เอาข้าเปลี่ยนใจ") == 2)  end;
+			if(getd("$@CASINO_ISPLAYING" + .@npc_id)){	
+				mes .header$;
+				mes "^FF0000กิจกรรมได้เริ่มต้น^000000";
+				mes "^FF0000ขึ้นแล้วไม่สามารถยกเลิก^000000";
+				mes "^FF0000พนันได้แล้ว ขอให้ท่านชนะ^000000";
+				mes "^FF0000พนันจ้า ^^^000000";
+				end;
+			}
+			mes .header$;
+			mes "ท่านได้ทำการยกเลิกการพนัน";
+			mes "ของท่านเรียบร้อยแล้ว";
+			query_sql ("SELECT `poring_choose` FROM `poring_casino` WHERE `account_id` = '" + getcharid(3) + "' AND `npc_id` = '" + .@npc_id + "' LIMIT 1",.@pc_poringchoose);
+			query_sql ("DELETE FROM `poring_casino` WHERE `account_id` = '" + getcharid(3) + "' AND `npc_id` = '" + .@npc_id + "'");
+			query_sql ("SELECT COUNT(`id`) FROM `poring_casino` WHERE `npc_id` = '" + .@npc_id + "' AND `poring_choose` = '1'",.@countId1);
+			query_sql ("SELECT COUNT(`id`) FROM `poring_casino` WHERE `npc_id` = '" + .@npc_id + "' AND `poring_choose` = '2'",.@countId2);
+			donpcevent "Casino#" + .@npc_id + "-" + .@pc_poringchoose + "::OnBet";
+			set Zeny, Zeny + .@zeny;
+			setd ("#CASINOCOOLDOWN" + .@npc_id), gettimetick(2) + .cooldown;
+			if((.@countId1 == .@countId2) && (.@countId1 != 0) && (.@countId2 != 0)){
+				donpcevent strnpcinfo(0) + "::OnEventStart";
+			} else if(getd("$@CASINO_COUNTDOWN" + .@npc_id))
+				donpcevent strnpcinfo(0) + "::OnEventCancel";
+			break;
+			
+		// Get reward out-time
+		case 4:
+			query_sql ("SELECT `id`,`amount`,`winorlose` FROM `poring_casino_reward` WHERE `npc_id` = '" + .@npc_id + "' AND `account_id` = '" + getcharid(3) + "'",.@getreward_id,.@getreward_amount,.@getreward_winorlose);
+			for(set .@i, 0; .@i < getarraysize(.@getreward_amount); set .@i, .@i + 1){
+				switch(.@getreward_winorlose[.@i]){
+					case 0:
+						set .@menu$, .@menu$ + "[ ^FF0000แพ้^000000 ] รางวัล ^FF6699" + F_InsertComma(((.@getreward_amount[.@i]*.percenttax)/100)) + "^000000 Zeny";
+						break;
+					case 1:
+						set .@menu$, .@menu$ + "[ ^1199C3ชนะ^000000 ] รางวัล ^FF6699" + F_InsertComma(.@getreward_amount[.@i]*2) + "^000000 Zeny";
+						break;
+				}
+				set .@menu$, .@menu$ + ":";
+			}
+			mes .header$;
+			mes "เลือกเมนูรางวัลที่ท่านจะรับ";
+			mes "แพ้ = ได้ภาษีคืน";
+			mes "ชนะ = ได้เงินรางวัล - ภาษี *2";
+			next;
+			set .@select, select(.@menu$)-1;
+			mes .header$;
+			mes "ท่านต้องการที่จะรับเงินรางวัล";
+			mes "จำนวน ^FF6699" + F_InsertComma((.@getreward_winorlose[.@select] ? (.@getreward_amount[.@select]*2) : ((.@getreward_amount[.@select]*.percenttax)/100))) + "^000000 Zeny";
+			mes "ใช่หรือไม่ ?";
+			next;
+			if(select("~ ใช่รับเลย","~ ยังไม่รับดีกว่า") == 2) end;
+			switch(.@getreward_winorlose[.@select]){
+				case 0:
+					set Zeny, Zeny + (.@getreward_amount[.@select]*.percenttax)/100;
+					break;
+				case 1:
+					set Zeny, Zeny + .@getreward_amount[.@select]*2;
+					break;
+			}
+			query_sql ("DELETE FROM `poring_casino_reward` WHERE `id` = '" + .@getreward_id[.@select] + "'");
+			mes .header$;
+			mes "การแลกเปลี่ยนเรียบร้อย";
+			mes "ขอบคุณที่ใช้บริการครับ";
+			break;
+			
+		// View Game's Statistic
+		case 5:
+			mes .header$;
+			mes "รายการผลย้อนหลัง 15 รายการล่าสุด";
+			query_sql ("SELECT `poring_win`,`time` FROM `poring_casino_statistic` WHERE `npc_id` = '" + .@npc_id + "' ORDER BY `id` DESC LIMIT 15",.@poring_win,.@time$);
+			for(set .@i, 0; .@i < getarraysize(.@poring_win); set .@i, .@i + 1)
+				mes "[ " + (.@poring_win[.@i] == 1 ? "^FF6699เห็ดแดง^000000" : "^6633CCเห็ดม่วง^000000") + " ] ^0DAFCA" + .@time$[.@i] + "^000000";
+			break;
+			
+		// End Process
+		default: 
+			break;
+	}
+	end;
+	
+	OnEventCancel:
+		stopnpctimer strnpcinfo(0);
+		setnpctimer 0,strnpcinfo(0);
+		for(set .@i,0; .@i < getstrlen(strnpcinfo(2)); set .@i, .@i + 1)
+			if(charat(strnpcinfo(2),.@i) == "-"){
+				set .@npc_id, atoi(substr(strnpcinfo(2),0,.@i-1));
+				set .@npc_price, atoi(substr(strnpcinfo(2),.@i+1,getstrlen(strnpcinfo(2))-1));
+			}
+		setd "$@CASINO_COUNTDOWN" + .@npc_id, 0;
+		npctalk "" + .header$ + " : ( " + F_InsertComma(.@npc_price) + " ) ขณะนี้มีคนเพิ่ม/ถอนพนันเกิดขึ้นกิจกรรมจะยังไม่เริ่ม";
+		end;
+		
+	OnEventStart:
+		for(set .@i,0; .@i < getstrlen(strnpcinfo(2)); set .@i, .@i + 1)
+			if(charat(strnpcinfo(2),.@i) == "-"){
+				set .@npcid, atoi(substr(strnpcinfo(2),0,.@i-1));
+				set .@npc_price, atoi(substr(strnpcinfo(2),.@i+1,getstrlen(strnpcinfo(2))-1));
+			}
+		setd "$@CASINO_COUNTDOWN" + .@npcid, 1;
+		initnpctimer strnpcinfo(0);
+		npctalk "" + .header$ + " : ( " + F_InsertComma(.@npc_price) + " ) ไปกิจกรรมกำลังจะเริ่มต้นขึ้นในอีก 15 วินาทีหลังจากนี้ ....";
+		end;
+		
+	OnTimer15000:
+		for(set .@i,0; .@i < getstrlen(strnpcinfo(2)); set .@i, .@i + 1)
+			if(charat(strnpcinfo(2),.@i) == "-")
+				set .@npc_id, atoi(substr(strnpcinfo(2),0,.@i-1));
+		setd "$@CASINO_COUNTDOWN" + .@npc_id, 0;
+		setd "$@CASINO_ISPLAYING" + .@npc_id, 1;
+		donpcevent strnpcinfo(0) + "::OnGameOn";
+		stopnpctimer strnpcinfo(0);
+		end;
+		
+	OnGameOn:
+		set .@rand, rand(31,40);
+		for(set .@i,0; .@i < getstrlen(strnpcinfo(2)); set .@i, .@i + 1)
+			if(charat(strnpcinfo(2),.@i) == "-"){
+				set .@zeny, atoi(substr(strnpcinfo(2),.@i+1,getstrlen(strnpcinfo(2))-1));
+				set .@npc_id, atoi(substr(strnpcinfo(2),0,.@i-1));
+			}
+		getmapxy(.@map1$,.@x1,.@y1,BL_NPC,"Casino#" + .@npc_id + "-1");
+		getmapxy(.@map2$,.@x2,.@y2,BL_NPC,"Casino#" + .@npc_id + "-2");
+		set .@sleep, 700;
+		set .@slowrand, rand(3,5);
+		for(set .@i, 0; .@i < .@rand; set .@i, .@i + 1){
+			switch(.@i % 2){
+				case 0: movenpc "CasinoWarp#" + .@npc_id,.@x1,.@y1; set .@winner, 1; break;
+				case 1: movenpc "CasinoWarp#" + .@npc_id,.@x2,.@y2; set .@winner, 2; break;
+			}
+			sleep .@sleep;
+			if(.@i > (.@rand - .@slowrand))  set .@sleep, .@sleep + 80;
+			else set .@sleep, .@sleep + 15;
+		}
+		donpcevent "Casino#" + .@npc_id + "-" + .@winner + "::OnWinner";
+		npctalk "" + .header$ + " : ( " + F_InsertComma(.@zeny) + " ) กิจกรรมจบแล้วตัวที่ชนะคือสี " + (.@winner == 1 ? "เห็ดสีแดง" : "เห็ดสีม่วง");
+		query_sql ("INSERT INTO `poring_casino_statistic`(`npc_id`,`poring_win`,`time`) VALUES('" + .@npc_id + "','" + .@winner + "',FROM_UNIXTIME('" + gettimetick(2) + "'))");
+	// Get reward to loser
+		query_sql ("SELECT `account_id`,`amount` FROM `poring_casino` WHERE `npc_id` = '" + .@npc_id + "' AND `poring_choose` = '" + (.@winner == 1 ? 2 : 1) + "'",.@lose_accid,.@lose_amount);
+		for(set .@i, 0; .@i < getarraysize(.@lose_accid); set .@i, .@i + 1){
+			if(attachrid(.@lose_accid[.@i])){
+				set Zeny, Zeny + (.@lose_amount*.percenttax)/100;
+				dispbottom .header$ + " : เสียใจด้วยท่านไม่ชนะพนัน เราจะคืนเงินภาษีให้กับท่านจำนวน " + F_InsertComma((.@lose_amount*.percenttax)/100) + " Zeny";
+				detachrid;
+			} else 
+				query_sql ("INSERT INTO `poring_casino_reward`(`amount`,`npc_id`,`account_id`,`winorlose`) VALUES ('" + .@lose_amount[.@i] + "','" + .@npc_id + "','" + .@lose_accid[.@i] + "','0')");
+			query_sql ("DELETE FROM `poring_casino` WHERE `npc_id` = '" + .@npc_id + "' AND `account_id` = '" + .@lose_accid[.@i] + "'");
+		}
+		sleep 500;
+	// Get reward to winner	
+		query_sql ("SELECT `account_id`,`amount` FROM `poring_casino` WHERE `npc_id` = '" + .@npc_id + "' AND `poring_choose` = '" + .@winner + "'",.@accid,.@acc_amount);
+		for(set .@i, 0; .@i < getarraysize(.@accid); set .@i, .@i + 1){
+			if(attachrid(.@accid[.@i])){
+				set Zeny, Zeny + .@acc_amount[.@i]*2;
+				dispbottom .header$ + " : ยินดีด้วยท่านชนะพนันได้รับรางวัล " + F_InsertComma(.@acc_amount[.@i]*2) + " Zeny";
+				set .@name$, .@name$ + strcharinfo(0) + "  ";
+				detachrid;
+			} else 
+				query_sql ("INSERT INTO `poring_casino_reward`(`amount`,`npc_id`,`account_id`,`winorlose`) VALUES ('" + .@acc_amount[.@i] + "','" + .@npc_id + "','" + .@accid[.@i] + "','1')");
+			query_sql ("DELETE FROM `poring_casino` WHERE `npc_id` = '" + .@npc_id + "' AND `account_id` = '" + .@accid[.@i] + "'");
+		}
+		if(.@zeny >= .announcePrice) mapannounce strnpcinfo(4),.header$ + " : ( " + F_InsertComma(.@zeny) + " ) ผู้ชนะพนันได้แก่ " + .@name$,0;
+		donpcevent "Casino#" + .@npc_id + "-1::OnReset";
+		donpcevent "Casino#" + .@npc_id + "-2::OnReset";
+		setd "$@CASINO_ISPLAYING" + .@npc_id, 0;
+		end;
+	
+	OnInit:
+		// =============== CONFIGURE ===============
+		set .header$, "[ Spore Casino ]";		// ชื่อที่ข้อความ
+		set .waitingroom, 1;				// ห้องบนหัว npc รับพนัน ( 0 = ปิด / 1 = เปิด )
+		set .cooldown, 60;				// คูลดาวน์เมื่อกดยกเลิกพนัน (วินาที)
+		set .percenttax, 1;				// ภาษี (%)
+		set .announcePrice, 3000000;			// ประกาศชื่อคนที่แทงถูกเมื่อแทงแล้วราคา มากกว่าหรือเท่ากับ (Zeny)
+		set .viewStatCost, 2000;			// ค่าใช้จ่ายดูสถิติ (Zeny)
+		// =========================================
+		// SYNTAX = @recasinorank
+		bindatcmd "recasinorank","Poring Casino::OnRerank",90,90;
+		for(set .@i,0; .@i < getstrlen(strnpcinfo(2)); set .@i, .@i + 1)
+			if(charat(strnpcinfo(2),.@i) == "-"){
+				set .@zeny, atoi(substr(strnpcinfo(2),.@i+1,getstrlen(strnpcinfo(2))-1));
+				set .@npcid, atoi(substr(strnpcinfo(2),0,.@i-1));
+			}
+		sleep 1000;
+		if(.waitingroom) waitingroom F_InsertComma(.@zeny) + " Zeny",0;
+		query_sql ("DELETE FROM `poring_casino` WHERE `npc_id` = '" + .@npcid + "'");
+		end;
+	
+	OnRerank:
+		dispbottom .header$ + " : ทำการรี ranking ของระบบคาสิโนเรียบร้อยแล้ว";
+		query_sql ("TRUNCATE TABLE `poring_casino_statistic`");
+		end;
+	
+}
+
+-	script	Casino_querysql	-1,{
+	OnInit:
+		query_sql("CREATE TABLE IF NOT EXISTS `poring_casino` (" +
+		  "`id` int(11) NOT NULL AUTO_INCREMENT," +
+		  "`poring_choose` int(1) NOT NULL," +
+		  "`amount` int(20) NOT NULL," +
+		  "`npc_id` int(2) NOT NULL," +
+		  "`account_id` int(10) NOT NULL," +
+		  "`charname` varchar(50) NOT NULL," +
+		  "PRIMARY KEY (`id`)" +
+		")");
+		query_sql("CREATE TABLE IF NOT EXISTS `poring_casino_reward` (" +
+		  "`id` int(11) NOT NULL AUTO_INCREMENT," +
+		  "`amount` int(20) NOT NULL," +
+		  "`npc_id` int(2) NOT NULL," +
+		  "`account_id` int(10) NOT NULL," +
+		  "`winorlose` int(1) NOT NULL," +
+		  "PRIMARY KEY (`id`)" +
+		")");
+		query_sql("CREATE TABLE IF NOT EXISTS `poring_casino_statistic` (" +
+		  "`id` int(11) NOT NULL AUTO_INCREMENT," +
+		  "`npc_id` int(2) NOT NULL," +
+		  "`poring_win` int(1) NOT NULL," +
+		  "`time` TIMESTAMP NULL DEFAULT NULL," +
+		  "PRIMARY KEY (`id`)" +
+		")");
+		end;
+}
+
+-	script	Casino	-1,{
+	end;
+	OnWinner:
+		for(set .@i, 0; .@i < 5; set .@i, .@i + 1){
+			specialeffect EF_MVP;
+			sleep 500;
+		}
+		end;
+	OnReset:
+		delwaitingroom;
+	OnInit: 
+		waitingroom "คนแทง [ 0 ] คน",0;
+		end;
+	OnBet:
+		delwaitingroom; 
+		for(set .@i,0; .@i < getstrlen(strnpcinfo(2)); set .@i, .@i + 1)
+			if(charat(strnpcinfo(2),.@i) == "-"){
+				set .@npcid, atoi(substr(strnpcinfo(2),0,.@i-1));
+				set .@poring, atoi(substr(strnpcinfo(2),.@i+1,getstrlen(strnpcinfo(2))-1));
+			}
+		query_sql ("SELECT COUNT(`id`),`amount` FROM `poring_casino` WHERE `npc_id` = '" + .@npcid + "' AND `poring_choose` = '" + .@poring + "'",.@countId,.@npcamount);
+		waitingroom "คนแทง [ " + .@countId + " ] คน",0;
+		query_sql ("SELECT COUNT(`id`) FROM `poring_casino` WHERE `npc_id` = '" + .@npcid + "' AND `poring_choose` = '1'",.@countId1);
+		query_sql ("SELECT COUNT(`id`) FROM `poring_casino` WHERE `npc_id` = '" + .@npcid + "' AND `poring_choose` = '2'",.@countId2);
+		if((.@countId1 == .@countId2) && (.@countId1 != 0) && (.@countId2 != 0))
+			donpcevent "Spore Casino#" + .@npcid + "-" + .@npcamount + "::OnEventStart";
+		else if(.@countId1 != .@countId2)
+			if(.@countId1 != 0)
+				if(.@countId2 != 0)
+					donpcevent "Spore Casino#" + .@npcid + "-" + .@npcamount + "::OnEventCancel";
+		end;
+}
+
+-	script	CasinoWarp	-1,{
+	end;
+	OnInit:	
+		if(strnpcinfo(2) != ""){
+			getmapxy(.map$,.x,.y,BL_NPC,"Casino#" + strnpcinfo(2) + "-1");
+			movenpc "CasinoWarp#" + strnpcinfo(2),.x,.y;
+		}
+		end;
+}
+
+//gold_mart,109,148,3	duplicate(Poring Casino)	Spore Casino#1-3000000	4_m_mayor
+//gold_mart,107,144,3	duplicate(Casino)	Casino#1-1	1014
+//gold_mart,111,144,3	duplicate(Casino)	Casino#1-2	1077
+//gold_mart,0,0,0	duplicate(CasinoWarp)	CasinoWarp#1	WARPNPC
+//
+//gold_mart,123,144,3	duplicate(Poring Casino)	Spore Casino#2-5000000	4_m_mayor
+//gold_mart,120,141,3	duplicate(Casino)	Casino#2-1	1014
+//gold_mart,124,141,3	duplicate(Casino)	Casino#2-2	1077
+//gold_mart,0,0,0	duplicate(CasinoWarp)	CasinoWarp#2	WARPNPC
+//
+//gold_mart,108,138,3	duplicate(Poring Casino)	Spore Casino#3-10000000	4_m_mayor
+//gold_mart,104,135,3	duplicate(Casino)	Casino#3-1	1014
+//gold_mart,108,135,3	duplicate(Casino)	Casino#3-2	1077
+//gold_mart,0,0,0	duplicate(CasinoWarp)	CasinoWarp#3	WARPNPC
+//
+izlude,92,163,3	duplicate(Poring Casino)	Spore Casino#4-500000	4_m_mayor
+izlude,88,159,3	duplicate(Casino)	Casino#4-1	1014
+izlude,94,159,3	duplicate(Casino)	Casino#4-2	1077
+izlude,0,0,0	duplicate(CasinoWarp)	CasinoWarp#4	WARPNPC
+//
+//gold_mart,118,129,3	duplicate(Poring Casino)	Spore Casino#5-1000000	4_m_mayor
+//gold_mart,116,125,3	duplicate(Casino)	Casino#5-1	1014
+//gold_mart,120,125,3	duplicate(Casino)	Casino#5-2	1077
+//gold_mart,0,0,0	duplicate(CasinoWarp)	CasinoWarp#5	WARPNPC
+
+izlude,116,163,3	duplicate(Poring Casino)	Spore Casino#6-100000	4_m_mayor
+izlude,113,159,3	duplicate(Casino)	Casino#6-1	1014
+izlude,120,159,3	duplicate(Casino)	Casino#6-2	1077
+izlude,0,0,0	duplicate(CasinoWarp)	CasinoWarp#6	WARPNPC
+//
+izlude,104,163,3	duplicate(Poring Casino)	Spore Casino#7-300000	4_m_mayor
+izlude,101,159,3	duplicate(Casino)	Casino#7-1	1014
+izlude,107,159,3	duplicate(Casino)	Casino#7-2	1077
+izlude,0,0,0	duplicate(CasinoWarp)	CasinoWarp#7	WARPNPC
+
+

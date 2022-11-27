@@ -1,0 +1,7 @@
+mjolnir_06,0,0	monster	Poporing	1031,20
+mjolnir_06,0,0	monster	Caramel	1103,30
+mjolnir_06,0,0	monster	Coco	1104,30
+mjolnir_06,0,0	monster	Horn	1128,10
+mjolnir_06,0,0	monster	Stainer	1174,70
+mjolnir_06,0,0	monster	Blue Plant	1079,2,360000,180000
+mjolnir_06,0,0	monster	Red Mushroom	1085,8,180000,120000

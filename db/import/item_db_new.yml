@@ -1,0 +1,1621 @@
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+###########################################################################
+# Item Database
+###########################################################################
+#
+# Item Settings
+#
+###########################################################################
+# - Id                      Item ID.
+#   AegisName               Server name to reference the item in scripts and lookups, should use no spaces.
+#   Name                    Name in English for displaying as output.
+#   Type                    Item type. (Default: Etc)
+#   SubType                 Weapon or Ammo type. (Default: 0)
+#   Buy                     Buying price. When not specified, becomes double the sell price. (Default: 0)
+#   Sell                    Selling price. When not specified, becomes half the buy price. (Default: 0)
+#   Weight                  Item weight. Each 10 is 1 weight. (Default: 0)
+#   Attack                  Weapon's attack. (Default: 0)
+#   MagicAttack             Weapon's magic attack. (Default: 0)
+#   Defense                 Armor's defense. (Default: 0)
+#   Range                   Weapon's attack range. (Default: 0)
+#   Slots                   Available slots in item. (Default: 0)
+#   Jobs                    Jobs that can equip the item. (Map default is 'All: true')
+#   Classes                 Upper class types that can equip the item. (Map default is 'All: true')
+#   Gender                  Gender that can equip the item. (Default: Both)
+#   Locations               Equipment's placement. (Default: None)
+#   WeaponLevel             Weapon level. (Default: 0)
+#   EquipLevelMin           Minimum required level to equip. (Default: 0)
+#   EquipLevelMax           Maximum level that can equip. (Default: 0)
+#   Refineable              If the item can be refined. (Default: false)
+#   View                    View sprite of an item. (Default: 0)
+#   AliasName               Another item's AegisName that will be sent to the client instead of this item's AegisName. (Default: null)
+#   Flags:                  Item flags. (Default: null)
+#     BuyingStore           If the item is available for Buyingstores. (Default: false)
+#     DeadBranch            If the item is a Dead Branch. (Default: false)
+#     Container             If the item is part of a container. (Default: false)
+#     UniqueId              If the item is a unique stack. (Default: false)
+#     BindOnEquip           If the item is bound to the character upon equipping. (Default: false)
+#     DropAnnounce          If the item has a special announcement to self on drop. (Default: false)
+#     NoConsume             If the item is consumed on use. (Default: false)
+#     DropEffect            If the item has a special effect on the ground when dropped by a monster. (Default: None)
+#   Delay:                  Item use delay. (Default: null)
+#     Duration              Duration of delay in seconds.
+#     Status                Status Change used to track delay. (Default: None)
+#   Stack:                  Item stack amount. (Default: null)
+#     Amount                Maximum amount that can be stacked.
+#     Inventory             If the stack is applied to player's inventory. (Default: true)
+#     Cart                  If the stack is applied to the player's cart. (Default: false)
+#     Storage               If the stack is applied to the player's storage. (Default: false)
+#     GuildStorage          If the stack is applied to the player's guild storage. (Default: false)
+#   NoUse:                  Conditions when the item is unusable. (Default: null)
+#     Override              Group level to override these conditions.
+#     Sitting               If the item can not be used while sitting. (Default: false)
+#   Trade:                  Trade restrictions. (Default: null)
+#     Override              Group level to override these conditions.
+#     NoDrop                If the item can not be dropped. (Default: false)
+#     NoTrade               If the item can not be traded. (Default: false)
+#     TradePartner          If the item can not be traded to the player's partner. (Default: false)
+#     NoSell                If the item can not be sold. (Default: false)
+#     NoCart                If the item can not be put in a cart. (Default: false)
+#     NoStorage             If the item can not be put in a storage. (Default: false)
+#     NoGuildStorage        If the item can not be put in a guild storage. (Default: false)
+#     NoMail                If the item can not be put in a mail. (Default: false)
+#     NoAuction             If the item can not be put in an auction. (Default: false)
+#   Script                  Script to execute when the item is used/equipped. (Default: null)
+#   EquipScript             Script to execute when the item is equipped. (Default: null)
+#   UnEquipScript           Script to execute when the item is unequipped or when a rental item expires. (Default: null)
+###########################################################################
+
+Header:
+  Type: ITEM_DB
+  Version: 1
+
+Body:
+  - Id: 9088
+    AegisName: Angeling_Egg
+    Name: Angeling Egg
+    Type: Petegg
+    Buy: 20
+  - Id: 1100015
+    AegisName: C_Elven_Ears II
+    Name: Costume Elven Ears II
+    Type: Armor
+    Buy: 20
+    Weight: 100
+    Locations:
+      Costume_Head_Mid: true
+    View: 73
+    Script: |
+      bonus2 bExpAddRace,RC_All,15;
+      bonus2 bDropAddRace,RC_All,8;
+  - Id: 1100016
+    AegisName: C_Centimental_Flower II
+    Name: Costume Centimental Flower II
+    Type: Armor
+    Buy: 20
+    Weight: 100
+    Locations:
+      Costume_Head_Low: true
+    View: 56
+    Script: |
+      bonus2 bExpAddRace,RC_All,15;
+      bonus2 bDropAddRace,RC_All,8;
+  - Id: 1100017
+    AegisName: C_Cigar II
+    Name: Costume Cigarette II
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    View: 54
+    Script: |
+      bonus2 bExpAddRace,RC_All,13;
+      bonus2 bDropAddRace,RC_All,5;
+  - Id: 1100018
+    AegisName: Ability Glove
+    Name: Ability Glove
+    Type: Armor
+    Buy: 30000
+    Weight: 200
+    Slots: 1
+    Jobs:
+      All: true
+      Novice: false
+      SuperNovice: false
+    Locations:
+      Both_Accessory: true
+    EquipLevelMin: 90
+    Script: |
+      if(countitem(1100018)>1)end;
+      bonus bDex,1;
+      bonus2 bDropAddRace,RC_All,5;
+      bonus bLuk,15;
+      bonus bAspdRate,5;
+      bonus bLongAtkRate,5;
+      bonus2 bSkillAtk,129,50;
+      if (Class == Job_Archer || Class == Job_Hunter)
+         bonus3 bAutoSpell,"HT_BLITZBEAT",5,50;
+  - Id: 1100019
+    AegisName: Ability Ring
+    Name: Ability Ring
+    Type: Armor
+    Buy: 30000
+    Weight: 200
+    Slots: 1
+    Jobs:
+      All: true
+      Novice: false
+      SuperNovice: false
+    Locations:
+      Both_Accessory: true
+    EquipLevelMin: 90
+    Script: |
+      if(countitem(1100019)>1)end;
+      bonus bStr,1;
+      bonus2 bDropAddRace,RC_All,5;
+      bonus2 bSkillAtk,56,15;
+      bonus bHPGainValue,50;
+      bonus bLongHPGainValue,50;
+  - Id: 1100020
+    AegisName: Ability Brooch
+    Name: Ability Brooch
+    Type: Armor
+    Buy: 30000
+    Weight: 200
+    Slots: 1
+    Jobs:
+      All: true
+      Novice: false
+      SuperNovice: false
+    Locations:
+      Both_Accessory: true
+    EquipLevelMin: 90
+    Script: |
+      if(countitem(1100020)>1)end;
+      bonus bAgi,1;
+      bonus2 bDropAddRace,RC_All,5;
+      bonus bAspdRate,3;
+      bonus bCritAtkRate,10;
+      bonus bCritical,5;
+      bonus2 bAddClass,Class_All,10;
+  - Id: 1100021
+    AegisName: Ability Earring
+    Name: Ability Earring
+    Type: Armor
+    Buy: 30000
+    Weight: 200
+    Slots: 1
+    Jobs:
+      All: true
+      Novice: false
+      SuperNovice: false
+    Locations:
+      Both_Accessory: true
+    EquipLevelMin: 90
+    Script: |
+      if(countitem(1100021)>1)end;
+      bonus bInt,1;
+      bonus2 bDropAddRace,RC_All,5;
+      bonus bMatkRate,10;
+      bonus bCastrate,-3;
+      bonus bHealPower,20;
+      bonus bNoGemStone;
+  - Id: 1100022
+    AegisName: Ability Necklace
+    Name: Ability Necklace
+    Type: Armor
+    Buy: 30000
+    Weight: 200
+    Slots: 1
+    Jobs:
+      All: true
+      Novice: false
+      SuperNovice: false
+    Locations:
+      Both_Accessory: true
+    EquipLevelMin: 90
+    Script: |
+      if(countitem(1100022)>1)end;
+      bonus bStr,1;
+      bonus2 bDropAddRace,RC_All,5;
+      bonus2 bSkillAtk,153,25;
+      bonus2 bAddRace,RC_Fish,20;
+      bonus2 bAddRace,RC_Brute,20;
+      bonus2 bAddRace,RC_Player_Doram,20;
+  - Id: 18740
+    AegisName: C_Hair_Of_The_Strong
+    Name: RMSC2012 Special Costume
+    Type: Armor
+    Buy: 20
+    Locations:
+      Costume_Head_Top: true
+    View: 879
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20510
+    AegisName: C_SwordWing
+    Name: Costume Sword Wing
+    Type: Armor
+    Locations:
+      Costume_Garment: true
+    EquipLevelMin: 1
+    View: 19
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20511
+    AegisName: C_Blue_Fairy_Wing
+    Name: Blue Wings of Fairy
+    Type: Armor
+    Locations:
+      Costume_Garment: true
+    EquipLevelMin: 1
+    View: 21
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20514
+    AegisName: C_Thanatos_Sword
+    Name: Costume Thanatos Sword
+    Type: Armor
+    Locations:
+      Costume_Garment: true
+    EquipLevelMin: 1
+    View: 23
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 19433
+    AegisName: C_Resonate_Taego
+    Name: Costume Resonate Taego
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    EquipLevelMin: 1
+    View: 1823
+    Script: |
+      hateffect(HAT_EF_RESONATETAEGO,true);
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+    UnEquipScript: |
+      hateffect(HAT_EF_RESONATETAEGO,false);
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 31117
+    AegisName: C_Hoplite_Helmet
+    Name: Costume Hoplite Helmet
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+      Costume_Head_Mid: true
+      Costume_Head_Low: true
+    EquipLevelMin: 1
+    View: 660
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 19158
+    AegisName: C_Gemini_Eyes
+    Name: Costume GeminiS58 Eyes Blue
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    View: 1456
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 19563
+    AegisName: C_Dragon_Arhat_Mask
+    Name: Costume Dragon Arhat Mask
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+      Costume_Head_Low: true
+    EquipLevelMin: 1
+    View: 545
+    Trade:
+      Override: 100
+      NoDrop: true
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 19564
+    AegisName: C_Tiger_Arhat_Mask
+    Name: Costume Tiger Arhat Mask
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+      Costume_Head_Low: true
+    EquipLevelMin: 1
+    View: 546
+    Trade:
+      Override: 100
+      NoDrop: true
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 19936
+    AegisName: C_Knit_Cap_Of_Water
+    Name: Costume Knit Cap Of Water
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 1077
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20201
+    AegisName: C_Banshee_Master_Kiss
+    Name: Costume Banshee Master Kiss
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    EquipLevelMin: 1
+    View: 959
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20204
+    AegisName: C_Hunting_Cap
+    Name: Costume Hunter Hat
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 389
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20249
+    AegisName: C_Red_Strong_Hair
+    Name: Costume Red Strong Hair
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 1316
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20517
+    AegisName: C_GiantCatBag_TW
+    Name: Costume Giant Cat Bag
+    Type: Armor
+    Locations:
+      Costume_Garment: true
+    EquipLevelMin: 1
+    View: 25
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20516
+    AegisName: C_Wings_of_Michael
+    Name: Costume Wings of Michael
+    Type: Armor
+    Locations:
+      Costume_Garment: true
+    EquipLevelMin: 1
+    View: 24
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20530
+    AegisName: C_Wings_of_Gabriel
+    Name: Costume Wings of Gabriel
+    Type: Armor
+    Locations:
+      Costume_Garment: true
+    EquipLevelMin: 1
+    View: 37
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20535
+    AegisName: C_Digital_Space
+    Name: Costume Digital Space
+    Type: Armor
+    Locations:
+      Costume_Garment: true
+    EquipLevelMin: 1
+    Script: |
+      hateffect(HAT_EF_DIGITAL_SPACE,true);
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+    UnEquipScript: |
+      hateffect(HAT_EF_DIGITAL_SPACE,false);
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20546
+    AegisName: C_Backside_Ribbon_Bell
+    Name: Costume Giant Ribbon Bell
+    Type: Armor
+    Locations:
+      Costume_Garment: true
+    EquipLevelMin: 1
+    View: 46
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20570
+    AegisName: C_HeartChocoBag
+    Name: Costume HeartChocoBag
+    Type: Armor
+    Locations:
+      Costume_Garment: true
+    EquipLevelMin: 1
+    View: 47
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20572
+    AegisName: C_WingOfHeart
+    Name: Costume WingOfHeart
+    Type: Armor
+    Locations:
+      Costume_Garment: true
+    EquipLevelMin: 1
+    View: 50
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20576
+    AegisName: C_Cat_Fork
+    Name: Costume Cat Fork
+    Type: Armor
+    Locations:
+      Costume_Garment: true
+    EquipLevelMin: 1
+    View: 53
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20509
+    AegisName: C_Wings_of_Uriel
+    Name: Costume Wings of Uriel
+    Type: Armor
+    Locations:
+      Costume_Garment: true
+    EquipLevelMin: 1
+    View: 17
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 19597
+    AegisName: C_Magic_Eyes
+    Name: Costume Magic Eyes
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 209
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 19620
+    AegisName: C_Dectective_Hat
+    Name: Costume Detective Hat
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    View: 189
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 19655
+    AegisName: C_Tiraya_Bonnet
+    Name: Costume Tiraya Bonnet
+    Type: Armor
+    Buy: 20
+    Locations:
+      Costume_Head_Top: true
+    View: 398
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20132
+    AegisName: C_Subject_Aura
+    Name: Costume Aura Vicious Mind
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    EquipLevelMin: 1
+    View: 1267
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20218
+    AegisName: C_Spell_Circuit
+    Name: Costume Spell Circuit
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 1301
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20287
+    AegisName: C_Mans_Medal_Gold
+    Name: Costume Man's Medal(Gold)
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 1333
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20300
+    AegisName: C_Hill_Wind_Mask
+    Name: Costume Hill Wind Mask
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+      Costume_Head_Mid: true
+      Costume_Head_Low: true
+    EquipLevelMin: 1
+    View: 1342
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20314
+    AegisName: C_New_Wave_Sunglasses
+    Name: Costume New Wave Sunglasses
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    EquipLevelMin: 1
+    View: 856
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20373
+    AegisName: C_Watermelon_Hat
+    Name: Costume Watermelon Hat
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 690
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20439
+    AegisName: C_New_Year_Shine
+    Name: Costume New Year Shine
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    EquipLevelMin: 1
+    Script: |
+      hateffect(HAT_EF_GLOW_OF_NEW_YEAR,true);
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+    UnEquipScript: |
+      hateffect(HAT_EF_GLOW_OF_NEW_YEAR,false);
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 31028
+    AegisName: C_Black_Cat_Hood
+    Name: Costume Black Cat Hood
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 1481
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 31056
+    AegisName: C_Furious_Wave
+    Name: Costume Furious Wave
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    EquipLevelMin: 1
+    Script: |
+      hateffect(HAT_EF_DOUBLEGUMGANG,true);
+      /* Need to confirm this */
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+    UnEquipScript: |
+      hateffect(HAT_EF_DOUBLEGUMGANG,false);
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 31382
+    AegisName: C_Cat_Ears_Punkish
+    Name: Costume Cat Ears Punkish
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 1682
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 31433
+    AegisName: C_Astro_Circle
+    Name: Costume Astro Circle
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 1073
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 31884
+    AegisName: C_Magic_Helm
+    Name: Costume Magic Helm
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 1917
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 31544
+    AegisName: Costume_Piamette_Curls
+    Name: Costume Piamette Curls
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 1775
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 31187
+    AegisName: C_War_Princess_Ribbon
+    Name: Costume War Princess Ribbon
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 1583
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 1220000
+    AegisName: Custume Pandora Mavel
+    Name: Custume Pandora Mavel
+    Type: Armor
+    Locations:
+      Costume_Garment: true
+    ArmorLevel: 1
+    EquipLevelMin: 1
+    View: 5999
+    Script: |
+      bonus2 bExpAddRace,RC_All,20;
+      bonus2 bDropAddRace,RC_All,10;
+      bonus bAllStats,1;
+  - Id: 36020
+    AegisName: Blitz Beat Seal
+    Name: Blitz Beat Seal
+    Type: Shadowgear
+    Jobs:
+      Hunter: true
+      Archer: true
+    Locations:
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
+    EquipLevelMin: 1
+    Script: |
+      bonus2 bSkillAtk,129,50;
+  - Id: 36021
+    AegisName: Black_Wing_Brooch_
+    Name: Black Wing Brooch
+    Type: Shadowgear
+    Jobs:
+      Thief: true
+      Assassin: true
+    Locations:
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
+    EquipLevelMin: 1
+    Script: |
+      bonus2 bSkillAtk,136,25;
+  - Id: 36022
+    AegisName: White_Wing_Brooch_
+    Name: White Wing Brooch
+    Type: Shadowgear
+    Jobs:
+      Thief: true
+      Assassin: true
+    Locations:
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
+    EquipLevelMin: 1
+    Script: |
+      bonus2 bSkillAtk,137,25;
+  - Id: 36023
+    AegisName: Star Angle Necklace
+    Name: Star Angle Necklace
+    Type: Shadowgear
+    Jobs:
+      Merchant: true
+      Blacksmith: true
+    Locations:
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
+    EquipLevelMin: 1
+    Script: |
+      bonus2 bSkillAtk,153,60;
+  - Id: 36024
+    AegisName: Aumdura_S_Benefit
+    Name: Aumdura s Benefit
+    Type: Shadowgear
+    Locations:
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
+    EquipLevelMin: 1
+    Script: |
+      bonus2 bSubEle,Ele_Neutral,7;
+      bonus2 bSubEle,Ele_Water,7;
+      bonus2 bSubEle,Ele_Fire,7;
+      bonus2 bSubEle,Ele_Dark,7;
+      bonus2 bSubEle,Ele_Undead,7;
+      bonus2 bSubEle,Ele_Earth,7;
+      bonus2 bSubEle,Ele_Wind,7;
+      bonus2 bSubEle,Ele_Poison,7;
+      bonus2 bSubEle,Ele_Holy,7;
+      bonus2 bSubEle,Ele_Ghost,7;
+  - Id: 36025
+    AegisName: King_Sapha_Ring_
+    Name: King Sapha Ring
+    Type: Shadowgear
+    Jobs:
+      Swordman: true
+      Knight: true
+    Locations:
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
+    EquipLevelMin: 1
+    Script: |
+      bonus2 bSkillAtk,56,15;
+  - Id: 36026
+    AegisName: Golden_Gold_Orb
+    Name: Golden Gold Orb
+    Type: Shadowgear
+    Jobs:
+      Mage: true
+      Wizard: true
+    Locations:
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
+    EquipLevelMin: 1
+    Script: |
+      bonus2 bSkillAtk,89,10;
+  - Id: 36027
+    AegisName: Ring_Of_bishop
+    Name: Ring Of bishop
+    Type: Shadowgear
+    Jobs:
+      Acolyte: true
+      Priest: true
+    Locations:
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
+    EquipLevelMin: 1
+    Script: |
+      bonus2 bSkillAtk,79,15;
+###########################CostumeC4###################################
+  - Id: 19542
+    AegisName: C_Devil_Whisper
+    Name: Costume Devil Whisper
+    Type: Armor
+    Buy: 20
+    Locations:
+      Costume_Head_Mid: true
+    View: 712
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 19543
+    AegisName: Oliver_Wolf_Hood
+    Name: Oliver Wolf Hood
+    Type: Armor
+    Buy: 20
+    Locations:
+      Costume_Head_Top: true
+    View: 849
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 19555
+    AegisName: C_Crescent_Helm
+    Name: Costume Crescent Moon Helm
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+      Costume_Head_Mid: true
+    View: 213
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 19824
+    AegisName: C_Evil_Druid_Hat
+    Name: Costume Evil Druid Hat
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    View: 1053
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 19780
+    AegisName: C_Rabbit_Ear_Knit_Hat
+    Name: Costume Knit Rabbit Ears
+    Type: Armor
+    Buy: 20
+    Locations:
+      Costume_Head_Top: true
+    View: 867
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20008
+    AegisName: C_General_Helmet
+    Name: Costume Dragon General Helm
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    View: 729
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20007
+    AegisName: C_Bullock_Helm_J
+    Name: Costume Horned Hat
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    View: 322
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20407
+    AegisName: C_Subject_Aura_Red
+    Name: Costume Vicious Mind Aura Crimson
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    View: 1418
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 31577
+    AegisName: C_Roast_Memory_Upper
+    Name: C Roast Memory Upper
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    View: 1576
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 31673
+    AegisName: C_Picnic_Basket
+    Name: C Picnic Basket
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    View: 1867
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 31611
+    AegisName: C_Dark_Snake_Lord_Stall
+    Name: C Snake Lord Stole
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    View: 1810
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 31625
+    AegisName: C_Protect_Cloth
+    Name: C Protection Cloth
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    View: 1761
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 31833
+    AegisName: C_Halloween_CatShort
+    Name: C Halloween Short Haired Cat Ears
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    View: 1939
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 19574
+    AegisName: C_Lord_of_Death
+    Name: Costume Lord of Death
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+      Costume_Head_Mid: true
+    View: 742
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20582
+    AegisName: C_T_Bear_Bag
+    Name: Costume Bear Backpack
+    Type: Armor
+    Locations:
+      Costume_Garment: true
+    View: 60
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20588
+    AegisName: C_Nifl_Bloom
+    Name: Costume Broom of Witch
+    Type: Armor
+    Locations:
+      Costume_Garment: true
+    View: 65
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20592
+    AegisName: C_Santa_Backpack
+    Name: Costume Santa's Pocket
+    Type: Armor
+    Locations:
+      Costume_Garment: true
+    View: 70
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20762
+    AegisName: C_GreatDevilWing
+    Name: Costume Great Devil Wings
+    Type: Armor
+    Locations:
+      Costume_Garment: true
+    View: 10
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 1220013
+    AegisName: Rebuild_Brooch_
+    Name: Rebuild Brooch
+    Type: Shadowgear
+    Jobs:
+      Hunter: true
+      Archer: true
+    Locations:
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
+    EquipLevelMin: 1
+    Script: |
+      bonus2 bSkillAtk,116,200;
+      bonus2 bSkillAtk,122,200;
+      bonus2 bSkillAtk,123,200;
+  - Id: 2499
+    AegisName: Temporal_Boots
+    Name: Temporal Boots
+    Type: Armor
+    Buy: 400
+    Weight: 600
+    Defense: 5
+    Locations:
+      Shoes: true
+    EquipLevelMin: 1
+    Refineable: true
+    Script: |
+      .@r = getrefine()/3;
+      bonus bMaxHP,300+(.@r*100);
+      bonus bMaxSP,30+(.@r*10);
+  - Id: 22000
+    AegisName: Temporal_Str_Boots
+    Name: Temporal Boots Of Strength
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 5
+    Locations:
+      Shoes: true
+    EquipLevelMin: 1
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      if (.@r>=3) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bBaseAtk,7;
+      }
+      if (.@r>=6) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bBaseAtk,7;
+      }
+      if (.@r>=9) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bBaseAtk,7;
+      }
+      if (readparam(bStr)>=80)
+         bonus bBaseAtk,50;
+  - Id: 22001
+    AegisName: Temporal_Int_Boots
+    Name: Temporal Boots Of Intelligence
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 5
+    Locations:
+      Shoes: true
+    EquipLevelMin: 1
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      if (.@r>=3) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bMdef,5;
+         bonus bMatk,10;
+      }
+      if (.@r>=6) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bMdef,5;
+         bonus bMatk,10;
+      }
+      if (.@r>=9) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bMdef,5;
+         bonus bMatk,10;
+      }
+      if (readparam(bInt)>=80)
+         bonus bMatk,60;
+  - Id: 22002
+    AegisName: Temporal_Agi_Boots
+    Name: Temporal Boots Of Agility
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 5
+    Locations:
+      Shoes: true
+    EquipLevelMin: 1
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      if (.@r>=3) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bAspdRate,3;
+      }
+      if (.@r>=6) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bAspdRate,3;
+      }
+      if (.@r>=9) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bAspdRate,3;
+      }
+      if (readparam(bAgi)>=80)
+         bonus bAspd,1;
+  - Id: 22003
+    AegisName: Temporal_Vit_Boots
+    Name: Temporal Boots Of Vitality
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 5
+    Locations:
+      Shoes: true
+    EquipLevelMin: 1
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      if (.@r>=3) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bVit,2;
+      }
+      if (.@r>=6) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bVit,2;
+      }
+      if (.@r>=9) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bVit,2;
+      }
+      if (readparam(bVit)>=80)
+         bonus bMaxHPrate,8;
+         bonus bVit,2;
+  - Id: 22004
+    AegisName: Temporal_Dex_Boots
+    Name: Temporal Boots Of Dexterity
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 5
+    Locations:
+      Shoes: true
+    EquipLevelMin: 1
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      if (.@r>=3) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bDex,3;
+      }
+      if (.@r>=6) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bDex,3;
+      }
+      if (.@r>=9) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bDex,3;
+      }
+      if (readparam(bDex)>=80) {
+         bonus bLongAtkRate,5;
+         bonus bFixedCast,-500;
+      }
+  - Id: 22005
+    AegisName: Temporal_Luk_Boots
+    Name: Temporal Boots Of Luck
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 5
+    Locations:
+      Shoes: true
+    EquipLevelMin: 1
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      if (.@r>=3) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bMdef,5;
+         bonus bCritAtkRate,2;
+      }
+      if (.@r>=6) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bMdef,5;
+         bonus bCritAtkRate,2;
+      }
+      if (.@r>=9) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bMdef,5;
+         bonus bCritAtkRate,2;
+      }
+      if (readparam(bLuk)>=80)
+         bonus bCritAtkRate,30;
+  - Id: 22006
+    AegisName: Temporal_Str_Boots_
+    Name: Temporal Boots Of Strength
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 5
+    Slots: 1
+    Locations:
+      Shoes: true
+    EquipLevelMin: 1
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      if (.@r>=3) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bBaseAtk,7;
+      }
+      if (.@r>=6) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bBaseAtk,7;
+      }
+      if (.@r>=9) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bBaseAtk,7;
+      }
+      if (readparam(bStr)>=80)
+         bonus bBaseAtk,50;
+  - Id: 22007
+    AegisName: Temporal_Vit_Boots_
+    Name: Temporal Boots Of Vitality
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 5
+    Slots: 1
+    Locations:
+      Shoes: true
+    EquipLevelMin: 1
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      if (.@r>=3) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bVit,2;
+      }
+      if (.@r>=6) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bVit,2;
+      }
+      if (.@r>=9) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bVit,2;
+      }
+      if (readparam(bVit)>=80)
+         bonus bMaxHPrate,8;
+         bonus bVit,2;
+  - Id: 22008
+    AegisName: Temporal_Dex_Boots_
+    Name: Temporal Boots Of Dexterity
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 5
+    Slots: 1
+    Locations:
+      Shoes: true
+    EquipLevelMin: 1
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      if (.@r>=3) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bDex,3;
+      }
+      if (.@r>=6) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bDex,3;
+      }
+      if (.@r>=9) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bDex,3;
+      }
+      if (readparam(bDex)>=80) {
+         bonus bLongAtkRate,5;
+         bonus bFixedCast,-500;
+      }
+  - Id: 22009
+    AegisName: Temporal_Int_Boots_
+    Name: Temporal Boots Of Intelligence
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 5
+    Slots: 1
+    Locations:
+      Shoes: true
+    EquipLevelMin: 1
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      if (.@r>=3) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bMdef,5;
+         bonus bMatk,10;
+      }
+      if (.@r>=6) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bMdef,5;
+         bonus bMatk,10;
+      }
+      if (.@r>=9) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bMdef,5;
+         bonus bMatk,10;
+      }
+      if (readparam(bInt)>=80)
+         bonus bMatk,60;
+  - Id: 22010
+    AegisName: Temporal_Agi_Boots_
+    Name: Temporal Boots Of Agility
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 5
+    Slots: 1
+    Locations:
+      Shoes: true
+    EquipLevelMin: 1
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      if (.@r>=3) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bAspdRate,3;
+      }
+      if (.@r>=6) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bAspdRate,3;
+      }
+      if (.@r>=9) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bAspdRate,3;
+      }
+      if (readparam(bAgi)>=80)
+         bonus bAspd,1;
+  - Id: 22011
+    AegisName: Temporal_Luk_Boots_
+    Name: Temporal Boots Of Luck
+    Type: Armor
+    Buy: 20
+    Weight: 600
+    Defense: 5
+    Slots: 1
+    Locations:
+      Shoes: true
+    EquipLevelMin: 1
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      if (.@r>=3) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bMdef,5;
+         bonus bCritAtkRate,2;
+      }
+      if (.@r>=6) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bMdef,5;
+         bonus bCritAtkRate,2;
+      }
+      if (.@r>=9) {
+         bonus bMaxHP,300;
+         bonus bMaxSP,30;
+         bonus bMdef,5;
+         bonus bCritAtkRate,2;
+      }
+      if (readparam(bLuk)>=80)
+         bonus bCritAtkRate,30;
+  - Id: 1220031
+    AegisName: Costume Psnbayonet
+    Name: Costume Psnbayonet
+    Type: Shadowgear
+    Job: 
+      Rougue: true
+    Locations:
+      Shadow_Weapon: true
+    EquipLevelMin: 1
+    View: 114
+    Script: |
+      bonus bAllStats,2;
+      bonus bMatkRate,5;
+      bonus2 bAddClass,Class_All,5;
+  - Id: 1220032
+    AegisName: Costume Shiningclaws
+    Name: Costume Shiningclaws
+    Type: Shadowgear
+    Job: 
+      Monk: true
+    Locations:
+      Shadow_Weapon: true
+    EquipLevelMin: 1
+    View: 120
+    Script: |
+      bonus bAllStats,2;
+      bonus bMatkRate,5;
+      bonus2 bAddClass,Class_All,5;
+  - Id: 1220033
+    AegisName: Costume Twinslicers
+    Name: Costume Twinslicers
+    Type: Shadowgear
+    Job: 
+      Rougue: true
+    Locations:
+      Shadow_Weapon: true
+    EquipLevelMin: 1
+    View: 145
+    Script: |
+      bonus bAllStats,2;
+      bonus bMatkRate,5;
+      bonus2 bAddClass,Class_All,5;
+  - Id: 1220034
+    AegisName: Costume Undeadshot
+    Name: Costume Undeadshot
+    Type: Shadowgear
+    Job:
+      Rogue: true
+    Locations:
+      Shadow_Weapon: true
+    EquipLevelMin: 1
+    View: 160
+    Script: |
+      bonus bAllStats,2;
+      bonus bMatkRate,5;
+      bonus2 bAddClass,Class_All,5;
+  - Id: 1220035
+    AegisName: Costume Flarewhip
+    Name: Costume Flarewhip
+    Type: Shadowgear
+    Job:
+      Dancer: true
+    Locations:
+      Shadow_Weapon: true
+    EquipLevelMin: 1
+    View: 111
+    Script: |
+      bonus bAllStats,2;
+      bonus bMatkRate,5;
+      bonus2 bAddClass,Class_All,5;
+  - Id: 1220036
+    AegisName: Costume Mjolnir
+    Name: Costume Mjolnir
+    Type: Shadowgear
+    Locations:
+      Shadow_Weapon: true
+    EquipLevelMin: 1
+    View: 127
+    Script: |
+      bonus bAllStats,2;
+      bonus bMatkRate,5;
+      bonus2 bAddClass,Class_All,5;
+  - Id: 1220037
+    AegisName: Costume Perunaxe
+    Name: Costume Perunaxe
+    Type: Shadowgear
+    Job: 
+      Alchemist: true
+    Locations:
+      Shadow_Weapon: true
+    EquipLevelMin: 1
+    View: 112
+    Script: |
+      bonus bAllStats,2;
+      bonus bMatkRate,5;
+      bonus2 bAddClass,Class_All,5;
+  - Id: 1220038
+    AegisName: Costume Eletroguitar
+    Name: Costume Eletroguitar
+    Type: Shadowgear
+    Job: 
+      Bard: true
+    Locations:
+      Shadow_Weapon: true
+    EquipLevelMin: 1
+    View: 104
+    Script: |
+      bonus bAllStats,2;
+      bonus bMatkRate,5;
+      bonus2 bAddClass,Class_All,5;
+  - Id: 1220039
+    AegisName: Costume Tantarian
+    Name: Costume Tantarian
+    Type: Shadowgear
+    Job: 
+      Sage: true
+    Locations:
+      Shadow_Weapon: true
+    EquipLevelMin: 1
+    View: 161
+    Script: |
+      bonus bAllStats,2;
+      bonus bMatkRate,5;
+      bonus2 bAddClass,Class_All,5;
+  - Id: 1220040
+    AegisName: Costume katar
+    Name: Costume katar
+    Type: Shadowgear
+    Job: 
+      Assassin: true
+    Locations:
+      Shadow_Weapon: true
+    EquipLevelMin: 1
+    View: 162
+    Script: |
+      bonus bAllStats,2;
+      bonus bMatkRate,5;
+      bonus2 bAddClass,Class_All,5;
+  - Id: 18819
+    AegisName: Blue_Pencil_In_Mouth
+    Name: Blue Pencil In Mouth
+    Type: Armor
+    Buy: 20
+    Weight: 100
+    Locations:
+      Head_Low: true
+    View: 932
+    Script: |
+      bonus bDex,3;
+      bonus bUnbreakableHelm;
+      bonus bHit,3;
+      bonus bDef,2;
+      bonus bAtk,15;
+  - Id: 300020
+    AegisName: Advanced Magic Rabbit Hat
+    Name: Advanced Magic Rabbit Hat
+    Type: Armor
+    Weight: 800
+    Defense: 2
+    Locations:
+      Head_Top: true
+    Refineable: true
+    View: 497
+    Trade:
+      Override: 100
+      NoDrop: true
+      NoSell: true
+      NoGuildStorage: true
+    Script: |
+      bonus bDex,3;
+      bonus bAgi,3;
+      bonus bMdef,1;
+      bonus bMaxSP,50;
+      bonus bAspdRate,12;
+      bonus bDelayRate,-5;
+      bonus3 bAutoSpellWhenHit,"MG_FIREBOLT",1,20;
+      bonus3 bAutoSpellWhenHit,"MG_COLDBOLT",1,20;
+      bonus3 bAutoSpellWhenHit,"MG_LIGHTNINGBOLT",1,20;
+  - Id: 300021
+    AegisName: Advanced Robo Eye
+    Name: Advanced Robo Eye
+    Type: Armor
+    Buy: 20
+    Weight: 200
+    Defense: 2
+    Locations:
+      Head_Mid: true
+    EquipLevelMin: 10
+    View: 345
+    Script: |
+      bonus2 bAddClass,Class_All,2;
+      bonus bMatkRate,2;
+      bonus bAtkRate,2;
+      bonus bMaxSP,100;
+      bonus bDex,2;
+      bonus bInt,2;
+  - Id: 300022
+    AegisName: Advanced Filir's Pinions
+    Name: Advanced Filir's Pinions
+    Type: Armor
+    Buy: 20
+    Weight: 100
+    Defense: 1
+    Locations:
+      Head_Mid: true
+    EquipLevelMin: 70
+    View: 595
+    Script: |
+      bonus bAspdRate,5;
+      bonus bCastRate,-5;
+      bonus bMatkRate,2;
+      bonus bAtkRate,2;

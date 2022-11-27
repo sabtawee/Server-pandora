@@ -1,0 +1,107 @@
+izlude,83,104,6	script	สล้อตพาเพลินตู้ 	2_SLOT_MACHINE,{
+	set .@usedItem, 30001;
+	set .@usedItemAmount, 200;
+	setarray .@rewardItemId[1],			5137, 12412, 12221, 23210, 7622, 617, 984, 35002, 12412, 6320, 12441, 603, 5564, 12221, 22869, 12411, 12441, 23210, 12443, 985, 12411, 7621, 603, 35002;
+	setarray .@rewardItemAmount[1],		1,  1, 1,  1, 1,  1, 1,  1, 1,  1, 1,  1, 1,  1, 1,  1, 1,  1, 1,  1, 1,  1, 1,  1;
+	setarray .@cutinImage$[0], "cc00", "cc01", "cc02", "cc03", "cc04", "cc05", "cc06", "cc07", "cc08", "cc09", "cc10",
+		"cc11", "cc12", "cc13", "cc14", "cc15", "cc16", "cc17", "cc18", "cc19", "cc20", "cc21", "cc22", "cc23", "cc24";
+	set .@npcName$, "[" + strnpcinfo(0) + "]";
+
+	mes .@npcName$;
+	mes "เฮ้ นาย.. " + strcharinfo(0);	
+	mes "อยากลองเล่นดูไหมล่ะ?";
+	next;
+	switch (select("ต้องการ, ต้องทำไงบ้าง?", "ไม่ดีกว่า.")) {
+		case 1:
+			mes .@npcName$;
+			cutin .@cutinImage$[0], 4;
+			mes "ไม่ยากเลย!";
+			mes "คุณต้องมี   Cash Point จำนวน " + .@usedItemAmount + " ea";
+			mes "แค่นั้นแหละl.";
+			next;
+			switch (select("โอเค ลุยเลย.", "ไม่เอาดีกว่า!")) {
+				case 1:
+					if (countitem(.@usedItem) < .@usedItemAmount) {
+						mes .@npcName$;
+						mes "ไปหา Coinมาให้ครบก่อน.";
+						cutin "", 255;
+						close;
+					}
+					else {
+						soundeffect "slot_pay_coin.wav",0;
+						delitem .@usedItem, .@usedItemAmount;
+						cutin .@cutinImage$[0], 4;
+						mes .@npcName$;
+						mes "โอเค, คลิก หรือ enterอีกครั้งเพื่อเริ่ม!";
+						next;
+						set .@randomColorId, 1;
+						set .@totalLoop, rand(84, 179);
+						for (set .@i,0; .@i < .@totalLoop; set .@i,.@i+1) {
+							if (.@i < 40) {
+								set .@randomSpeed, 50;
+							}
+							else if (.@i < 80) {
+								set .@randomSpeed, 100;
+							}
+							else if (.@i < 90) {
+								set .@randomSpeed, 300;
+							}
+							else {
+								set .@randomSpeed, 500;
+							}
+
+							cutin .@cutinImage$[.@randomColorId], 4;
+							sleep2(.@randomSpeed);
+							if (.@i < .@totalLoop-1) {
+								if (.@randomColorId < 24) {
+									set .@randomColorId, .@randomColorId+1;
+								}
+								else {
+									set .@randomColorId, 1;
+								}
+							}
+						}
+					if (.@rewardItemId[.@randomColorId] == 0) {
+						mes .@npcName$;
+						mes "Oh! YOU LOSE!";
+						mes "Come again. ^^";
+						close2;
+						cutin "", 255;
+						end;
+						}
+						else {
+							specialeffect 68, AREA;
+							mes .@npcName$;
+							mes "Oh! ว้าวว!";
+							mes "ยินดีด้วย!!!!";
+							getitem .@rewardItemId[.@randomColorId], .@rewardItemAmount[.@randomColorId];
+							npctalk ""+strcharinfo(0)+"  ได้รับ Item ["+getitemname(.@rewardItemId[.@randomColorId])+"]";
+							next;
+							cutin "", 255;
+							
+							mes .@npcName$;
+							mes "ไว้มาลองเล่นใหม่นะ";
+							mes "^^";
+							close;
+							}	
+						end;
+					}
+					close;
+					break;
+				case 2:
+					mes .@npcName$;
+					mes "Okay, good bye loser. ^^";
+					close;
+					break;
+			}
+			break;
+		case 2:
+			mes .@npcName$;
+			mes "Okay, good bye loser. ^^";
+			close;
+			break;
+	}
+OnInit:
+	waitingroom "• สล้อตพาเพลิน", 0;
+	end;
+}

@@ -1,0 +1,80 @@
+/*
+=================== TERMS OF SERVICES. ===================
+1. ALL RIGHT RESERVED RE-SELLER OR SHARE SCRIPT TO PUBLISH.
+2. BUT YOU RE-SELLER OR SHARE SCRIPT WITH OUT UNAUTHORIZRD
+   I WILL ALL CANCEL MY SUPPORT FOR YOU.
+3. MAINTENANCE SCRIPTS WILL BE FREE SERVICES.
+4. I WILL NOT KEEP ANY INFORMATIONS FROMS YOU SERVER THAT
+   YOU SEND FOR ME.
+5. I HOPE YOU WILL ALL ACCEPT TERMS OF SERVICES.
+==========================================================
+Script. Equipment Shops																			 
+Create By.  Athena Studio
+Bug Report. Kittisak Sarounram [ FB ]																					 
+Contact Us. Kittisak Sarounram [ FB ]																					 
+TEL. 0909183008 [ TRUE MOVE H ]																					 
+==========================================================
+*/
+-	shop	Armor	-1,2302:0,2304:0,2306:0,2308:0,2310:0,2311:0,2313:0,2315:0,2317:0,2318:0,2319:0,2320:0,2322:0,2324:0,2326:0,2329:0,2331:0
+-	shop	Shield	-1,2102:0,2104:0,2106:0,2108:0
+-	shop	Footgear	-1,2402:0,2404:0,2406:0,2407:0
+-	shop	Garments	-1,2502:0,2504:0,2506:0
+
+
+eclage,110,39,8	script	อุปกรณ์สวมใส่	662,{
+	mes "^0000CD[ อุปกรณ์สวมใส่ ]^000000";
+	switch(select("~ ชุดเกราะ:~ โล่:~ รองเท้า:~ ผ้าคลุม"))
+	{
+		case 1:
+			callshop "Armor",1;	
+			npcshopattach "Armor";
+			end;
+			
+		case 2:
+			callshop "Shield",1;
+			npcshopattach "Shield";
+			end;	
+			
+		case 3:
+			callshop "Footgear",1;
+			npcshopattach "Footgear";
+			end;
+			
+		case 4:
+			callshop "Garments",1;
+			npcshopattach "Garments";
+			end;
+			
+	}
+	end;
+
+
+OnBuyItem:
+	mes "คุณต้องการ ^FF0066"+getitemname(@bought_nameid)+"^000000  จำนวน กี่รายการ ?";
+	input .@Amount;
+		if	( .@Amount <= 0 )
+	{
+		set .@Amount,1;
+	}	
+	
+	for ( set .@i, 0; .@i < getarraysize(@bought_nameid); set .@i, .@i+1 )
+	{
+		query_sql ("SELECT `refineable` FROM `item_db` WHERE `id` = '"+ @bought_nameid[.@i] +"'", .@ref);
+		if ( .@ref == 0 )
+		{
+			getitem2 @bought_nameid[.@i],.@Amount,1,0,0,0,0,0,0;
+		}
+		else
+		{
+			getitem2 @bought_nameid[.@i],.@Amount,1,4,0,0,0,0,0;
+		}
+	}
+	deletearray @bought_nameid, getarraysize(@bought_nameid);
+	close;
+OnInit: 
+waitingroom "อุปกรณ์สวมใส่",0; 
+end;
+}
+
+
+

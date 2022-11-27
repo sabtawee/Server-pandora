@@ -1,0 +1,5 @@
+gef_fild14,0,0	monster	Orc Warrior	1023,10
+gef_fild14,0,0	monster	Orc Archer	1189,30
+gef_fild14,0,0	monster	High Orc	1213,150
+gef_fild14,0,0	monster	Orc Lady	1273,20
+gef_fild14,0,0	boss_monster	Orc Hero	1087,1,3600000,60000,0

@@ -1,0 +1,89 @@
+//------------------------------------------------------------
+// Whispering Rain
+
+izlude,77,243,6	script	BR WAR#flag	722,{
+	end;
+
+OnAgitInit4:
+OnRecvBRCastle:
+	FlagEmblem GetCastleData("guild_vs3",1);
+	end;
+	
+OnInit:
+	FlagEmblem GetCastleData("guild_vs3",1);
+	end;
+	
+}
+
+izlude,70,250,5	script	BR WAR#warper	10237,2,2,{
+	
+	end;
+	
+OnTouch:
+	.@p_gid = getcharid(2);
+	if (agitcheck4()) {
+		
+		if(guild_member_count("guild_vs3",.@p_gid) >= .Max_Member){
+			showscript "กิลของเองคนเกินแล้ว อย่าโกง";
+		}else{
+			switch(rand(1,4)){
+				
+				case 1: // ซ้าย
+					warp "guild_vs3",18,50;
+					break;
+					
+				case 2: // บน
+					warp "guild_vs3",50,82;
+					break;
+					
+				case 3: // ขวา
+					warp "guild_vs3",82,50;
+					break;
+					
+				case 4: // ล่าง
+					warp "guild_vs3",50,18;
+					break;
+				
+			}
+		}
+	}else{
+		showscript "ไม่อยู่ในช่วงเวลาสงคราม";
+	}
+	end;
+	
+OnInit:
+
+	// จำนวนคนต่อกิลที่จะเข้าได้
+	.Max_Member	= 15;
+	end;
+	
+}
+
+//==============================================================
+
+-	script	BR_EMPERIUM_CONTROL	-1,{
+	
+OnTimer60000:
+	if (agitcheck4()) {
+		while( !checkcell("guild_vs3",( .@x = rand( 20,79 ) ),( .@y = rand( 20,79 ) ),cell_chkpass ) );
+		announce "[system] ชิบหายหินวิงหนี หาดิ!!!!!",bc_blue|bc_all;
+		unitwarp $EMP_ID,"guild_vs3",.@x,.@y;
+		stopnpctimer;
+		initnpctimer;
+	}
+	end;	
+	
+OnAgitStart4:
+	initnpctimer;
+	end;
+	
+}
+
+////////////////////////////////////////////////////////////////////////////////////////
+////-- จุดวาปออกห้องวอร์
+guild_vs3,15,50,0	warp	br_warp_out_1	0,0,izlude,74,250
+guild_vs3,50,85,0	warp	br_warp_out_2	0,0,izlude,74,250
+guild_vs3,50,15,0	warp	br_warp_out_3	0,0,izlude,74,250
+guild_vs3,85,50,0	warp	br_warp_out_4	0,0,izlude,74,250
+////--
+////////////////////////////////////////////////////////////////////////////////////////

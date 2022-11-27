@@ -1,0 +1,1824 @@
+# This file is a part of rAthena.
+#   Copyright(C) 2021 rAthena Development Team
+#   https://rathena.org - https://github.com/rathena
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+###########################################################################
+# Item Database
+###########################################################################
+#
+# Item Settings
+#
+###########################################################################
+# - Id                      Item ID.
+#   AegisName               Server name to reference the item in scripts and lookups, should use no spaces.
+#   Name                    Name in English for displaying as output.
+#   Type                    Item type. (Default: Etc)
+#   SubType                 Weapon or Ammo type. (Default: 0)
+#   Buy                     Buying price. When not specified, becomes double the sell price. (Default: 0)
+#   Sell                    Selling price. When not specified, becomes half the buy price. (Default: 0)
+#   Weight                  Item weight. Each 10 is 1 weight. (Default: 0)
+#   Attack                  Weapon's attack. (Default: 0)
+#   MagicAttack             Weapon's magic attack. (Default: 0)
+#   Defense                 Armor's defense. (Default: 0)
+#   Range                   Weapon's attack range. (Default: 0)
+#   Slots                   Available slots in item. (Default: 0)
+#   Jobs                    Jobs that can equip the item. (Map default is 'All: true')
+#   Classes                 Upper class types that can equip the item. (Map default is 'All: true')
+#   Gender                  Gender that can equip the item. (Default: Both)
+#   Locations               Equipment's placement. (Default: None)
+#   WeaponLevel             Weapon level. (Default: 0)
+#   EquipLevelMin           Minimum required level to equip. (Default: 0)
+#   EquipLevelMax           Maximum level that can equip. (Default: 0)
+#   Refineable              If the item can be refined. (Default: false)
+#   View                    View sprite of an item. (Default: 0)
+#   AliasName               Another item's AegisName that will be sent to the client instead of this item's AegisName. (Default: null)
+#   Flags:                  Item flags. (Default: null)
+#     BuyingStore           If the item is available for Buyingstores. (Default: false)
+#     DeadBranch            If the item is a Dead Branch. (Default: false)
+#     Container             If the item is part of a container. (Default: false)
+#     UniqueId              If the item is a unique stack. (Default: false)
+#     BindOnEquip           If the item is bound to the character upon equipping. (Default: false)
+#     DropAnnounce          If the item has a special announcement to self on drop. (Default: false)
+#     NoConsume             If the item is consumed on use. (Default: false)
+#     DropEffect            If the item has a special effect on the ground when dropped by a monster. (Default: None)
+#   Delay:                  Item use delay. (Default: null)
+#     Duration              Duration of delay in seconds.
+#     Status                Status Change used to track delay. (Default: None)
+#   Stack:                  Item stack amount. (Default: null)
+#     Amount                Maximum amount that can be stacked.
+#     Inventory             If the stack is applied to player's inventory. (Default: true)
+#     Cart                  If the stack is applied to the player's cart. (Default: false)
+#     Storage               If the stack is applied to the player's storage. (Default: false)
+#     GuildStorage          If the stack is applied to the player's guild storage. (Default: false)
+#   NoUse:                  Conditions when the item is unusable. (Default: null)
+#     Override              Group level to override these conditions.
+#     Sitting               If the item can not be used while sitting. (Default: false)
+#   Trade:                  Trade restrictions. (Default: null)
+#     Override              Group level to override these conditions.
+#     NoDrop                If the item can not be dropped. (Default: false)
+#     NoTrade               If the item can not be traded. (Default: false)
+#     TradePartner          If the item can not be traded to the player's partner. (Default: false)
+#     NoSell                If the item can not be sold. (Default: false)
+#     NoCart                If the item can not be put in a cart. (Default: false)
+#     NoStorage             If the item can not be put in a storage. (Default: false)
+#     NoGuildStorage        If the item can not be put in a guild storage. (Default: false)
+#     NoMail                If the item can not be put in a mail. (Default: false)
+#     NoAuction             If the item can not be put in an auction. (Default: false)
+#   Script                  Script to execute when the item is used/equipped. (Default: null)
+#   EquipScript             Script to execute when the item is equipped. (Default: null)
+#   UnEquipScript           Script to execute when the item is unequipped or when a rental item expires. (Default: null)
+###########################################################################
+
+Header:
+  Type: ITEM_DB
+  Version: 1
+
+Body:
+  - Id: 35013
+    AegisName: Costume_Electric_Black
+    Name: Costume Electric Black
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    EquipLevelMin: 1
+    View: 2012
+  - Id: 35014
+    AegisName: Costume_Electric_Blue
+    Name: Costume Electric Blue
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    EquipLevelMin: 1
+    View: 2013
+  - Id: 35015
+    AegisName: Costume_Electric_Green
+    Name: Costume Electric Green
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    EquipLevelMin: 1
+    View: 2014
+  - Id: 35016
+    AegisName: Costume_Electric_Orange
+    Name: Costume Electric Orange
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    EquipLevelMin: 1
+    View: 2015
+  - Id: 35017
+    AegisName: Costume_Electric_Pink
+    Name: Costume Electric Pink
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    EquipLevelMin: 1
+    View: 2016
+  - Id: 35018
+    AegisName: Costume_Electric_Purple
+    Name: Costume Electric Purple
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    EquipLevelMin: 1
+    View: 2017
+  - Id: 35019
+    AegisName: Costume_Electric_Red
+    Name: Costume Electric Red
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    EquipLevelMin: 1
+    View: 2018
+  - Id: 35020
+    AegisName: Costume_Electric_Trevas
+    Name: Costume Electric Trevas
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    EquipLevelMin: 1
+    View: 2019
+  - Id: 35021
+    AegisName: Costume_Electric_Trevas_Red
+    Name: Costume Electric Trevas Red
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    EquipLevelMin: 1
+    View: 2020
+  - Id: 35022
+    AegisName: Costume_Electric_White
+    Name: Costume Electric White
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    EquipLevelMin: 1
+    View: 2021
+  - Id: 35023
+    AegisName: Costume_Electric_Yellow
+    Name: Costume Electric Yellow
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    EquipLevelMin: 1
+    View: 2022
+  - Id: 35056
+    AegisName: Costume_Electric_Black_Rebuild
+    Name: Costume Electric Black Rebuild
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    EquipLevelMin: 1
+    View: 2012
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+  - Id: 35057
+    AegisName: Costume_Electric_Blue_Rebuild
+    Name: Costume Electric Blue Rebuild
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    EquipLevelMin: 1
+    View: 2013
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+  - Id: 35058
+    AegisName: Costume_Electric_Green_Rebuild
+    Name: Costume Electric Green Rebuild
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    EquipLevelMin: 1
+    View: 2014
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+  - Id: 35059
+    AegisName: Costume_Electric_Orange_Rebuild
+    Name: Costume Electric Orange Rebuild
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    EquipLevelMin: 1
+    View: 2015
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+  - Id: 35060
+    AegisName: Costume_Electric_Pink_Rebuild
+    Name: Costume Electric Pink Rebuild
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    EquipLevelMin: 1
+    View: 2016
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+  - Id: 35061
+    AegisName: Costume_Electric_Purple_Rebuild
+    Name: Costume Electric Purple Rebuild
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    EquipLevelMin: 1
+    View: 2017
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+  - Id: 35062
+    AegisName: Costume_Electric_Red_Rebuild
+    Name: Costume Electric Red Rebuild
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    EquipLevelMin: 1
+    View: 2018
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+  - Id: 35063
+    AegisName: Costume_Electric_Trevas_Rebuild
+    Name: Costume Electric Trevas Rebuild
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    EquipLevelMin: 1
+    View: 2019
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+  - Id: 35064
+    AegisName: Costume_Electric_Trevas_Red_Rebuild
+    Name: Costume Electric Trevas Red Rebuild
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    EquipLevelMin: 1
+    View: 2020
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+  - Id: 35065
+    AegisName: Costume_Electric_White_Rebuild
+    Name: Costume Electric White Rebuild
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    EquipLevelMin: 1
+    View: 2021
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+  - Id: 35066
+    AegisName: Costume_Electric_Yellow_Rebuild
+    Name: Costume Electric Yellow Rebuild
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    EquipLevelMin: 1
+    View: 2022
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+  - Id: 35048
+    AegisName: Costume_Circle_Blue
+    Name: Costume Circle Blue
+    Type: Shadowgear
+    Locations:
+      Shadow_Right_Accessory: true
+    EquipLevelMin: 1
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+  - Id: 35049
+    AegisName: Costume_Circle_Green
+    Name: Costume Circle Green
+    Type: Shadowgear
+    Locations:
+      Shadow_Right_Accessory: true
+    EquipLevelMin: 1
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+  - Id: 35050
+    AegisName: Costume_Circle_Mist
+    Name: Costume Circle Mist
+    Type: Shadowgear
+    Locations:
+      Shadow_Right_Accessory: true
+    EquipLevelMin: 1
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+  - Id: 35051
+    AegisName: Costume_Circle_Orange
+    Name: Costume Circle Orange
+    Type: Shadowgear
+    Locations:
+      Shadow_Right_Accessory: true
+    EquipLevelMin: 1
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+  - Id: 35052
+    AegisName: Costume_Circle_Pink
+    Name: Costume Circle Pink
+    Type: Shadowgear
+    Locations:
+      Shadow_Right_Accessory: true
+    EquipLevelMin: 1
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+  - Id: 35053
+    AegisName: Costume_Circle_Purple
+    Name: Costume Circle Purple
+    Type: Shadowgear
+    Locations:
+      Shadow_Right_Accessory: true
+    EquipLevelMin: 1
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+  - Id: 35054
+    AegisName: Costume_Circle_Red
+    Name: Costume Circle Red
+    Type: Shadowgear
+    Locations:
+      Shadow_Right_Accessory: true
+    EquipLevelMin: 1
+    Script: |
+        bonus2 bExpAddRace,RC_All,5;
+        bonus2 bDropAddRace,RC_All,5;
+  - Id: 35055
+    AegisName: Costume_Circle_Yellow
+    Name: Costume Circle Yellow
+    Type: Shadowgear
+    Locations:
+      Shadow_Right_Accessory: true
+    EquipLevelMin: 1
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+  - Id: 36001
+    AegisName: Magestic_Goat_GOD
+    Name: Magestic Goat GOD
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 41
+    Script: |
+      bonus bStr,1;
+      bonus2 bAddRace,RC_DemiHuman,5;
+      bonus2 bAddRace,RC_Player_Human,5;
+      bonus2 bSubRace,RC_DemiHuman,5;
+      bonus2 bSubRace,RC_Player_Human,5;
+      autobonus "{ bonus2 bSPLossRate,5,1000; bonus bBaseAtk,200; }",300,3000,BF_NORMAL,"{ active_transform 1039,3000; specialeffect2 EF_POTION_BERSERK; showscript \"Traaaansformation-!! Baphomet form!!\"; }";
+      autobonus2 "{ bonus2 bSPLossRate,5,1000; bonus bBaseAtk,200; }",300,3000,BF_NORMAL,"{ active_transform 1039,3000; specialeffect2 EF_POTION_BERSERK; showscript \"Traaaansformation-!! Baphomet form!!\"; }";
+  - Id: 36002
+    AegisName: Spiky_Band_GOD
+    Name: Spiky Band GOD
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 43
+    Script: |
+      bonus2 bAddRace,RC_DemiHuman,5;
+      bonus2 bAddRace,RC_Player_Human,5;
+      bonus2 bSubRace,RC_DemiHuman,5;
+      bonus2 bSubRace,RC_Player_Human,5;
+      autobonus "{ bonus2 bSPLossRate,5,1000; bonus bBaseAtk,200; }",300,3000,BF_NORMAL,"{ active_transform 1046,3000; specialeffect2 EF_POTION_BERSERK; showscript \"Traaaansformation-!! Doppelganger form!!\"; }";
+      autobonus2 "{ bonus2 bSPLossRate,5,1000; bonus bBaseAtk,200; }",300,3000,BF_NORMAL,"{ active_transform 1046,3000; specialeffect2 EF_POTION_BERSERK; showscript \"Traaaansformation-!! Doppelganger form!!\"; }";
+  - Id: 36003
+    AegisName: Crown_GOD_
+    Name: Crown GOD
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 45
+    Script: |
+      bonus bInt,2;
+      bonus2 bAddRace,RC_DemiHuman,5;
+      bonus2 bAddRace,RC_Player_Human,5;
+      bonus2 bSubRace,RC_DemiHuman,5;
+      bonus2 bSubRace,RC_Player_Human,5;
+      autobonus "{ bonus2 bSPLossRate,5,1000; bonus bBaseAtk,200; }",300,3000,BF_NORMAL,"{ active_transform 1038,3000; specialeffect2 EF_POTION_BERSERK; showscript \"Traaaansformation-!! Osiris form!!\"; }";
+      autobonus2 "{ bonus2 bSPLossRate,5,1000; bonus bBaseAtk,200; }",300,3000,BF_NORMAL,"{ active_transform 1038,3000; specialeffect2 EF_POTION_BERSERK; showscript \"Traaaansformation-!! Osiris form!!\"; }";
+  - Id: 36004
+    AegisName: Tiara_GOD
+    Name: Tiara GOD
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 19
+    Script: |
+      bonus bInt,2;
+      bonus2 bAddRace,RC_DemiHuman,5;
+      bonus2 bAddRace,RC_Player_Human,5;
+      bonus2 bSubRace,RC_DemiHuman,5;
+      bonus2 bSubRace,RC_Player_Human,5;
+      autobonus "{ bonus2 bSPLossRate,5,1000; bonus bBaseAtk,200; }",300,3000,BF_NORMAL,"{ active_transform 1147,3000; specialeffect2 EF_POTION_BERSERK; showscript \"Traaaansformation-!! Maya form!!\"; }";
+      autobonus2 "{ bonus2 bSPLossRate,5,1000; bonus bBaseAtk,200; }",300,3000,BF_NORMAL,"{ active_transform 1147,3000; specialeffect2 EF_POTION_BERSERK; showscript \"Traaaansformation-!! Maya form!!\"; }";
+  - Id: 36005
+    AegisName: Grand_Circlet_GOD
+    Name: Grand Circlet GOD
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 93
+    Script: |
+      bonus bStr,1;
+      bonus bInt,1;
+      bonus bLuk,1;
+      bonus bMdef,4;
+      bonus2 bAddRace,RC_DemiHuman,5;
+      bonus2 bAddRace,RC_Player_Human,5;
+      bonus2 bSubRace,RC_DemiHuman,5;
+      bonus2 bSubRace,RC_Player_Human,5;
+      autobonus "{ bonus2 bSPLossRate,5,1000; bonus bBaseAtk,200; }",300,3000,BF_NORMAL,"{ active_transform 1190,3000; specialeffect2 EF_POTION_BERSERK; showscript \"Traaaansformation-!! Orc Lord form!!\"; }";
+      autobonus2 "{ bonus2 bSPLossRate,5,1000; bonus bBaseAtk,200; }",300,3000,BF_NORMAL,"{ active_transform 1190,3000; specialeffect2 EF_POTION_BERSERK; showscript \"Traaaansformation-!! Orc Lord form!!\"; }";
+  - Id: 36006
+    AegisName: Corsair_GOD
+    Name: Corsair GOD
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 105
+    Script: |
+      bonus bVit,1;
+      bonus2 bAddRace,RC_DemiHuman,5;
+      bonus2 bAddRace,RC_Player_Human,5;
+      bonus2 bSubRace,RC_DemiHuman,5;
+      bonus2 bSubRace,RC_Player_Human,5;
+      autobonus "{ bonus2 bSPLossRate,5,1000; bonus bBaseAtk,200; }",300,3000,BF_NORMAL,"{ active_transform 1112,3000; specialeffect2 EF_POTION_BERSERK; showscript \"Traaaansformation-!! Drake form!!\"; }";
+      autobonus2 "{ bonus2 bSPLossRate,5,1000; bonus bBaseAtk,200; }",300,3000,BF_NORMAL,"{ active_transform 1112,3000; specialeffect2 EF_POTION_BERSERK; showscript \"Traaaansformation-!! Drake form!!\"; }";
+  - Id: 36007
+    AegisName: Boy's_Cap_GOD
+    Name: Boy's Cap GOD
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 102
+    Script: |
+      bonus2 bAddRace,RC_DemiHuman,5;
+      bonus2 bAddRace,RC_Player_Human,5;
+      bonus2 bSubRace,RC_DemiHuman,5;
+      bonus2 bSubRace,RC_Player_Human,5;
+      autobonus "{ bonus2 bSPLossRate,5,1000; bonus bBaseAtk,200; }",300,3000,BF_NORMAL,"{ active_transform 1115,3000; specialeffect2 EF_POTION_BERSERK; showscript \"Traaaansformation-!! Eddga form!!\"; }";
+      autobonus2 "{ bonus2 bSPLossRate,5,1000; bonus bBaseAtk,200; }",300,3000,BF_NORMAL,"{ active_transform 1115,3000; specialeffect2 EF_POTION_BERSERK; showscript \"Traaaansformation-!! Eddga form!!\"; }";
+  - Id: 36016
+    AegisName: Coronet_GOD
+    Name: Coronet GOD
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 33
+    Script: |
+      bonus bInt,1;
+      bonus2 bAddRace,RC_DemiHuman,5;
+      bonus2 bAddRace,RC_Player_Human,5;
+      bonus2 bSubRace,RC_DemiHuman,5;
+      bonus2 bSubRace,RC_Player_Human,5;
+      autobonus "{ bonus2 bSPLossRate,5,1000; bonus bBaseAtk,200; }",300,3000,BF_NORMAL,"{ active_transform 1059,3000; specialeffect2 EF_POTION_BERSERK; showscript \"Traaaansformation-!! Mistress form!!\"; }";
+      autobonus2 "{ bonus2 bSPLossRate,5,1000; bonus bBaseAtk,200; }",300,3000,BF_NORMAL,"{ active_transform 1059,3000; specialeffect2 EF_POTION_BERSERK; showscript \"Traaaansformation-!! Mistress form!!\"; }";
+  - Id: 36017
+    AegisName: Ghost_Bandana_GOD
+    Name: Ghost Bandana GOD
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 61
+    Script: |
+      bonus bAgi,2;
+      bonus2 bAddRace,RC_DemiHuman,5;
+      bonus2 bAddRace,RC_Player_Human,5;
+      bonus2 bSubRace,RC_DemiHuman,5;
+      bonus2 bSubRace,RC_Player_Human,5;
+  - Id: 36018
+    AegisName: Angel_Wing_GOD
+    Name: Angel Wing GOD
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 38
+    Script: |
+      bonus bAgi,1;
+      bonus bLuk,1;
+      bonus bMdef,1;
+      bonus2 bAddRace,RC_DemiHuman,5;
+      bonus2 bAddRace,RC_Player_Human,5;
+      bonus2 bSubRace,RC_DemiHuman,5;
+      bonus2 bSubRace,RC_Player_Human,5;
+  - Id: 36008
+    AegisName: Pipe_GOD_
+    Name: Pipe GOD
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    EquipLevelMin: 1
+    View: 55
+    Script: |
+      bonus2 bSubRace,RC_DemiHuman,3;
+      bonus2 bSubRace,RC_Player_Human,3;
+  - Id: 36009
+    AegisName: Melee_Shadow_Armor
+    Name: Melee Shadow Armor
+    Type: Shadowgear
+    Locations:
+      Shadow_Armor: true
+    EquipLevelMin: 1
+    Script: |
+      bonus bStr,3;
+      bonus bDex,3;
+      bonus bAgi,2;
+  - Id: 36010
+    AegisName: Melee_Shadow_Shield
+    Name: Melee Shadow Shield
+    Type: Shadowgear
+    Locations:
+      Shadow_Shield: true
+    EquipLevelMin: 1
+    Script: |
+      bonus bVit,3;
+  - Id: 36011
+    AegisName: Melee_Shadow_Shoes
+    Name: Melee Shadow Shoes
+    Type: Shadowgear
+    Locations:
+      Shadow_Shoes: true
+    EquipLevelMin: 1
+    Script: |
+      bonus bLuk,3;
+  - Id: 36012
+    AegisName: Magic_Shadow_Armor
+    Name: Magic Shadow Armor
+    Type: Shadowgear
+    Locations:
+      Shadow_Armor: true
+    EquipLevelMin: 1
+    Script: |
+      bonus bInt,3;
+      bonus bDex,3;
+  - Id: 36013
+    AegisName: Magic_Shadow_Shield
+    Name: Magic Shadow Shield
+    Type: Shadowgear
+    Locations:
+      Shadow_Shield: true
+    EquipLevelMin: 1
+    Script: |
+      bonus bMdef,3;
+  - Id: 36014
+    AegisName: Magic_Shadow_Shoes
+    Name: Magic Shadow Shoes
+    Type: Shadowgear
+    Locations:
+      Shadow_Shoes: true
+    EquipLevelMin: 1
+    Script: |
+      bonus bUseSPrate,-5;
+  - Id: 35039
+    AegisName: Costume_Weapon_Hunter
+    Name: Costume Weapon Hunter
+    Type: Shadowgear
+    Jobs:
+      Hunter: true
+      Archer: true
+    Locations:
+      Shadow_Weapon: true
+    EquipLevelMin: 1
+    View: 156
+    Script: |
+      bonus bAllStats,2;
+      bonus bMatkRate,5;
+      bonus2 bAddClass,Class_All,5;
+  - Id: 35040
+    AegisName: Costume_Weapon_Swordman
+    Name: Costume Weapon Swordman
+    Type: Shadowgear
+    Jobs:
+      Swordman: true
+      Knight: true
+    Locations:
+      Shadow_Weapon: true
+    EquipLevelMin: 1
+    View: 105
+    Script: |
+      bonus bAllStats,2;
+      bonus bMatkRate,5;
+      bonus2 bAddClass,Class_All,5;
+  - Id: 35041
+    AegisName: Costume_Weapon_Assassin
+    Name: Costume Weapon Assassin
+    Type: Shadowgear
+    Jobs:
+      Thief: true
+      Assassin: true
+    Locations:
+      Shadow_Weapon: true
+    EquipLevelMin: 1
+    View: 106
+    Script: |
+      bonus bAllStats,2;
+      bonus bMatkRate,5;
+      bonus2 bAddClass,Class_All,5;
+  - Id: 35042
+    AegisName: Costume_Weapon_Wizard
+    Name: Costume Weapon Wizard
+    Type: Shadowgear
+    Jobs:
+      Mage: true
+      Wizard: true
+    Locations:
+      Shadow_Weapon: true
+    EquipLevelMin: 1
+    View: 129
+    Script: |
+      bonus bAllStats,2;
+      bonus bMatkRate,5;
+      bonus2 bAddClass,Class_All,5;
+  - Id: 35043
+    AegisName: Costume_Weapon_Blacksmith
+    Name: Costume Weapon Blacksmith
+    Type: Shadowgear
+    Jobs:
+      Merchant: true
+      Blacksmith: true
+    Locations:
+      Shadow_Weapon: true
+    EquipLevelMin: 1
+    View: 155
+    Script: |
+      bonus bAllStats,2;
+      bonus bMatkRate,5;
+      bonus2 bAddClass,Class_All,5;
+  - Id: 35044
+    AegisName: Costume_Weapon_Priest
+    Name: Costume Weapon Priest
+    Type: Shadowgear
+    Jobs:
+      Acolyte: true
+      Priest: true
+    Locations:
+      Shadow_Weapon: true
+    EquipLevelMin: 1
+    View: 117
+    Script: |
+      bonus bAllStats,2;
+      bonus bMatkRate,5;
+      bonus2 bAddClass,Class_All,5;
+  - Id: 35045
+    AegisName: Costume_Weapon_Swordman_Spear
+    Name: Costume Weapon Swordman Spear
+    Type: Shadowgear
+    Jobs:
+      Swordman: true
+      Crusader: true
+      Knight: true
+    Locations:
+      Shadow_Weapon: true
+    EquipLevelMin: 1
+    View: 147
+    Script: |
+      bonus bAllStats,2;
+      bonus bMatkRate,5;
+      bonus2 bAddClass,Class_All,5;
+  - Id: 35031
+    AegisName: Shadow Lightning Bolt
+    Name: Shadow Lightning Bolt
+    Type: Shadowgear
+    Jobs:
+      Mage: true
+      Wizard: true
+      Sage: true
+    Locations:
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
+    EquipLevelMin: 1
+    Script: |
+      bonus2 bSkillAtk,20,20;
+  - Id: 35032
+    AegisName: Shadow Fire Wall
+    Name: Shadow Fire Wall
+    Type: Shadowgear
+    Jobs:
+      Mage: true
+      Wizard: true
+      Sage: true
+    Locations:
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
+    EquipLevelMin: 1
+    Script: |
+      bonus2 bSkillAtk,18,20;
+  - Id: 35033
+    AegisName: Shadow Double Strafe
+    Name: Shadow Double Strafe
+    Type: Shadowgear
+    Jobs:
+      Hunter: true
+      Archer: true
+      BardDancer: true
+    Locations:
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
+    EquipLevelMin: 1
+    Script: |
+      bonus2 bSkillAtk,46,20;
+  - Id: 35034
+    AegisName: Shadow Arrow Shower
+    Name: Shadow Arrow Shower
+    Type: Shadowgear
+    Jobs:
+      Hunter: true
+      Archer: true
+      BardDancer: true
+    Locations:
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
+    EquipLevelMin: 1
+    Script: |
+      bonus2 bSkillAtk,47,20;
+  - Id: 35035
+    AegisName: Shadow Acolyte
+    Name: Shadow Acolyte
+    Type: Shadowgear
+    Jobs:
+      Acolyte: true
+      Priest: true
+      Monk: true
+    Locations:
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
+    EquipLevelMin: 1
+    Script: |
+      bonus bUseSPrate,-10;
+      bonus bHealPower,20;
+  - Id: 35036
+    AegisName: Shadow Bash
+    Name: Shadow Bash
+    Type: Shadowgear
+    Jobs:
+      Swordman: true
+      Crusader: true
+      Knight: true
+    Locations:
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
+    EquipLevelMin: 1
+    Script: |
+      bonus2 bSkillAtk,5,15;
+  - Id: 35037
+    AegisName: Shadow Merchant
+    Name: Shadow Merchant
+    Type: Shadowgear
+    Jobs:
+      Merchant: true
+      Alchemist: true
+      Blacksmith: true
+    Locations:
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
+    EquipLevelMin: 1
+    Script: |
+      bonus2 bSkillAtk,42,15;
+      skill "BS_UNFAIRLYTRICK",1;
+  - Id: 35038
+    AegisName: Shadow Thief
+    Name: Shadow Thief
+    Type: Shadowgear
+    Jobs:
+      Thief: true
+      Assassin: true
+      Rogue: true
+    Locations:
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
+    EquipLevelMin: 1
+    Script: |
+      bonus bBaseAtk,25;
+      bonus bCritical,10;
+  - Id: 19551
+    AegisName: C_Elven_Ears
+    Name: Costume Elven Ears
+    Type: Armor
+    Buy: 20
+    Weight: 100
+    Locations:
+      Costume_Head_Mid: true
+    View: 73
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 19552
+    AegisName: C_Centimental_Flower
+    Name: Costume Centimental Flower
+    Type: Armor
+    Buy: 20
+    Weight: 100
+    Locations:
+      Costume_Head_Low: true
+    View: 56
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 19902
+    AegisName: C_Cigar
+    Name: Costume Cigarette
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    View: 54
+    Script: |
+      bonus2 bExpAddRace,RC_All,3;
+      bonus2 bDropAddRace,RC_All,2;
+  - Id: 31885
+    AegisName: Cons_Of_Earth
+    Name: Costume Earth Master
+    Type: Armor
+    View: 1982
+    Locations:
+      Costume_Head_Low: true
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+      bonus2 bAddEle,Ele_Earth,5;
+      bonus2 bSubEle,Ele_Earth,5;
+  - Id: 31795
+    AegisName: C_Elephangel_TH_Mid
+    Name: C Elephangel Mid
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    EquipLevelMin: 1
+    View: 1745
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+      bonus2 bAddEle,Ele_Water,5;
+      bonus2 bSubEle,Ele_Water,5;
+  - Id: 31729
+    AegisName: Costume_Miracle_Plant
+    Name: C Miracle Plant
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    EquipLevelMin: 1
+    View: 1893
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+      bonus2 bAddEle,Ele_Wind,5;
+      bonus2 bSubEle,Ele_Wind,5;
+  - Id: 31693
+    AegisName: C_LunaticMuffler
+    Name: C Lunatic Muffler
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    EquipLevelMin: 1
+    View: 1732
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+      bonus2 bAddEle,Ele_Dark,5;
+      bonus2 bSubEle,Ele_Dark,5;
+  - Id: 31600
+    AegisName: C_Kishu_Inu
+    Name: C Kishu Dog
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    EquipLevelMin: 1
+    View: 1804
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+      bonus2 bAddEle,Ele_Holy,5;
+      bonus2 bSubEle,Ele_Holy,5;
+  - Id: 31614
+    AegisName: C_Fox
+    Name: C Fox
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    EquipLevelMin: 1
+    View: 1812
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+      bonus2 bAddEle,Ele_Ghost,5;
+      bonus2 bSubEle,Ele_Dark,5;
+  - Id: 31549
+    AegisName: C_Little_Aquarium_Lower
+    Name: C Little Aquarium Lower
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    EquipLevelMin: 1
+    View: 1363
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+      bonus2 bAddRace,RC_Fish,5;
+      bonus2 bSubRace,RC_Fish,5;
+  - Id: 31452
+    AegisName: C_White_Cat
+    Name: C White Cat
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    EquipLevelMin: 1
+    View: 1715
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+      bonus2 bAddEle,Ele_Undead,5;
+      bonus2 bSubEle,Ele_Undead,5;
+  - Id: 31887
+    AegisName: aegis_31887
+    Name: Costume Pure Scarf
+    Type: Armor
+    View: 1981
+    Locations:
+      Costume_Head_Low: true
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+      bonus2 bAddEle,Ele_Fire,5;
+      bonus2 bSubEle,Ele_Fire,5;
+  - Id: 31620
+    AegisName: C_Snow_Fox_TW
+    Name: Costume Magic Successor
+    Type: Armor
+    View: 1818
+    Locations:
+      Costume_Head_Low: true
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+      bonus2 bAddRace,RC_Demon,5;
+      bonus2 bSubRace,RC_Demon,5;
+  - Id: 31803
+    AegisName: Costume_Master_Of_Wind
+    Name: C Master of Wind
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    EquipLevelMin: 1
+    View: 1924
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+      bonus2 bAddRace,RC_Plant,5;
+      bonus2 bSubRace,RC_Plant,5;
+  - Id: 31395
+    AegisName: C_Book_Of_Magic
+    Name: C Book of Magic
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    EquipLevelMin: 1
+    View: 1691
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,5;
+      bonus2 bAddRace,RC_Brute,5;
+      bonus2 bAddRace,RC_Player_Doram,5;
+      bonus2 bSubRace,RC_Brute,5;
+      bonus2 bSubRace,RC_Player_Doram,5;
+  - Id: 20765
+    AegisName: C_Archangel_Wing
+    Name: Costume Archangel Wing
+    Type: Armor
+    Locations:
+      Costume_Garment: true
+    EquipLevelMin: 1
+    View: 1
+    Script: |
+      bonus2 bExpAddRace,RC_All,30;
+      bonus2 bDropAddRace,RC_All,15;
+      bonus bAllStats,1;
+  - Id: 20764
+    AegisName: C_Fallen_Angel_Wing
+    Name: Costume Fallen Angel Wing
+    Type: Armor
+    Locations:
+      Costume_Garment: true
+    EquipLevelMin: 1
+    View: 3
+    Script: |
+      bonus2 bExpAddRace,RC_All,30;
+      bonus2 bDropAddRace,RC_All,15;
+      bonus bAllStats,1;
+  - Id: 20727
+    AegisName: Brilliant_Golden_Wings
+    Name: Brilliant Golden Wings
+    Type: Armor
+    Buy: 10
+    Locations:
+      Costume_Garment: true
+    EquipLevelMin: 1
+    View: 5
+    Script: |
+      bonus2 bExpAddRace,RC_All,30;
+      bonus2 bDropAddRace,RC_All,15;
+      bonus bAllStats,1;
+  - Id: 19834
+    AegisName: C_Baseball_Cap
+    Name: Costume Baseball Cap
+    Type: Armor
+    Buy: 20
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 216
+    Script: |
+      bonus2 bExpAddRace,RC_All,15;
+      bonus2 bDropAddRace,RC_All,10;
+      bonus bAllStats,1;
+      bonus bAddMaxWeight,3000;
+  - Id: 27031
+    AegisName: Costume_Golden_Baseball_Cap
+    Name: Costume Golden Baseball Cap
+    Type: Armor
+    Buy: 20
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 263
+    Script: |
+      bonus2 bExpAddRace,RC_All,15;
+      bonus2 bDropAddRace,RC_All,10;
+      bonus bAllStats,2;
+      bonus bAddMaxWeight,5000;
+  - Id: 5496
+    AegisName: Dice Hat
+    Name: Dice Hat
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 964
+    Trade:
+      Override: 100
+      NoDrop: true
+      NoTrade: true
+      NoSell: true
+      NoCart: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      ALLOW_DICE = 0;
+    EquipScript: |
+      ALLOW_DICE = 1;
+    UnEquipScript: |
+      ALLOW_DICE = 0;
+  - Id: 300100
+    AegisName: Costume Clay Poring Jar
+    Name: Costume Clay Poring Jar
+    Type: Armor
+    Buy: 20
+    Locations:
+      Costume_Head_Mid: true
+    EquipLevelMin: 1
+    View: 1634
+    Script: |
+      bonus2 bExpAddRace,RC_All,20;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 300016
+    AegisName: Costume Giant Shark
+    Name: Costume Giant Shark
+    Type: Armor
+    Buy: 10
+    Locations:
+      Costume_Garment: true
+    EquipLevelMin: 1
+    View: 121
+    Script: |
+      bonus2 bExpAddRace,RC_All,20;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 300001
+    AegisName: Costume Shcool Red
+    Name: Costume Shcool Red
+    Type: Armor
+    Buy: 10
+    Locations:
+      Costume_Garment: true
+    EquipLevelMin: 1
+    View: 51
+    Script: |
+      bonus2 bExpAddRace,RC_All,15;
+      bonus2 bDropAddRace,RC_All,10;
+      bonus bAllStats,1;
+  - Id: 31175
+    AegisName: Costume Strawberry Hat
+    Name: Costume Strawberry Hat
+    Type: Armor
+    Buy: 20
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 755
+    Script: |
+      bonus2 bAddMonsterDropItem,578,500;
+  - Id: 1100223
+    AegisName: Greed_Bravery_Bag
+    Name: Greed Bravery Bag
+    Type: Armor
+    Weight: 200
+    Defense: 5
+    Slots: 1
+    Locations:
+      Garment: true
+    Refineable: true
+    View: 2
+    Script: |
+      skill "BS_GREED",1;
+      .@r = getrefine();
+      if (.@r>=7) {
+         if (readparam(bStr)>=90) {
+            bonus bBaseAtk,(.@r>=9)?30:20;
+         }
+         if (readparam(bInt)>=90) {
+            bonus bMatk,(.@r>=9)?50:30;
+         }
+         if (readparam(bVit)>=90) {
+            bonus2 bSubEle,Ele_Neutral,(.@r>=9)?10:5;
+         }
+         if (readparam(bAgi)>=90) {
+            bonus bAspdRate,8;
+            if (.@r>=9) {
+               bonus bAspd,1;
+            }
+         }
+         if (readparam(bDex)>=90) {
+            bonus bLongAtkRate,(.@r>=9)?10:5;
+         }
+         if (readparam(bLuk)>=90) {
+            bonus bCritAtkRate,(.@r>=9)?15:10;
+         }
+      }
+  - Id: 18642
+    AegisName: hand_Scissorhand_Model
+    Name: Scissorhand Model
+    Type: Armor
+    Buy: 20
+    Weight: 200
+    Jobs:
+      All: true
+      Novice: false
+      SuperNovice: false
+    Locations:
+      Head_Low: true
+    EquipLevelMin: 1
+    View: 795
+    Script: |
+      bonus bAgi,2;
+      bonus bFlee,5;
+      bonus bFlee2,5;
+  - Id: 18643
+    AegisName: Rockhand_Model
+    Name: Rockhand Model
+    Type: Armor
+    Buy: 20
+    Weight: 200
+    Jobs:
+      All: true
+      Novice: false
+      SuperNovice: false
+    Locations:
+      Head_Low: true
+    EquipLevelMin: 20
+    View: 796
+    Script: |
+      bonus bStr,2;
+      bonus bBaseAtk,10;
+  - Id: 18644
+    AegisName: Paperhand_Model
+    Name: Paperhand Model
+    Type: Armor
+    Buy: 20
+    Weight: 200
+    Jobs:
+      All: true
+      Novice: false
+      SuperNovice: false
+    Locations:
+      Head_Low: true
+    EquipLevelMin: 20
+    View: 797
+    Script: |
+      bonus bLuk,2;
+      bonus bCritAtkRate,5;
+  - Id: 18754
+    AegisName: Blood_Sucker
+    Name: Blood Sucker
+    Type: Armor
+    Buy: 20
+    Weight: 300
+    Locations:
+      Head_Low: true
+    EquipLevelMin: 40
+    View: 893
+    Script: |
+      bonus2 bHPDrainRate,50,5;
+  - Id: 19860
+    AegisName: C_Cryptura_Hair_Cap
+    Name: Costume School Criatura Hat
+    Type: Armor
+    Buy: 20
+    Locations:
+      Costume_Head_Top: true
+    View: 872
+    Script: |
+      bonus2 bExpAddRace,RC_All,30;
+      bonus2 bDropAddRace,RC_All,5;
+  - Id: 37003
+    AegisName: Evil_Wing_GOD
+    Name: Evil Wing GOD
+    Type: Armor
+    Buy: 20
+    Locations:
+      Costume_Head_Top: true
+    Refineable: true
+    View: 39
+    Script: |
+      bonus bMdef,2;
+      bonus bStr,1;
+      bonus2 bSubRace,RC_Angel,3;
+      bonus2 bAddRace,RC_DemiHuman,5;
+      bonus2 bAddRace,RC_Player_Human,5;
+      bonus2 bSubRace,RC_DemiHuman,5;
+      bonus2 bSubRace,RC_Player_Human,5;
+  - Id: 18666
+    AegisName: CD_In_Mouth
+    Name: CD In Mouth
+    Type: Armor
+    Buy: 20
+    Weight: 200
+    Jobs:
+      All: true
+      Novice: false
+      SuperNovice: false
+    Locations:
+      Head_Low: true
+    EquipLevelMin: 20
+    View: 815
+    Script: |
+      autobonus "{ bonus3 bAutoSpell,\"MG_FIREBOLT\",rand(1,5),400; bonus3 bAutoSpell,\"MG_LIGHTNINGBOLT\",rand(1,5),400; bonus3 bAutoSpell,\"MG_COLDBOLT\",rand(1,5),400; bonus3 bAutoSpell,\"WZ_EARTHSPIKE\",rand(1,5),400; bonus3 bAutoSpell,\"MG_SOULSTRIKE\",rand(1,5),400; }",60,5000,BF_NORMAL,"{ specialeffect2 EF_ENHANCE; }";
+  - Id: 20305
+    AegisName: C_NettyHeart_BalloonGum
+    Name: Costume Nettie Heart Bubble Gum
+    Type: Armor
+    Buy: 20
+    Locations:
+      Costume_Head_Low: true
+    View: 720
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 20222
+    AegisName: C_Santa_Hat_2
+    Name: Costume Blue Pigtail Santa Hat
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    View: 395
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 19952
+    AegisName: C_Bubble_Gum_in_Mouth
+    Name: Costume Bubble Gum in Mouth
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    EquipLevelMin: 1
+    View: 572
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 19859
+    AegisName: C_Flying_Angel
+    Name: Costume Flying Angel
+    Type: Armor
+    Buy: 20
+    Locations:
+      Costume_Head_Top: true
+    View: 264
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 19848
+    AegisName: C_Angeling_Hat
+    Name: Costume Angeling Hat
+    Type: Armor
+    Buy: 20
+    Weight: 10
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 204
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 19814
+    AegisName: C_Bright_Wig
+    Name: Costume Bright Wig
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 306
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 19810
+    AegisName: C_Ifrit_Ear
+    Name: Costume Ifrit Ear
+    Type: Armor
+    Locations:
+      Costume_Head_Mid: true
+    EquipLevelMin: 1
+    View: 422
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 19708
+    AegisName: C_White_Snake_Hat
+    Name: Costume White Snake Hat
+    Type: Armor
+    Buy: 10
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 413
+    Script: |
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 37004
+    AegisName: Neutral_Shadow_Armor
+    Name: Neutral Shadow Armor
+    Type: Shadowgear
+    Locations:
+      Shadow_Armor: true
+    EquipLevelMin: 1
+    Script: |
+      bonus2 bSubSize,Size_All,5;
+  - Id: 37005
+    AegisName: Neutral_Shadow_Shield
+    Name: Neutral Shadow Shield
+    Type: Shadowgear
+    Locations:
+      Shadow_Shield: true
+    EquipLevelMin: 1
+    Script: |
+      bonus2 bSubEle,Ele_Earth,5;
+      bonus2 bSubEle,Ele_Wind,5;
+      bonus2 bSubEle,Ele_Fire,5;
+      bonus2 bSubEle,Ele_Water,5;
+  - Id: 37006
+    AegisName: Neutral_Shadow_Shoes
+    Name: Neutral Shadow Shoes
+    Type: Shadowgear
+    Locations:
+      Shadow_Shoes: true
+    EquipLevelMin: 1
+    Script: |
+      bonus bMaxHP,700;
+  - Id: 37010
+    AegisName: Noble_Spirit
+    Name: Noble Spirit
+    Type: Armor
+    Buy: 20
+    Weight: 200
+    Locations:
+      Head_Mid: true
+    EquipLevelMin: 1
+    View: 1409
+    Trade:
+      Override: 100
+      NoSell: true
+      NoGuildStorage: true
+    Script: |
+      bonus bStr,3;
+      bonus bHit,25;
+  - Id: 37011
+    AegisName: Grand_Peco_Hairband
+    Name: Grand Peco Hairband
+    Type: Armor
+    Buy: 20
+    Defense: 6
+    Locations:
+      Head_Top: true
+    Refineable: true
+    EquipLevelMin: 1
+    View: 473
+    Trade:
+      Override: 100
+      NoSell: true
+      NoGuildStorage: true
+    Script: |
+      bonus bSpeedRate,25;
+      bonus bAspdRate,10;
+      bonus bCastrate,-25;
+      bonus bCritAtkRate,10;
+      bonus bDelayRate,-5;
+      bonus bCritical,5;
+  - Id: 37012
+    AegisName: hand_Scissorhand_Model_UP
+    Name: Scissorhand Model UP
+    Type: Armor
+    Buy: 20
+    Weight: 200
+    Jobs:
+      All: true
+      Novice: false
+      SuperNovice: false
+    Locations:
+      Head_Low: true
+    EquipLevelMin: 1
+    View: 795
+    Script: |
+      bonus bAgi,3;
+      bonus bFlee,10;
+      bonus bFlee2,10;
+  - Id: 37013
+    AegisName: Rockhand_Model_UP
+    Name: Rockhand Model UP
+    Type: Armor
+    Buy: 20
+    Weight: 200
+    Jobs:
+      All: true
+      Novice: false
+      SuperNovice: false
+    Locations:
+      Head_Low: true
+    EquipLevelMin: 1
+    View: 796
+    Script: |
+      bonus bStr,3;
+      bonus bBaseAtk,15;
+  - Id: 37014
+    AegisName: Paperhand_Model_UP
+    Name: Paperhand Model_UP
+    Type: Armor
+    Buy: 20
+    Weight: 200
+    Jobs:
+      All: true
+      Novice: false
+      SuperNovice: false
+    Locations:
+      Head_Low: true
+    EquipLevelMin: 1
+    View: 797
+    Script: |
+      bonus bLuk,3;
+      bonus bCritAtkRate,7;
+  - Id: 37015
+    AegisName: Peuz_Manteau
+    Name: Peuz Manteau
+    Type: Armor
+    Buy: 20
+    Weight: 60
+    Defense: 5
+    Slots: 1
+    Locations:
+      Garment: true
+    Refineable: true
+    Script: |
+      bonus bMdef,10;
+      bonus bAgi,5;
+      bonus bVit,5;
+      bonus2 bSubRace,RC_DemiHuman,5;
+      bonus2 bSubRace,RC_Player_Human,5;
+      bonus2 bSubRace,RC_Dragon,5;
+      bonus2 bSubEle,Ele_Water,5;
+      bonus2 bSubEle,Ele_Fire,5;
+      .@r = getrefine();
+      if (.@r>=5) {
+         skill "AS_CLOAKING",1;
+      }
+      if (.@r>=7) {
+         bonus bMaxHPrate,10;
+         bonus bCastrate,-5;
+      }
+  - Id: 36028
+    AegisName: Swordman_Figure_Slots
+    Name: Swordman Figure Slots
+    Type: Armor
+    Slots: 1
+    Locations:
+      Both_Accessory: true
+    Script: |
+      bonus bVit,1;
+      if (Class == Job_Swordman)
+         bonus bDef,2;
+  - Id: 36029
+    AegisName: Acolyte_Figure_Slots
+    Name: Acolyte Figure Slots
+    Type: Armor
+    Slots: 1
+    Locations:
+      Both_Accessory: true
+    Script: |
+      bonus bInt,1;
+      if (Class == Job_Acolyte)
+         bonus bMaxSP,50;
+  - Id: 36030
+    AegisName: Mage_Figure_Slots
+    Name: Mage Figure Slots
+    Type: Armor
+    Slots: 1
+    Locations:
+      Both_Accessory: true
+    Script: |
+      bonus bInt,1;
+      if (Class == Job_Mage)
+         bonus bSPrecovRate,5;
+  - Id: 36031
+    AegisName: Archer_Figure_Slots
+    Name: Archer Figure Slots
+    Type: Armor
+    Slots: 1
+    Locations:
+      Both_Accessory: true
+    Script: |
+      bonus bDex,1;
+      if (Class == Job_Archer)
+         bonus bBaseAtk,10;
+  - Id: 36032
+    AegisName: Thief_Figure_Slots
+    Name: Thief Figure Slots
+    Type: Armor
+    Slots: 1
+    Locations:
+      Both_Accessory: true
+    Script: |
+      bonus bAgi,1;
+      if (Class == Job_Thief)
+         bonus bAspdRate,3;
+  - Id: 36033
+    AegisName: Merchant_Figure_Slots
+    Name: Merchant Figure Slots
+    Type: Armor
+    Slots: 1
+    Locations:
+      Both_Accessory: true
+    Script: |
+      bonus bStr,1;
+      if (Class == Job_Merchant)
+         bonus bCritical,5;
+  - Id: 36034
+    AegisName: Novice_Figure_Slots
+    Name: Novice Figure Slots
+    Type: Armor
+    Slots: 1
+    Locations:
+      Both_Accessory: true
+    Script: |
+      bonus bMaxHP,70;
+      if (BaseJob == Job_Novice || BaseJob == Job_SuperNovice)
+         bonus bMaxHP,30;
+  - Id: 1100224
+    AegisName: Knight_Figure_
+    Name: Knight Figure
+    Type: Armor
+    Slots: 1
+    Jobs:
+      Knight: true
+    Locations:
+      Both_Accessory: true
+  - Id: 1100225
+    AegisName: Priest_Figure_
+    Name: Priest Figure
+    Type: Armor
+    Slots: 1
+    Jobs:
+      Priest: true
+    Locations:
+      Both_Accessory: true
+  - Id: 1100226
+    AegisName: Wizard_Figure_
+    Name: Wizard Figure
+    Type: Armor
+    Slots: 1
+    Jobs:
+      Wizard: true
+    Locations:
+      Both_Accessory: true
+  - Id: 1100227
+    AegisName: Hunter_Figure_
+    Name: Hunter Figure
+    Type: Armor
+    Slots: 1
+    Jobs:
+      Hunter: true
+    Locations:
+      Both_Accessory: true
+  - Id: 1100228
+    AegisName: Assassin_Figure_
+    Name: Assassin Figure
+    Type: Armor
+    Slots: 1
+    Jobs:
+      Assassin: true
+    Locations:
+      Both_Accessory: true
+  - Id: 1100229
+    AegisName: Blacksmith_Figure_
+    Name: Blacksmith Figure
+    Type: Armor
+    Slots: 1
+    Jobs:
+      Blacksmith: true
+    Locations:
+      Both_Accessory: true
+  - Id: 5739
+    AegisName: Sagittarius_Crown
+    Name: Sagittarius Crown
+    Type: Armor
+    Buy: 20
+    Weight: 300
+    Defense: 3
+    Slots: 1
+    Locations:
+      Head_Top: true
+    EquipLevelMin: 1
+    Refineable: true
+    View: 617
+    Script: |
+      bonus bDex,2;
+      bonus2 bSubEle,Ele_Fire,7;
+      .@r = getrefine();
+      if (.@r>6) {
+         bonus bAspdRate,2;
+      }
+      if (.@r>7) {
+         bonus bAgi,2;
+      }
+      if (.@r>8) {
+         bonus bLongAtkRate,5;
+      }
+      if (.@r>9) {
+         autobonus "{ bonus bAgi,10; bonus bDex,10; }",3,10000,BF_NORMAL,"{ specialeffect2 EF_ENHANCE; }";
+      }
+  - Id: 18858
+    AegisName: Pink_Angeling_Bubble
+    Name: Pink Angeling Bubble
+    Type: Armor
+    Buy: 10
+    Weight: 50
+    Locations:
+      Head_Low: true
+    EquipLevelMin: 1
+    View: 975
+    Script: |
+      bonus bAspd,1;
+      bonus bMaxHP,200;
+  - Id: 18523
+    AegisName: Super_Scell
+    Name: Thunderstorm Cloud
+    Type: Armor
+    Buy: 20
+    Weight: 100
+    Locations:
+      Head_Top: true
+    EquipLevelMin: 1
+    View: 688
+    Script: |
+      bonus3 bAutoSpell,"MG_LIGHTNINGBOLT",max(getskilllv("MG_LIGHTNINGBOLT"),5),80+(getskilllv("MG_LIGHTNINGBOLT")*5);
+      bonus3 bAutoSpell,"MG_THUNDERSTORM",max(getskilllv("MG_THUNDERSTORM"),5),80+(getskilllv("MG_THUNDERSTORM")*5);
+  - Id: 5764
+    AegisName: Love_Rabbit_Hood
+    Name: Love Rabbit Hood
+    Type: Armor
+    Buy: 20
+    Weight: 300
+    Defense: 1
+    Slots: 1
+    Locations:
+      Head_Low: true
+      Head_Mid: true
+      Head_Top: true
+    EquipLevelMin: 10
+    View: 549
+    Script: |
+      bonus3 bAutoSpell,"PR_GLORIA",3,100;
+  - Id: 31589
+    AegisName: C_Golden_Majestic_Goat_
+    Name: C Golden Majestic Goat
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 1800
+    Script: |
+      bonus bAllStats,3;
+      bonus2 bAddClass,Class_Boss,25;
+      bonus2 bAddRace,RC_DemiHuman,5;
+      bonus2 bAddRace,RC_Player_Human,5;
+      bonus2 bSubRace,RC_DemiHuman,5;
+      bonus2 bSubRace,RC_Player_Human,5;
+      autobonus "{ bonus2 bSPLossRate,5,1000; bonus bBaseAtk,200; }",300,3000,BF_NORMAL,"{ active_transform 1039,3000; specialeffect2 EF_POTION_BERSERK; showscript \"Traaaansformation-!! Baphomet form!!\"; }";
+      autobonus2 "{ bonus2 bSPLossRate,5,1000; bonus bBaseAtk,200; }",300,3000,BF_NORMAL,"{ active_transform 1039,3000; specialeffect2 EF_POTION_BERSERK; showscript \"Traaaansformation-!! Baphomet form!!\"; }";
+  - Id: 1100230
+    AegisName: Rogue_Figure_
+    Name: Rogue Figure
+    Type: Armor
+    Slots: 1
+    Jobs:
+      Rogue: true
+    Locations:
+      Both_Accessory: true
+  - Id: 1100231
+    AegisName: Sage_Figure_
+    Name: Sage Figure
+    Type: Armor
+    Slots: 1
+    Jobs:
+      Sage: true
+    Locations:
+      Both_Accessory: true
+  - Id: 18703
+    AegisName: Stem_In_Mouth_
+    Name: Stem In Mouth
+    Type: Armor
+    Buy: 20
+    Weight: 10
+    Locations:
+      Head_Low: true
+    EquipLevelMin: 10
+    View: 848
+    Script: |
+      skill "PR_ASPERSIO",5;
+  - Id: 1100232
+    AegisName: Crusuder_Figure_
+    Name: Crusuder Figure
+    Type: Armor
+    Slots: 1
+    Jobs:
+      Crusader: true
+    Locations:
+      Both_Accessory: true
+  - Id: 1100233
+    AegisName: Monk_Figure_
+    Name: Monk Figure
+    Type: Armor
+    Slots: 1
+    Jobs:
+      Monk: true
+    Locations:
+      Both_Accessory: true
+  - Id: 1100234
+    AegisName: Gunslinger_Figure_
+    Name: Gunslinger Figure
+    Type: Armor
+    Slots: 1
+    Jobs:
+      Gunslinger: true
+    Locations:
+      Both_Accessory: true
+  - Id: 5967
+    AegisName: FlyingGalapago
+    Name: Flying Galapago
+    Type: Armor
+    Weight: 500
+    Locations:
+      Head_Low: true
+    EquipLevelMin: 1
+    View: 1358
+    Script: |
+      bonus bAgi,1;
+      bonus3 bAutoSpell,"HT_BLITZBEAT",.@bblvl,50 + (.@luk / 3) + (.@bblvl * 2);
+      bonus2 bSkillAtk,"HT_BLITZBEAT",getskilllv("HT_STEELCROW") * 20;

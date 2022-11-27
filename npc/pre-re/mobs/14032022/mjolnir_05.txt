@@ -1,0 +1,9 @@
+mjolnir_05,0,0	monster	Hornet	1004,68
+mjolnir_05,0,0	monster	Argiope	1099,70
+mjolnir_05,0,0	monster	Argos	1100,22
+mjolnir_05,0,0	monster	Flora	1118,6
+mjolnir_05,0,0	monster	Mantis	1139,51
+mjolnir_05,0,0	boss_monster	Mistress	1059,1,3600000,0,1
+mjolnir_05,0,0	monster	Red Plant	1078,10,180000,120000
+mjolnir_05,0,0	monster	Blue Plant	1079,9,360000,180000
+mjolnir_05,0,0	monster	Shining Plant	1083,1,1800000,900000

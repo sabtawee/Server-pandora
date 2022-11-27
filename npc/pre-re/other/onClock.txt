@@ -1,0 +1,62 @@
+-	script	NPC_CONTROL	-1,{
+
+OnClock2100:
+	enablenpc "เข้าดันบอส";
+	announce "[ ระบบ ]  : NPC เข้าดันบอส เปิดแล้ว พิกัด izlude 133,167",bc_all,0xFFFF00;
+	end;
+
+OnClock0000:
+	disablenpc "เข้าดันบอส";
+	announce "[ ระบบ ]  : NPC เข้าดันบอส ปิดแล้ว",bc_all,0xFFFF00;
+	end;
+}
+
+izlude,133,167,6	script	เข้าดันบอส	477,{
+	mes "เจ้าต้องการเข้าดันไหม";
+	mes "เจ้าต้องการไป หรือไม่";
+	mes "มันโหดร้ายมากน่ะ !!!!";
+	next;
+	menu "เข้าดันบอส -> 500,000 Zeny.",M0,"ออก",M_End;
+	
+	M0:
+		if(Zeny < 500000) goto NoZenyM1;
+		set Zeny, Zeny - 500000;
+		warp "verus02",0,0;
+		close;
+
+		NoZenyM1:
+			mes "[Sailor Fisk]";
+			mes "เจ้าต้องมีเงินจำนวน 500,000 Zeny, ข้าถึงจะอนุญาตให้เจ้าไปได้.";
+			close;
+
+	M_End:
+		close;
+	//verus02
+	end;
+
+OnInit:
+	disablenpc "เข้าดันบอส";
+	//waitingroom " เข้าดันบอส",0;
+	end;
+}
+
+// กำหนดสปอนมอน
+verus02,0,0	monster	Garm	1252,5
+verus02,0,0	monster	Mistress	1059,5
+verus02,0,0	monster	Orc Hero	1087,5
+verus02,0,0	monster	Eddga	1115,5
+verus02,0,0	monster	Phreeoni	1159,5
+verus02,0,0	monster	Maya	1147,5
+verus02,0,0	monster	Doppelganger	1046,5
+verus02,0,0	monster	Baphomet	1039,5
+verus02,0,0	monster	Dark Lord	1272,5
+verus02,0,0	monster	Orc Lord	1190,5
+verus02,0,0	monster	Golden Thief Bug	1086,5
+verus02,0,0	monster	Dark	1112,5
+verus02,0,0	monster	Osiris	1038,5
+verus02,0,0	monster	Stormy Knight	1251,5
+
+// mapflag
+verus02	mapflag	nosave
+verus02	mapflag	nomemo
+verus02	mapflag	pvp

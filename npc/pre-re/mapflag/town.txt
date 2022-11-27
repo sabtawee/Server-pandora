@@ -1,0 +1,23 @@
+//===== eAthena Script =======================================
+//= Allows Mailbox access
+//===== By: ==================================================
+//= Epoque
+//===== Current Version: =====================================
+//= 1.0a [Epoque]
+//===== Compatible With: =====================================
+//=
+//===== Description: =========================================
+//=
+//============================================================
+
+//prontera	mapflag	town
+//prontera	mapflag	noteleport
+izlude	mapflag	town
+izlude	mapflag	nobranch
+moc_ruins	mapflag	town
+geffen	mapflag	town
+payon	mapflag	town
+pay_arche	mapflag	town
+alberta	mapflag	town
+aldebaran	mapflag	town
+yuno	mapflag	town

@@ -1,0 +1,10 @@
+gef_dun02,0,0	monster	Nightmare	1061,40
+gef_dun02,0,0	monster	Argos	1100,10
+gef_dun02,0,0	monster	Bathory	1102,10
+gef_dun02,0,0	monster	Jakk	1130,25
+gef_dun02,0,0	monster	Marionette	1143,40
+gef_dun02,0,0	monster	Myst	1151,15
+gef_dun02,0,0	monster	Whisper	1179,20
+gef_dun02,0,0	boss_monster	Doppelganger	1046,1,3600000,0,1
+gef_dun02,0,0	monster	White Plant	1082,12,180000,120000
+gef_dun02,0,0	monster	Shining Plant	1083,2,3000000,1200000

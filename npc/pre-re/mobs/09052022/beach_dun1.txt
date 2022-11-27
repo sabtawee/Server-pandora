@@ -1,0 +1,4 @@
+beach_dun,0,0	monster	Medusa	1148,60
+beach_dun,0,0	monster	Merman	1264,3,10000,5000
+beach_dun,0,0	monster	Nereid	1255,20
+beach_dun,0,0	monster	Pest	1256,20

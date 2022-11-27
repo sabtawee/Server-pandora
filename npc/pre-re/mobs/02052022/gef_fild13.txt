@@ -1,0 +1,6 @@
+//==================================================
+// gef_fild13 - Britoniah
+//==================================================
+gef_fild13,0,0	monster	Poporing	1031,20
+gef_fild13,0,0	monster	Creamy	1018,40
+gef_fild13,0,0	monster	Ambernite	1094,30

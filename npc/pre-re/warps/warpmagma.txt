@@ -1,0 +1,32 @@
+izlude,135,93,4	script	WarpMagma	469,{
+
+mes "[WarpMagma]";
+	
+	mes "เจ้าต้องการไปปยังMagma Dungeon งั้นหรือ ?";
+	mes "ข้าจะพาเจ้าไปส่ง  Ok ไหม";
+	next;
+	menu "ข้าอยากไป",M0,"ออก",M_End;
+	
+	M0:
+		if(Zeny < 50000) goto NoZenyM1;
+		set Zeny, Zeny - 50000;
+		warp "mag_dun01",0,0;
+		close;
+
+		NoZenyM1:
+			mes "[WarpMagma]";
+
+			mes "เจ้าต้องมีเงินจำนวน 50,000 Zeny , ข้าถึงจะอนุญาตให้เจ้าเข้าไปได้.";
+			close;
+
+	M_End:
+		close;
+
+
+cancel:
+close;
+
+OnInit:
+waitingroom "Magma Dungeon",0;
+end; 
+}

@@ -1,0 +1,1 @@
+izlude,126,167,7	cashshop	KafraShop#cashshop_1	76,30001:1

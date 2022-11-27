@@ -1,0 +1,241 @@
+// Old Card Album Obtainable Items Database
+//
+// Structure of Database:
+// GroupID,ItemID,Rate
+
+// Re-Script to Episode 5.0 DB By.Aries
+
+IG_CardAlbum,4001,10	// Poring Card
+IG_CardAlbum,4002,10	// Fabre Card
+IG_CardAlbum,4003,6		// Pupa Card
+IG_CardAlbum,4004,11	// Drops Card
+IG_CardAlbum,4005,1		// Santa Poring Card
+IG_CardAlbum,4006,7		// Lunatic Card
+IG_CardAlbum,4007,4		// Peco Peco Egg Card
+IG_CardAlbum,4008,10	// Picky Card
+IG_CardAlbum,4009,10	// Chonchon Card
+IG_CardAlbum,4010,10	// Willow Card
+IG_CardAlbum,4011,10	// Picky Egg Card
+IG_CardAlbum,4012,8		// Thief Bug Egg Card
+IG_CardAlbum,4013,7		// Andre Egg Card
+IG_CardAlbum,4014,5		// Roda Frog Card
+IG_CardAlbum,4015,7		// Condor Card
+IG_CardAlbum,4016,7		// Thief Bug Card
+IG_CardAlbum,4017,5		// Savage Babe Card
+IG_CardAlbum,4018,5		// Andre Larva Card
+IG_CardAlbum,4019,5		// Hornet Card
+IG_CardAlbum,4020,5		// Farmiliar Card
+IG_CardAlbum,4021,5		// Rocker Card
+IG_CardAlbum,4022,5		// Spore Card
+IG_CardAlbum,4023,5		// Baby Desert Wolf Card
+IG_CardAlbum,4024,5		// Plankton Card
+IG_CardAlbum,4025,5		// Skeleton Card
+IG_CardAlbum,4026,3		// Female Thief Bug Card
+IG_CardAlbum,4027,3		// Kukre Card
+IG_CardAlbum,4028,3		// Tarou Card
+IG_CardAlbum,4029,3		// Wolf Card
+IG_CardAlbum,4030,3		// Mandragora Card
+IG_CardAlbum,4031,3		// Peco Peco Card
+//IG_CardAlbum,4032,3		// Ambernite Card
+IG_CardAlbum,4033,3		// Poporing Card
+IG_CardAlbum,4034,3		// Wormtail Card
+IG_CardAlbum,4035,3		// Hydra Card
+IG_CardAlbum,4036,3		// Muka Card
+IG_CardAlbum,4037,3		// Snake Card
+IG_CardAlbum,4038,3		// Zombie Card
+//IG_CardAlbum,4039,3		// Stainer Card
+IG_CardAlbum,4040,3		// Creamy Card
+IG_CardAlbum,4041,3		// Coco Card
+//IG_CardAlbum,4042,3		// Steel Chonchon Card
+IG_CardAlbum,4043,3		// Andre Card
+IG_CardAlbum,4044,3		// Smokie Card
+//IG_CardAlbum,4045,3		// Horn Card
+//IG_CardAlbum,4046,3		// Martin Card
+////IG_CardAlbum,4047,1		// Ghostring Card
+IG_CardAlbum,4048,3		// Poison Spore Card
+IG_CardAlbum,4049,3		// Vadon Card
+IG_CardAlbum,4050,3		// Male Thief Bug Card
+IG_CardAlbum,4051,3		// Yoyo Card
+IG_CardAlbum,4052,3		// Elder Willow Card
+IG_CardAlbum,4053,1		// Vitata Card
+//IG_CardAlbum,4054,1		// Angeling Card
+IG_CardAlbum,4055,3		// Marina Card
+IG_CardAlbum,4056,3		// Dustiness Card
+IG_CardAlbum,4057,2		// Metaller Card
+IG_CardAlbum,4058,2		// Thara Frog Card
+//IG_CardAlbum,4060,2		// Goblin Card
+IG_CardAlbum,4061,2		// Cornutus Card
+IG_CardAlbum,4062,2		// Anacondaq Card
+IG_CardAlbum,4063,2		// Caramel Card
+IG_CardAlbum,4064,2		// Zerom Card
+////IG_CardAlbum,4065,2		// Kaho Card
+IG_CardAlbum,4066,2		// Orc Warrior Card
+////IG_CardAlbum,4067,2		// Megalodon Card
+IG_CardAlbum,4068,2		// Scorpion Card
+IG_CardAlbum,4069,2		// Drainliar Card
+IG_CardAlbum,4070,2		// Eggyra Card
+IG_CardAlbum,4071,2		// Orc Zombie Card
+IG_CardAlbum,4072,2		// Golem Card
+IG_CardAlbum,4073,2		// Pirate Skeleton Card
+IG_CardAlbum,4074,2		// Bigfoot Card
+IG_CardAlbum,4075,2		// Argos Card
+IG_CardAlbum,4076,2		// Magnolia Card
+//IG_CardAlbum,4077,2		// Phen Card
+IG_CardAlbum,4078,2		// Savage Card
+//IG_CardAlbum,4079,2		// Mantis Card
+IG_CardAlbum,4080,2		// Flora Card
+IG_CardAlbum,4081,2		// Hode Card
+IG_CardAlbum,4082,1		// Desert Wolf Card
+//IG_CardAlbum,4083,1		// Rafflesia Card
+IG_CardAlbum,4084,1		// Marine Sphere Card
+IG_CardAlbum,4085,1		// Orc Skeleton Card
+IG_CardAlbum,4086,1		// Soldier Skeleton Card
+IG_CardAlbum,4087,1		// Giearth Card
+IG_CardAlbum,4088,1		// Frilldora Card
+IG_CardAlbum,4089,1		// Swordfish Card
+IG_CardAlbum,4090,1		// Munak Card
+IG_CardAlbum,4091,1		// Kobold Card
+//IG_CardAlbum,4092,1		// Skeleton Worker Card
+IG_CardAlbum,4093,1		// Obeaune Card
+IG_CardAlbum,4094,1		// Archer Skeleton Card
+IG_CardAlbum,4095,1		// Marse Card
+IG_CardAlbum,4096,1		// Zenorc Card
+//IG_CardAlbum,4097,1		// Matyr Card
+IG_CardAlbum,4098,1		// Dokebi Card
+//IG_CardAlbum,4099,1		// Pasana Card
+IG_CardAlbum,4100,1		// Sohee Card
+IG_CardAlbum,4101,1		// Sandman Card
+IG_CardAlbum,4102,1		// Whisper Card
+//IG_CardAlbum,4103,1		// Horong Card
+IG_CardAlbum,4104,1		// Requiem Card
+//IG_CardAlbum,4105,1		// Marc Card
+IG_CardAlbum,4106,1		// Mummy Card
+//IG_CardAlbum,4107,1		// Verit Card
+IG_CardAlbum,4108,1		// Myst Card
+IG_CardAlbum,4109,1		// Jakk Card
+//IG_CardAlbum,4110,1		// Ghoul Card
+//IG_CardAlbum,4111,1		// Strouf Card
+//IG_CardAlbum,4112,1		// Marduk Card
+//IG_CardAlbum,4113,1		// Marionette Card
+//IG_CardAlbum,4114,1		// Argiope Card
+//IG_CardAlbum,4115,1		// Hunter Fly Card
+IG_CardAlbum,4116,1		// Isis Card
+//IG_CardAlbum,4117,1		// Sidewinder Card
+//IG_CardAlbum,4118,1		// Earth Petite Card
+IG_CardAlbum,4119,1		// Bathory Card
+//IG_CardAlbum,4120,1		// Sky Petite Card
+//IG_CardAlbum,4122,1		// Deviruchi Card
+//IG_CardAlbum,4124,1		// Medusa Card
+//IG_CardAlbum,4125,1		// Deviace Card
+//IG_CardAlbum,4126,1		// Minorous Card
+//IG_CardAlbum,4127,1		// Nightmare Card
+//IG_CardAlbum,4129,1		// Bapho Jr. Card
+//IG_CardAlbum,4130,1		// Scorpion King Card
+//IG_CardAlbum,4133,1		// Raydric Card
+//IG_CardAlbum,4136,1		// Khalitzburg Card
+//IG_CardAlbum,4140,1		// Knight OF Abyss
+//IG_CardAlbum,4141,1		// Evil Druid Card
+//IG_CardAlbum,4149,1		// Gargoyle Card
+//IG_CardAlbum,4150,1		// Goat Card
+//IG_CardAlbum,4151,1		// Gajomart Card
+//IG_CardAlbum,4152,1		// Galapago Card
+//IG_CardAlbum,4153,1		// Crab Card
+//IG_CardAlbum,4155,1		// Goblin Leader Card
+//IG_CardAlbum,4156,1		// Goblin Steamrider Card
+//IG_CardAlbum,4157,1		// Goblin Archer Card
+IG_CardAlbum,4159,1		// Nine Tail Card
+//IG_CardAlbum,4162,1		// Grizzly Card
+//IG_CardAlbum,4163,1		// Gryphon Card
+//IG_CardAlbum,4167,1		// Neraid Card
+//IG_CardAlbum,4169,1		// Dark Illusion Card
+//IG_CardAlbum,4170,1		// Dark Frame Card
+//IG_CardAlbum,4178,1		// Dragon Tail Card
+//IG_CardAlbum,4179,1		// Dragon Fly Card
+//IG_CardAlbum,4183,1		// Vagabond Wolf Card
+//IG_CardAlbum,4185,1		// Rideword Card
+//IG_CardAlbum,4186,1		// Raggler Card
+//IG_CardAlbum,4187,1		// Raydric Archer Card
+//IG_CardAlbum,4188,1		// Leib Olmai Card
+//IG_CardAlbum,4189,1		// Wraith Dead Card
+//IG_CardAlbum,4190,1		// Wraith Card
+//IG_CardAlbum,4192,1		// Rotar Zairo Card
+//IG_CardAlbum,4196,1		// Marin Card
+//IG_CardAlbum,4197,1		// Mastering Card
+//IG_CardAlbum,4198,1		// Maya Purple Card
+//IG_CardAlbum,4199,1		// Merman Card
+//IG_CardAlbum,4200,1		// Megalith Card
+//IG_CardAlbum,4201,1		// Majoruros Card
+////IG_CardAlbum,4203,1		// Mutant Dragonoid Card
+//IG_CardAlbum,4204,1		// Mini Demon Card
+IG_CardAlbum,4205,1		// Mimic Card
+//IG_CardAlbum,4206,1		// Myst Case Card
+//IG_CardAlbum,4207,1		// Mysteltainn Card
+//IG_CardAlbum,4209,1		// Violy Card
+//IG_CardAlbum,4210,1		// Wanderer Card
+//IG_CardAlbum,4211,1		// Vocal Card
+IG_CardAlbum,4212,1		// Bongun Card
+IG_CardAlbum,4213,1		// Brilight Card
+//IG_CardAlbum,4216,1		// Sasquatch Card
+//IG_CardAlbum,4219,1		// Sage Worm Card
+//IG_CardAlbum,4220,1		// Solider Card
+//IG_CardAlbum,4221,1		// Skeleton General Card
+//IG_CardAlbum,4222,1		// Skeleton Prisoner Card
+//IG_CardAlbum,4223,1		// Stalactic Golem Card
+//IG_CardAlbum,4224,1		// Stem Worm Card
+//IG_CardAlbum,4225,1		// Stone Shooter Card
+//IG_CardAlbum,4226,1		// Sting Card
+//IG_CardAlbum,4227,1		// Spring Rabbit Card
+//IG_CardAlbum,4229,1		// Clock Tower Manager Card
+//IG_CardAlbum,4234,1		// Anolian Card
+//IG_CardAlbum,4235,1		// Christmas Cookie Card
+//IG_CardAlbum,4237,1		// Owl Duke Card
+//IG_CardAlbum,4238,1		// Owl Baron Card
+////IG_CardAlbum,4239,1		// Iron Fist Card
+////IG_CardAlbum,4240,1		// Arclouze Card
+//IG_CardAlbum,4241,1		// Archangeling Card
+//IG_CardAlbum,4243,1		// Antonio Card
+//IG_CardAlbum,4244,1		// Alarm Card
+//IG_CardAlbum,4245,1		// Am Mut Card
+//IG_CardAlbum,4246,1		// Assaulter Card
+//IG_CardAlbum,4247,1		// Aster Card
+//IG_CardAlbum,4248,1		// Ancient Mummy Card
+//IG_CardAlbum,4249,1		// Ancient Worm Card
+//IG_CardAlbum,4250,1		// Executioner Card
+//IG_CardAlbum,4252,1		// Alligator Card
+//IG_CardAlbum,4253,1		// Alice Card
+////IG_CardAlbum,4254,1		// Tirfing Card
+IG_CardAlbum,4255,1		// Orc Lady Card
+//IG_CardAlbum,4256,1		// Orc Archer Card
+//IG_CardAlbum,4257,1		// Wild Rose Card
+//IG_CardAlbum,4266,1		// Eclipse Card
+//IG_CardAlbum,4270,1		// Giant Spider Card
+//IG_CardAlbum,4271,1		// Giant Hornet Card
+//IG_CardAlbum,4273,1		// Shell Fish Card
+//IG_CardAlbum,4275,1		// Zombie Prisoner Card
+//IG_CardAlbum,4277,1		// Zherlthsh Card
+//IG_CardAlbum,4282,1		// Tengu Card
+IG_CardAlbum,4283,1		// Greatest General Card
+//IG_CardAlbum,4285,1		// Choco Card
+//IG_CardAlbum,4288,1		// Carat Card
+//IG_CardAlbum,4290,1		// Cat O' Nine Tails Card
+//IG_CardAlbum,4291,1		// Kobold Leader Card
+//IG_CardAlbum,4292,1		// Kobold Archer Card
+//IG_CardAlbum,4293,1		// Cookie Card
+IG_CardAlbum,4296,1		// Cramp Card
+//IG_CardAlbum,4297,1		// Cruiser Card
+//IG_CardAlbum,4298,1		// Creamy Fear Card
+//IG_CardAlbum,4299,1		// Clock Card
+//IG_CardAlbum,4301,1		// Killer Mantis Card
+//IG_CardAlbum,4303,1		// Whisper Boss Card
+//IG_CardAlbum,4306,1		// Toad Card
+//IG_CardAlbum,4310,1		// Panzer Goblin Card
+//IG_CardAlbum,4311,1		// Permeter Card
+//IG_CardAlbum,4312,1		// Seal Card
+//IG_CardAlbum,4314,1		// Penomena Card
+//IG_CardAlbum,4315,1		// Pest Card
+//IG_CardAlbum,4317,1		// Mobster Card
+//IG_CardAlbum,4319,1		// Freezer Card
+//IG_CardAlbum,4320,1		// Bloody Knight Card
+//IG_CardAlbum,4322,1		// High Orc Card
+//IG_CardAlbum,4326,1		// Sea-Otter Card
+//IG_CardAlbum,4331,1		// Heater Card

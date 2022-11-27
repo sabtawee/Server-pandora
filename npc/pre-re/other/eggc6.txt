@@ -1,0 +1,26 @@
+function	script	randomc6	{
+
+	setarray @very_rare_itemlist[0],1220020,1220018,1220017,1220017,1220016,1220015,1220014;
+	setarray @rare_itemlist[0],1220030,1220029,1220028,1220027,1220026,1220025,1220024,1220023,1220022,1220021;
+	setarray @etc_itemlist[0],7620,7619,6635,1100003,12412,12411,1100005,1100004,7776;
+	
+	
+	@random = rand(0,100);
+	if(@random < 2) {
+		set .RandomItem, rand( getarraysize( @very_rare_itemlist ) );
+		getitem @very_rare_itemlist[ .RandomItem ],1;
+		announce "คุณ "+strcharinfo(0)+" ได้รับ " + getitemname(@very_rare_itemlist[ .RandomItem ]) + " จาก Pandora Scroll Egg V6 โอกาสออก 0.10%",bc_all,0xF633FF;
+		end;
+	}else if(@random < 40){
+		set .RandomItem, rand( getarraysize( @rare_itemlist ) );
+		getitem @rare_itemlist[ .RandomItem ],1;
+		announce "คุณ "+strcharinfo(0)+" ได้รับ " + getitemname(@rare_itemlist[ .RandomItem ]) + " จาก Pandora Scroll Egg V6",bc_all,0xFF9633;
+		end;
+	}else{
+		set .RandomItem, rand( getarraysize( @etc_itemlist ) );
+		getitem @etc_itemlist[ .RandomItem ],1;
+		//announce "ผู้เล่น "+strcharinfo(0)+" ได้รับ " + getitemname(@etc_itemlist[ .RandomItem ]) + " ",bc_all,0xFFFF00;
+		end;
+	}
+ 
+}

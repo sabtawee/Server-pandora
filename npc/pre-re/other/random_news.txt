@@ -1,0 +1,14 @@
+-	script	News	-1,{
+OnInit:
+	setarray .messages$[0],
+		" [ ยินดีต้อนรับสู่  Pandora Ro ]";
+
+	set .msgs, getarraysize(.messages$);
+
+OnTimer3600000:
+	for (set .@x, 0; .@x < .msgs; set .@x, .@x + 1) {
+		announce .messages$[.@x],bc_all,0x0CF3F3;
+		sleep 500000;
+	}
+	initnpctimer;
+}

@@ -1,0 +1,62 @@
+//?>===============================================================<?|
+//?>   www.inthero.com [ Ragnarok Online By Kelberwitz Blade's ]   <?|
+//?>   www.inthero.com [ Ragnarok Online By Kelberwitz Blade's ]   <?|
+//?>   www.inthero.com [ Ragnarok Online By Kelberwitz Blade's ]   <?|
+//?>===============================================================<?|
+
+//izlude,96,104,6	script	บริการเพิ่มน้ำหนัก	899,{
+sec_pri,24,56,4	script	เพิ่มน้ำหนัก	864,{
+	mes "^0066FF[ Ripped Cabus ]^000000";
+	mes "สกิล Enlarge Weight Limit";
+	mes "สกิลนี้ทำให้ถือของได้หนักขึ้น";
+	mes "Weight +200/1 ครั้ง";
+	mes "1 ตัวละครสามารถเรียนได้ 10 ครั้ง ";
+	mes "ใช้ ^FF0000Gym Membership Card^000000 ในการเรียน";
+	next;
+	switch(select("^ff0000•^000000 ตกลง:^ff0000•^000000 ยกเลิก:")) {
+	case 1:
+		if (gympassmemory < 10) {
+			set .@add_carry,gympassmemory + 1;
+			set .@remain_carry,10 - .@add_carry;
+			if (countitem(7776) > 0) {
+				mes "^0066FF[ Ripped Cabus ]^000000";
+				mes "เตรียมตัว !!!";
+				next;
+				specialeffect2 EF_EARTHSPIKE;
+				next;
+				specialeffect2 EF_DEVIL;
+				next;
+				specialeffect2 EF_COIN;
+				next;
+				specialeffect2 EF_SIGHTRASHER;
+				next;
+				mes "^0066FF[ Ripped Cabus ]^000000";
+				mes "ขอบคุณที่ใช้บริการครับ";
+				delitem 7776,1; //Max_Weight_Up_Scroll
+				set gympassmemory,.@add_carry;
+				skill "ALL_INCCARRY",.@add_carry,0;
+				close;
+			}
+			else {
+				mes "^0066FF[ Ripped Cabus ]^000000";
+				mes "เสียใจด้วย ท่านไม่มี";
+				mes "^FF0000Gym Membership Card^000000";
+				close;
+			}
+		}
+		else {
+			mes "^0066FF[ Ripped Cabus ]^000000";
+			mes "ท่านไม่สามารถเรียนได้แล้ว";
+			mes "ท่านเรียนไปถึงเลเวล 10 แล้ว";
+			close;
+		}
+	case 2:
+		mes "^0066FF[ Ripped Cabus ]^000000";
+		mes "ไม่เป็นไร ขอบคุณที่ใช้บริการครับ";
+		close;
+	}
+OnInit:    
+    .MaxShow = 10;
+    waitingroom "• เพิ่มน้ำหนัก",0;
+    end;
+}

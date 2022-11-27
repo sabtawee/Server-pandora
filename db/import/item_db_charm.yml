@@ -1,0 +1,341 @@
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+###########################################################################
+# Item Database
+###########################################################################
+#
+# Item Settings
+#
+###########################################################################
+# - Id                      Item ID.
+#   AegisName               Server name to reference the item in scripts and lookups, should use no spaces.
+#   Name                    Name in English for displaying as output.
+#   Type                    Item type. (Default: Etc)
+#   SubType                 Weapon or Ammo type. (Default: 0)
+#   Buy                     Buying price. When not specified, becomes double the sell price. (Default: 0)
+#   Sell                    Selling price. When not specified, becomes half the buy price. (Default: 0)
+#   Weight                  Item weight. Each 10 is 1 weight. (Default: 0)
+#   Attack                  Weapon's attack. (Default: 0)
+#   MagicAttack             Weapon's magic attack. (Default: 0)
+#   Defense                 Armor's defense. (Default: 0)
+#   Range                   Weapon's attack range. (Default: 0)
+#   Slots                   Available slots in item. (Default: 0)
+#   Jobs                    Jobs that can equip the item. (Map default is 'All: true')
+#   Classes                 Upper class types that can equip the item. (Map default is 'All: true')
+#   Gender                  Gender that can equip the item. (Default: Both)
+#   Locations               Equipment's placement. (Default: None)
+#   WeaponLevel             Weapon level. (Default: 0)
+#   EquipLevelMin           Minimum required level to equip. (Default: 0)
+#   EquipLevelMax           Maximum level that can equip. (Default: 0)
+#   Refineable              If the item can be refined. (Default: false)
+#   View                    View sprite of an item. (Default: 0)
+#   AliasName               Another item's AegisName that will be sent to the client instead of this item's AegisName. (Default: null)
+#   Flags:                  Item flags. (Default: null)
+#     BuyingStore           If the item is available for Buyingstores. (Default: false)
+#     DeadBranch            If the item is a Dead Branch. (Default: false)
+#     Container             If the item is part of a container. (Default: false)
+#     UniqueId              If the item is a unique stack. (Default: false)
+#     BindOnEquip           If the item is bound to the character upon equipping. (Default: false)
+#     DropAnnounce          If the item has a special announcement to self on drop. (Default: false)
+#     NoConsume             If the item is consumed on use. (Default: false)
+#     DropEffect            If the item has a special effect on the ground when dropped by a monster. (Default: None)
+#   Delay:                  Item use delay. (Default: null)
+#     Duration              Duration of delay in seconds.
+#     Status                Status Change used to track delay. (Default: None)
+#   Stack:                  Item stack amount. (Default: null)
+#     Amount                Maximum amount that can be stacked.
+#     Inventory             If the stack is applied to player's inventory. (Default: true)
+#     Cart                  If the stack is applied to the player's cart. (Default: false)
+#     Storage               If the stack is applied to the player's storage. (Default: false)
+#     GuildStorage          If the stack is applied to the player's guild storage. (Default: false)
+#   NoUse:                  Conditions when the item is unusable. (Default: null)
+#     Override              Group level to override these conditions.
+#     Sitting               If the item can not be used while sitting. (Default: false)
+#   Trade:                  Trade restrictions. (Default: null)
+#     Override              Group level to override these conditions.
+#     NoDrop                If the item can not be dropped. (Default: false)
+#     NoTrade               If the item can not be traded. (Default: false)
+#     TradePartner          If the item can not be traded to the player's partner. (Default: false)
+#     NoSell                If the item can not be sold. (Default: false)
+#     NoCart                If the item can not be put in a cart. (Default: false)
+#     NoStorage             If the item can not be put in a storage. (Default: false)
+#     NoGuildStorage        If the item can not be put in a guild storage. (Default: false)
+#     NoMail                If the item can not be put in a mail. (Default: false)
+#     NoAuction             If the item can not be put in an auction. (Default: false)
+#   Script                  Script to execute when the item is used/equipped. (Default: null)
+#   EquipScript             Script to execute when the item is equipped. (Default: null)
+#   UnEquipScript           Script to execute when the item is unequipped or when a rental item expires. (Default: null)
+#        bonus2 bExpAddRace,RC_All,5;
+#        bonus2 bDropAddRace,RC_All,5;
+###########################################################################
+
+Header:
+  Type: ITEM_DB
+  Version: 1
+
+Body:
+  - Id: 29061
+    AegisName: Drop Lv. 1
+    Name: Drop Lv. 1
+    Type: CHARM
+    Trade:
+      Override: 100
+      NoDrop: true
+      NoSell: true
+    Buy: 5
+    Script: |
+      if(countitem(29061)>1)end;
+      bonus2 bDropAddRace,RC_All,1;
+  - Id: 29062
+    AegisName: Drop Lv. 2
+    Name: Drop Lv. 2
+    Type: CHARM
+    Trade:
+      Override: 100
+      NoDrop: true
+      NoSell: true
+    Buy: 5
+    Script: |
+      if(countitem(29062)>1)end;
+      bonus2 bDropAddRace,RC_All,2;
+  - Id: 29063
+    AegisName: Drop Lv. 3
+    Name: Drop Lv. 3
+    Type: CHARM
+    Trade:
+      Override: 100
+      NoDrop: true
+      NoSell: true
+    Buy: 5
+    Script: |
+      if(countitem(29063)>1)end;
+      bonus2 bDropAddRace,RC_All,4;
+      bonus bAddMaxWeight,500;
+  - Id: 29064
+    AegisName: Drop Lv. 4
+    Name: Drop Lv. 4
+    Type: CHARM
+    Trade:
+      Override: 100
+      NoDrop: true
+      NoSell: true
+    Buy: 5
+    Script: |
+      if(countitem(29064)>1)end;
+      bonus2 bDropAddRace,RC_All,6;
+      bonus bAddMaxWeight,500;
+  - Id: 29065
+    AegisName: Drop Lv. 5
+    Name: Drop Lv. 5
+    Type: CHARM
+    Trade:
+      Override: 100
+      NoDrop: true
+      NoSell: true
+    Buy: 5
+    Script: |
+      if(countitem(29065)>1)end;
+      if(countitem(29064)>=1)end;
+      bonus2 bDropAddRace,RC_All,8;
+      bonus bSPrecovRate,20;
+  - Id: 29066
+    AegisName: Drop Lv. 6
+    Name: Drop Lv. 6
+    Type: CHARM
+    Buy: 5
+    Script: |
+      if(countitem(29066)>1)end;
+      if(countitem(29064)>=1)end;
+      if(countitem(29065)>=1)end;
+      bonus2 bDropAddRace,RC_All,12;
+      bonus bSPrecovRate,20;
+      bonus2 bAddClass,Class_All,3;
+      bonus bMatkRate,3;
+  - Id: 29067
+    AegisName: Drop Lv. 7
+    Name: Drop Lv. 7
+    Type: CHARM
+    Buy: 5
+    Script: |
+      if(countitem(29067)>1)end;
+      bonus2 bDropAddRace,RC_All,7;
+  - Id: 29068
+    AegisName: Drop Lv. 8
+    Name: Drop Lv. 8
+    Type: CHARM
+    Buy: 5
+    Script: |
+      if(countitem(29068)>1)end;
+      bonus2 bDropAddRace,RC_All,8;
+  - Id: 29069
+    AegisName: Drop Lv. 9
+    Name: Drop Lv. 9
+    Type: CHARM
+    Buy: 5
+    Script: |
+      if(countitem(29069)>1)end;
+      bonus2 bDropAddRace,RC_All,9;
+  - Id: 29070
+    AegisName: Drop Lv. 10
+    Name: Drop Lv. 10
+    Type: CHARM
+    Buy: 5
+    Script: |
+      if(countitem(29070)>1)end;
+      bonus2 bDropAddRace,RC_All,10;
+  - Id: 29071
+    AegisName: Exp Lv. 1
+    Name: Exp Lv. 1
+    Type: CHARM
+    Trade:
+      Override: 100
+      NoDrop: true
+      NoSell: true
+    Buy: 5
+    Script: |
+      if(countitem(29071)>1)end;
+      bonus2 bExpAddRace,RC_All,2;
+  - Id: 29072
+    AegisName: Exp Lv. 2
+    Name: Exp Lv. 2
+    Type: CHARM
+    Trade:
+      Override: 100
+      NoDrop: true
+      NoSell: true
+    Buy: 5
+    Script: |
+      if(countitem(29072)>1)end;
+      bonus2 bExpAddRace,RC_All,4;
+  - Id: 29073
+    AegisName: Exp Lv. 3
+    Name: Exp Lv. 3
+    Type: CHARM
+    Trade:
+      Override: 100
+      NoDrop: true
+      NoSell: true
+    Buy: 5
+    Script: |
+      if(countitem(29073)>1)end;
+      bonus2 bExpAddRace,RC_All,6;
+      bonus bAddMaxWeight,1000;
+  - Id: 29074
+    AegisName: Exp Lv. 4
+    Name: Exp Lv. 4
+    Type: CHARM
+    Trade:
+      Override: 100
+      NoDrop: true
+      NoSell: true
+    Buy: 5
+    Script: |
+      if(countitem(29074)>1)end;
+      bonus2 bExpAddRace,RC_All,8;
+      bonus bAddMaxWeight,1000;
+      bonus bSPrecovRate,2;
+  - Id: 29075
+    AegisName: Exp Lv. 5
+    Name: Exp Lv. 5
+    Type: CHARM
+    Buy: 5
+    Trade:
+      Override: 100
+      NoDrop: true
+      NoSell: true
+    Script: |
+      if(countitem(29075)>1)end;
+      if(countitem(29074)>=1)end;
+      bonus2 bExpAddRace,RC_All,5;
+      bonus bCritical,10;
+      bonus bMaxHP,300;
+      bonus bAspdRate,3;
+      bonus bAddMaxWeight,1000;
+  - Id: 29076
+    AegisName: Exp Lv. 6
+    Name: Exp Lv. 6
+    Type: CHARM
+    Buy: 5
+    Script: |
+      if(countitem(29076)>1)end;
+      if(countitem(29074)>=1)end;
+      if(countitem(29075)>=1)end;
+      bonus2 bExpAddRace,RC_All,15;
+      bonus bCritical,10;
+      bonus bAspdRate,5;
+      bonus bMaxHP,300;
+      bonus bAddMaxWeight,3000;
+  - Id: 29077
+    AegisName: Exp Lv. 7
+    Name: Exp Lv. 7
+    Type: CHARM
+    Buy: 5
+    Script: |
+      if(countitem(29077)>1)end;
+      bonus2 bExpAddRace,RC_All,7;
+  - Id: 29078
+    AegisName: Exp Lv. 8
+    Name: Exp Lv. 8
+    Type: CHARM
+    Buy: 5
+    Script: |
+      if(countitem(29078)>1)end;
+      bonus2 bExpAddRace,RC_All,8;
+  - Id: 29079
+    AegisName: Exp Lv. 9
+    Name: Exp Lv. 9
+    Type: CHARM
+    Buy: 5
+    Script: |
+      if(countitem(29079)>1)end;
+      bonus2 bExpAddRace,RC_All,9;
+  - Id: 29080
+    AegisName: Exp Lv. 10
+    Name: Exp Lv. 10
+    Type: CHARM
+    Buy: 5
+    Script: |
+      if(countitem(29080)>1)end;
+      bonus2 bExpAddRace,RC_All,10;
+  - Id: 35030
+    AegisName: Rune of Crystal
+    Name: Rune of Crystal
+    Type: CHARM
+    Trade:
+      Override: 100
+      NoDrop: true
+      NoSell: true
+    Buy: 5
+    Script: |
+      if(countitem(35030)>1)end;
+      bonus2 bExpAddRace,RC_All,5;
+      bonus2 bDropAddRace,RC_All,3;
+  - Id: 1100004
+    AegisName: RE_OGH
+    Name: RE OGH
+    Type: Usable
+    Weight: 10
+    NoUse:
+      Override: 100
+      Sitting: true
+    Script: |
+      callfunc "E_QUEST",1100004;
+  - Id: 100001
+    AegisName: HP Charm
+    Name: HP Charm
+    Type: CHARM
+    Trade:
+      Override: 100
+      NoDrop: true
+      NoSell: true
+    Buy: 5
+    Script: |
+      if(countitem(100001)>1)end;
+      bonus bMaxHPrate,10;
+  
+  
